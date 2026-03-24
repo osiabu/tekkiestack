@@ -386,6 +386,8 @@ h1, h2, h3, h4,
 .ob-screen { min-height:calc(100vh - var(--nav-h)); background:var(--navy); display:flex; align-items:center; justify-content:center; padding:28px 18px; position:relative; overflow:hidden; }
 .ob-screen::before { content:''; position:absolute; width:480px; height:480px; background:radial-gradient(circle,rgba(0,201,177,.09) 0%,transparent 70%); top:-100px; right:-100px; pointer-events:none; }
 .ob-card { background:#fff; border-radius:22px; padding:40px 32px; max-width:440px; width:100%; box-shadow:0 22px 80px rgba(0,0,0,.3); text-align:center; position:relative; z-index:1; animation:pop .28s cubic-bezier(.34,1.56,.64,1); }
+/* FIX: ensure buttons sit above any overlapping elements */
+.ob-card .btn { position: relative; z-index: 2; }
 .ob-step { font-size:10px; font-weight:800; color:var(--cyan2); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:9px; }
 .ob-title { font-size:26px; color:var(--navy); margin-bottom:5px; }
 .ob-desc { font-size:14px; color:var(--muted); margin-bottom:24px; line-height:1.55; font-weight:500; }
