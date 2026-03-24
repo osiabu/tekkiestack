@@ -374,7 +374,7 @@
       <div style="font-family:'Fredoka One',cursive;font-size:20px;color:var(--navy);margin-bottom:8px">Full Support Chat — Stage 8</div>
       <p style="font-size:14px;color:var(--muted);font-weight:500">The full support chat with EmailJS integration will be built in Stage 8.</p>
       <div style="margin-top:16px">
-        <button class="btn btn-nv" onclick="go('support')" style="display:inline-flex">📬 Go to Support</button>
+        <button class="btn btn-nv" onclick="go('support')" style="display:inline-flex">📬 Open Support</button>
       </div>
     </div>
   </div>
@@ -497,7 +497,7 @@
     </div>
     <div class="legal-section">
       <h2 id="priv-1">1. Who We Are</h2>
-      <p>TekkieStack is a product of <strong>Aperintel Ltd</strong>, registered in England and Wales. "We", "us", or "our" refers to Aperintel Ltd. Please use our contact form in the Help &amp; Support section to reach us.</p>
+      <p>TekkieStack is a product of <strong>Aperintel</strong>. "We", "us", or "our" refers to Aperintel. Please use our contact form in the Help &amp; Support section.</p>
     </div>
     <div class="legal-section">
       <h2 id="priv-2">2. Data We Store Locally on Your Device</h2>
@@ -542,12 +542,12 @@
         <li><strong>Deletion:</strong> Use the "Clear All My TekkieStack Data" button on the Cookie &amp; Storage Policy page, or clear site data in your browser settings. Deletion is immediate and complete.</li>
         <li><strong>Portability:</strong> The Portfolio Generator exports your data as a downloadable HTML file.</li>
       </ul>
-      <p>For data sent to third parties (support emails), please use the contact form in the Help &amp; Support section.</p>
+      <p>For data sent to third parties (support emails), please use the Help &amp; Support contact form.</p>
     </div>
     <div class="legal-contact-card">
       <h3>Contact Aperintel Ltd</h3>
       <p>For all privacy questions and data protection enquiries:</p>
-      <span style="color:var(--cyan);font-weight:700">Use the Help &amp; Support contact form</span>
+      <span style="font-weight:700;color:var(--cyan)">Use the Help &amp; Support form</span>
     </div>
   </div>
 </div>
@@ -578,7 +578,7 @@
     </div>
     <div class="legal-section">
       <h2 id="terms-2">2. Who Can Use TekkieStack</h2>
-      <p>TekkieStack is designed for children aged 7–16 (Year 3–11) under the supervision of a parent, guardian, or teacher. Adults may also use the platform for personal learning. Commercial use requires a separate written agreement with Aperintel Ltd — please reach out via the Help &amp; Support contact form.</p>
+      <p>TekkieStack is designed for children aged 7–16 (Year 3–11) under the supervision of a parent, guardian, or teacher. Adults may also use the platform for personal learning. Commercial use requires a separate written agreement with Aperintel — please contact us via the Help &amp; Support form.</p>
     </div>
     <div class="legal-section">
       <h2 id="terms-3">3. Acceptable Use</h2>
@@ -622,7 +622,7 @@
     <div class="legal-contact-card">
       <h3>Legal Enquiries</h3>
       <p>For licensing, commercial use, or legal questions:</p>
-      <span style="color:var(--cyan);font-weight:700">Use the Help &amp; Support contact form</span>
+      <span style="font-weight:700;color:var(--cyan)">Use the Help &amp; Support form</span>
     </div>
   </div>
 </div>
@@ -703,7 +703,7 @@
     <div class="legal-contact-card">
       <h3>Storage &amp; Privacy Enquiries</h3>
       <p>Questions about what data is stored or how to delete it:</p>
-      <span style="color:var(--cyan);font-weight:700">Use the Help &amp; Support contact form</span>
+      <span style="font-weight:700;color:var(--cyan)">Use the Help &amp; Support form</span>
     </div>
   </div>
 </div>
@@ -797,48 +797,48 @@
 // ── Onboarding state ────────────────────────────────────────────────────
 let _obAvatar = '🚀';
 let _obYear   = null;
-// _pinVals is declared as let so resetOnboarding can reassign it
-let _pinVals = Array(8).fill('');
+let _pinVals  = Array(8).fill('');   // let (not const) so resetOnboarding can clear it
 
 /**
- * Reset all onboarding form state to defaults and show step 1.
- * Called whenever the onboarding screen opens, to prevent
- * stale state from a previous run creating a duplicate profile.
+ * resetOnboarding — called every time the onboarding screen opens.
+ * Ensures a clean slate whether this is a first-time or repeat visit.
+ * Fixes: stale avatar/year/PIN from previous run, ob5 staying visible,
+ * and the "You're a builder" duplicate-profile bug.
  */
 function resetOnboarding() {
   _obAvatar = '🚀';
   _obYear   = null;
   _pinVals  = Array(8).fill('');
 
-  // Reset name field
+  // Name field
   const nameEl = document.getElementById('obName');
-  if (nameEl) nameEl.value = '';
+  if (nameEl) { nameEl.value = ''; }
   const namePreview = document.getElementById('obNamePreview');
   if (namePreview) namePreview.textContent = '';
 
-  // Reset avatar selection
+  // Avatar grid — restore default selection
   document.querySelectorAll('.av-btn').forEach(b => b.classList.remove('sel'));
   const firstAv = document.querySelector('.av-btn');
   if (firstAv) firstAv.classList.add('sel');
 
-  // Reset year selection
+  // Year grid
   document.querySelectorAll('.yr-btn').forEach(b => b.classList.remove('sel'));
   const ob2Btn = document.getElementById('ob2Btn');
   if (ob2Btn) ob2Btn.disabled = true;
 
-  // Reset PIN fields
+  // PIN fields
   for (let i = 0; i < 8; i++) {
     const pinEl = document.getElementById('pin' + i);
     if (pinEl) pinEl.value = '';
   }
-  const pinErr = document.getElementById('pinSetErr');
-  if (pinErr) pinErr.textContent = '';
+  const pinSetErr = document.getElementById('pinSetErr');
+  if (pinSetErr) pinSetErr.textContent = '';
   const ob3Btn = document.getElementById('ob3Btn');
   if (ob3Btn) ob3Btn.disabled = true;
 
-  // Reset starter editor
+  // Starter code editor
   const starterEl = document.getElementById('starterInput');
-  if (starterEl) starterEl.value = "<h1>My name is ___</h1>";
+  if (starterEl) starterEl.value = '<h1>My name is ___</h1>';
   const starterPr = document.getElementById('starterPreview');
   if (starterPr) starterPr.innerHTML = '<span style="color:var(--muted);font-size:14px;font-family:\'DM Sans\',sans-serif">Replace ___ above to see it appear...</span>';
   const ob4Btn = document.getElementById('ob4Btn');
@@ -882,7 +882,7 @@ function starterPreview() {
     pr.innerHTML = '<strong>'+m[1]+'</strong>';
     document.getElementById('ob4Btn').disabled = false;
   } else {
-    pr.innerHTML = '<span style="color:var(--muted);font-size:14px;font-family:\'DM Sans\',sans-serif">Replace ___ above to see it appear...</span>';
+    pr.innerHTML = '<span style="color:var(--muted);font-size:14px;font-family:'DM Sans',sans-serif">Replace ___ above to see it appear...</span>';
     document.getElementById('ob4Btn').disabled = true;
   }
 }
@@ -986,82 +986,64 @@ function nextHint() {
 }
 
 async function markLessonDone() {
-  // Get the lesson that is currently loaded
   const lessonId = window._currentLessonId;
-  if (!lessonId) {
-    console.warn('[Editor] markLessonDone: no current lesson set');
-    return;
-  }
+  if (!lessonId) return;
 
   const profile = await TSA.services.sessionManager.getActiveProfile();
   if (!profile) { go('picker'); return; }
 
-  // --- Guard: only award XP and save progress once per lesson -----------
-  const prog = profile.phaseProgress || {};
-  const phaseKey = 'j2';  // Phase 2 — Build the Web
-  const phaseProg = prog[phaseKey] || { lessonsComplete: [], done: false };
+  const prog     = profile.phaseProgress || {};
+  const phaseKey = 'j2';
+  const pp       = prog[phaseKey] || { lessonsComplete: [], done: false };
 
-  if (phaseProg.lessonsComplete.includes(lessonId)) {
-    // Already done — just advance to next lesson without re-awarding XP
-    _advanceToNextLesson(lessonId, profile);
+  // ── Guard: already completed — just advance without re-awarding XP ──
+  if (pp.lessonsComplete.includes(lessonId)) {
+    _advanceToNextLesson(lessonId);
     return;
   }
 
-  // --- Mark this lesson complete in profile ----------------------------
-  phaseProg.lessonsComplete.push(lessonId);
+  // ── Mark complete and save to profile ───────────────────────────────
+  pp.lessonsComplete = [...pp.lessonsComplete, lessonId];
 
-  // Check if all 5 Phase 2 lessons are now complete
-  const allP2 = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
-  const allDone = allP2.every(id => phaseProg.lessonsComplete.includes(id));
-  if (allDone && !phaseProg.done) {
-    phaseProg.done = true;
-  }
+  const allIds  = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
+  const allDone = allIds.every(id => pp.lessonsComplete.includes(id));
+  if (allDone) pp.done = true;
 
-  const updatedProg = { ...prog, [phaseKey]: phaseProg };
-  await TSA.services.sessionManager.updateProfile(profile.profileId, { phaseProgress: updatedProg });
+  await TSA.services.sessionManager.updateProfile(
+    profile.profileId, { phaseProgress: { ...prog, [phaseKey]: pp } }
+  );
 
-  // --- Award XP (only once per lesson) ---------------------------------
+  // ── Award XP exactly once ────────────────────────────────────────────
   const { newXp, newBadges } = await TSA.services.xp.addXP('LESSON_COMPLETE');
-
   const lesson = window.TSACodeEditor?.LESSONS?.[lessonId];
-  const lessonTitle = lesson ? lesson.title.split(' — ')[1] || lesson.title : 'Lesson';
-
-  celebrate('🎉', 'Lesson Complete!', lessonTitle + ' mastered!', '+20 XP');
+  const lTitle = lesson ? (lesson.title.split(' — ')[1] || lesson.title) : 'Lesson';
+  celebrate('🎉', 'Lesson Complete!', lTitle + ' mastered!', '+20 XP');
 
   if (newBadges.length) {
     const b = TSA.services.xp.getBadge(newBadges[0]);
-    setTimeout(() => celebrate(b.emoji, 'Badge Earned!', b.label, '+10 XP'), 2500);
+    setTimeout(() => celebrate(b.emoji, 'Badge Earned!', b.label, '+10 XP'), 2400);
   }
 
-  // If all Phase 2 lessons done, show phase completion
-  if (allDone && phaseProg.done) {
-    setTimeout(() => celebrate('🌐', 'Phase 2 Complete!', 'Build the Web — all 5 lessons done!', '+100 XP'), 1800);
+  if (allDone) {
+    setTimeout(() => celebrate('🌐', 'Phase 2 Complete!', 'All 5 lessons done!', '+50 XP bonus'), 1600);
   }
 
-  // --- Advance to next lesson after a short delay ----------------------
-  setTimeout(() => _advanceToNextLesson(lessonId, profile), 1400);
+  // ── Advance after short delay ────────────────────────────────────────
+  setTimeout(() => _advanceToNextLesson(lessonId), 1400);
 }
 
-/**
- * Load the next lesson in sequence, or show "all done" if on the last one.
- */
-function _advanceToNextLesson(currentLessonId, profile) {
-  const sequence = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
-  const idx = sequence.indexOf(currentLessonId);
-  if (idx === -1) return;
-
-  if (idx < sequence.length - 1) {
-    // Load the next lesson
-    const nextId = sequence[idx + 1];
-    if (window.TSACodeEditor) {
-      TSACodeEditor.loadLesson(nextId);
-    }
+/** Load the next lesson or show "all done" on the last one */
+function _advanceToNextLesson(currentId) {
+  const seq = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
+  const idx = seq.indexOf(currentId);
+  if (idx < 0) return;
+  if (idx < seq.length - 1) {
+    if (window.TSACodeEditor) TSACodeEditor.loadLesson(seq[idx + 1]);
   } else {
-    // On the last lesson — show completion state
     const titleEl = document.getElementById('lessonTitle');
     const descEl  = document.getElementById('lessonDesc');
     if (titleEl) titleEl.textContent = 'Phase 2 — All Lessons Complete! 🎉';
-    if (descEl)  descEl.textContent  = 'You've finished all 5 Phase 2 lessons. Head to your Dashboard to see your progress.';
+    if (descEl)  descEl.textContent  = 'Head to your Dashboard to see your progress.';
     const markBtn = document.querySelector('button[onclick="markLessonDone()"]');
     if (markBtn) { markBtn.disabled = true; markBtn.textContent = '✅ All Done!'; }
   }
@@ -1076,37 +1058,33 @@ function _renderStepDots(current, total) {
   if (lb) lb.textContent = `Step ${current+1} of ${total}`;
 }
 
-// Run code on editor screen load — loads the user's current Phase 2 lesson
+// Editor route — loads the user's current (first incomplete) Phase 2 lesson
 TSA.routes['editor'] = async () => {
   if (!window.TSACodeEditor) {
-    setTimeout(() => { runCode(); _renderStepDots(0, 5); _hintTier = 0; document.getElementById('hintBar').style.display = 'none'; }, 100);
+    setTimeout(() => { runCode(); _renderStepDots(0, 5); _hintTier = 0;
+      const hb = document.getElementById('hintBar'); if (hb) hb.style.display = 'none'; }, 100);
     return;
   }
-
-  // Find which lesson to load: look at profile progress and load the first incomplete lesson
-  const profile = await TSA.services.sessionManager.getActiveProfile();
+  const profile  = await TSA.services.sessionManager.getActiveProfile();
   const sequence = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
-
   if (profile) {
     const completed = profile.phaseProgress?.j2?.lessonsComplete || [];
-    // Find first lesson not yet completed
-    const nextLesson = sequence.find(id => !completed.includes(id));
-    if (nextLesson) {
-      TSACodeEditor.loadLesson(nextLesson);
+    const next = sequence.find(id => !completed.includes(id));
+    if (next) {
+      TSACodeEditor.loadLesson(next);
     } else {
-      // All done — load last lesson in read-only/review mode
+      // All lessons done — show review state
       TSACodeEditor.loadLesson('p2-l5');
       setTimeout(() => {
-        const titleEl = document.getElementById('lessonTitle');
-        const descEl  = document.getElementById('lessonDesc');
-        if (titleEl) titleEl.textContent = 'Phase 2 — All Lessons Complete! 🎉';
-        if (descEl)  descEl.textContent  = 'You've finished all 5 Phase 2 lessons. Head to your Dashboard to see your progress.';
-        const markBtn = document.querySelector('button[onclick="markLessonDone()"]');
-        if (markBtn) { markBtn.disabled = true; markBtn.textContent = '✅ All Done!'; }
+        const t = document.getElementById('lessonTitle');
+        const d = document.getElementById('lessonDesc');
+        if (t) t.textContent = 'Phase 2 — All Lessons Complete! 🎉';
+        if (d) d.textContent = 'Head to your Dashboard to see your progress.';
+        const mb = document.querySelector('button[onclick="markLessonDone()"]');
+        if (mb) { mb.disabled = true; mb.textContent = '✅ All Done!'; }
       }, 150);
     }
   } else {
-    // No session — load default lesson 1
     TSACodeEditor.loadLesson('p2-l1');
   }
 };
@@ -1114,8 +1092,12 @@ TSA.routes['editor'] = async () => {
 // Run QR on tipjar load
 TSA.routes['tipjar'] = () => setTimeout(drawBtcQR, 100);
 
-// Onboarding screen: always reset form state when opened
-TSA.routes['onboard'] = () => resetOnboarding();
+// Onboarding screen: always reset form state when opened so second-profile
+// creation starts completely fresh (fixes avatar/continue/duplicate-profile bugs)
+TSA.routes['onboard'] = () => {
+  // Small timeout so the screen transition completes first
+  setTimeout(resetOnboarding, 30);
+};
 
 // ── Cookie policy toggles (Stage 15) ─────────────────────────────────────
 function toggleGoogleFonts(enabled) {
