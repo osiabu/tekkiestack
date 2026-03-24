@@ -461,7 +461,10 @@ async function _init() {
 
     // 3. Attach UI helpers to namespace
     TSA.ui = { celebrate, closeC, go, need, promptEnd };
-
+    // Register onboard route (FIX)
+    TSA.routes['onboard'] = function() {
+    if (typeof resetOnboarding === 'function') resetOnboarding();
+    };
     // 4. Offline & cookie banner
     _setupOfflineIndicator();
     _initCookieBanner();
