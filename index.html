@@ -1095,8 +1095,7 @@ TSA.routes['tipjar'] = () => setTimeout(drawBtcQR, 100);
 // Onboarding screen: always reset form state when opened so second-profile
 // creation starts completely fresh (fixes avatar/continue/duplicate-profile bugs)
 TSA.routes['onboard'] = () => {
-  // Small timeout so the screen transition completes first
-  setTimeout(resetOnboarding, 30);
+  resetOnboarding();
 };
 
 // ── Cookie policy toggles (Stage 15) ─────────────────────────────────────
