@@ -56,7 +56,10 @@ export default async function handler(req, res) {
           method: "POST",
           headers: {
             "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`,
-            "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "HTTP-Referer": "https://tekkiestack.com",
+              "X-Title": "TekkieStack AI Lab"
+},
           },
           body: JSON.stringify({
             model: "meta-llama/llama-3-8b-instruct",
