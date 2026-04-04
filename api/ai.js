@@ -15,18 +15,17 @@ export default async function handler(req, res) {
     // =============================
     try {
       const geminiRes = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GEMINI_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_KEY}`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify({
             contents: [
               {
-                parts: [
-                  {
-                    text: `You are a coding tutor for kids. Give helpful hints, not full answers.\n\n${prompt}`
-                  }
-                ]
+                role: "user",
+                parts: [{ text: prompt }]
               }
             ]
           })
@@ -34,13 +33,12 @@ export default async function handler(req, res) {
       );
 
       const geminiText = await geminiRes.text();
+      console.log("GEMINI RAW:", geminiText);
 
       let geminiData;
       try {
         geminiData = JSON.parse(geminiText);
-      } catch {
-        console.log("Gemini non-JSON:", geminiText);
-      }
+      } catch {}
 
       const text =
         geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -76,7 +74,7 @@ export default async function handler(req, res) {
               {
                 role: "system",
                 content:
-                  "You are a coding tutor for children. Give helpful hints, not full answers."
+                  "You are a coding tutor for kids. Give helpful hints, not full answers."
               },
               {
                 role: "user",
@@ -88,13 +86,12 @@ export default async function handler(req, res) {
       );
 
       const orText = await orRes.text();
+      console.log("OPENROUTER RAW:", orText);
 
       let orData;
       try {
         orData = JSON.parse(orText);
-      } catch {
-        console.log("OpenRouter non-JSON:", orText);
-      }
+      } catch {}
 
       const text =
         orData?.choices?.[0]?.message?.content ||
@@ -130,13 +127,12 @@ export default async function handler(req, res) {
       );
 
       const hfText = await hfRes.text();
+      console.log("HF RAW:", hfText);
 
       let hfData;
       try {
         hfData = JSON.parse(hfText);
-      } catch {
-        console.log("HF non-JSON:", hfText);
-      }
+      } catch {}
 
       let text = null;
 
@@ -160,30 +156,27 @@ export default async function handler(req, res) {
     // =============================
     // 4️⃣ LOCAL FALLBACK
     // =============================
-    const lowerPrompt = prompt.toLowerCase();
+    const lower = prompt.toLowerCase();
 
-    let fallbackText =
+    let fallback =
       "I'm here to help! Try asking about coding or your project 😊";
 
-    if (lowerPrompt.includes("html")) {
-      fallbackText =
+    if (lower.includes("html")) {
+      fallback =
         "HTML is the structure of a webpage. Think of it like the skeleton that holds everything together.";
-    } else if (lowerPrompt.includes("css")) {
-      fallbackText =
+    } else if (lower.includes("css")) {
+      fallback =
         "CSS controls how a webpage looks — colors, layouts, and styles.";
-    } else if (lowerPrompt.includes("javascript")) {
-      fallbackText =
+    } else if (lower.includes("javascript")) {
+      fallback =
         "JavaScript makes websites interactive — like buttons, animations, and logic.";
-    } else if (
-      lowerPrompt.includes("bug") ||
-      lowerPrompt.includes("error")
-    ) {
-      fallbackText =
+    } else if (lower.includes("bug") || lower.includes("error")) {
+      fallback =
         "Try checking your code step by step. What line is causing the issue?";
     }
 
     return res.status(200).json({
-      text: fallbackText,
+      text: fallback,
       source: "local"
     });
 
