@@ -147,7 +147,7 @@ const TSAAILab = (() => {
 
   // ── Online AI (Y5+ only) ────────────────────────────────────────────────
   /**
-   * Call the Anthropic API via the embedded key.
+   * Call the AI via the /api/ai serverless function (key stays server-side).
    * Only runs if: yearGroup >= 5 AND onlineAI feature flag is true.
    * @param {string} tool
    * @param {string} input
@@ -179,20 +179,16 @@ Format: "Score: X/10 — [feedback]"`,
       : `My code so far:\n\`\`\`\n${editorCode}\n\`\`\`\n\nMy question: ${input}`;
 
     try {
-      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      const resp = await fetch('/api/ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 300,
-          system: systemPrompts[tool] || systemPrompts.codeHelper,
-          messages: [{ role: 'user', content: userContent }],
+          prompt: `${systemPrompts[tool] || systemPrompts.codeHelper}\n\n${userContent}`,
         }),
       });
       if (!resp.ok) throw new Error(`API ${resp.status}`);
       const data = await resp.json();
-      const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('');
-      return text || 'Sorry, I could not generate a response. Try again!';
+      return data.text || 'Sorry, I could not generate a response. Try again!';
     } catch(e) {
       console.warn('[AI] Online request failed, falling back to offline:', e);
       return offlineResponse(tool, input, yearGroup);

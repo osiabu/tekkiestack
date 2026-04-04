@@ -11,7 +11,51 @@ export default async function handler(req, res) {
     }
 
     // =============================
-    // 1️⃣ GEMINI (PRIMARY)
+    // 1️⃣ ANTHROPIC (PRIMARY)
+    // =============================
+    try {
+      const anthropicRes = await fetch(
+        "https://api.anthropic.com/v1/messages",
+        {
+          method: "POST",
+          headers: {
+            "x-api-key": process.env.ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            model: "claude-haiku-4-5-20251001",
+            max_tokens: 300,
+            system: "You are a friendly coding tutor for school students. Give helpful hints — never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise.",
+            messages: [{ role: "user", content: prompt }]
+          })
+        }
+      );
+
+      const anthropicText = await anthropicRes.text();
+      console.log("ANTHROPIC RAW:", anthropicText);
+
+      let anthropicData;
+      try {
+        anthropicData = JSON.parse(anthropicText);
+      } catch {}
+
+      const text =
+        (anthropicData?.content || [])
+          .filter(b => b.type === "text")
+          .map(b => b.text)
+          .join("") || null;
+
+      if (text) {
+        return res.status(200).json({ text, source: "anthropic" });
+      }
+
+    } catch (err) {
+      console.log("Anthropic failed:", err);
+    }
+
+    // =============================
+    // 2️⃣ GEMINI (FALLBACK)
     // =============================
     try {
       const geminiRes = await fetch(
@@ -55,7 +99,7 @@ export default async function handler(req, res) {
     }
 
     // =============================
-    // 2️⃣ OPENROUTER
+    // 3️⃣ OPENROUTER
     // =============================
     try {
       const orRes = await fetch(
@@ -109,7 +153,7 @@ export default async function handler(req, res) {
     }
 
     // =============================
-    // 3️⃣ HUGGING FACE
+    // 4️⃣ HUGGING FACE
     // =============================
     try {
       const hfRes = await fetch(
@@ -154,7 +198,7 @@ export default async function handler(req, res) {
     }
 
     // =============================
-    // 4️⃣ LOCAL FALLBACK
+    // 5️⃣ LOCAL FALLBACK
     // =============================
     const lower = prompt.toLowerCase();
 
