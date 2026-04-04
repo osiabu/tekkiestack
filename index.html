@@ -791,6 +791,7 @@
 <script src="modules/support-chat.js"></script>
 <script src="modules/junior-phases.js"></script>
 <script src="modules/senior-phases.js"></script>
+<script src="modules/quiz-gate.js"></script>
 <script src="modules/engagement.js"></script>
 
 <script>
@@ -987,6 +988,19 @@ function nextHint() {
 
 async function markLessonDone() {
   const lessonId = window._currentLessonId;
+  if (!lessonId) return;
+
+  // Quiz gate intercept for code editor lessons
+  if (window.TSAQuizGate && TSAQuizGate.hasQuizFor(lessonId)) {
+    TSAQuizGate.showQuiz(lessonId, () => {
+      _doMarkLessonDone(lessonId);
+    }, () => {});
+    return;
+  }
+  _doMarkLessonDone(lessonId);
+}
+
+async function _doMarkLessonDone(lessonId) {
   if (!lessonId) return;
 
   const profile = await TSA.services.sessionManager.getActiveProfile();

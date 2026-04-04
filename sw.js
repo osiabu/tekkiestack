@@ -4,7 +4,7 @@
  * Author: Aperintel Ltd
  */
 
-const CACHE_VERSION = 'ts-v3';  // bump this string on every production deploy
+const CACHE_VERSION = 'ts-v4';  // bump this string on every production deploy
 const SHELL_ASSETS = [
   './',
   './index.html',
