@@ -21,12 +21,12 @@
 
 <!-- ── Navigation ────────────────────────────────────────────────────────── -->
 <nav class="nav" aria-label="Main navigation">
-  <div class="nav-brand" onclick="go('picker')">
+  <div class="nav-brand" onclick="goToProfiles()">
     <img src="assets/img/logo.png" class="nav-logo" alt="TekkieStack">
     <span class="nav-brand-text">Tekkie<span>stack</span></span>
   </div>
   <div class="nav-tabs">
-    <button class="nb" id="nb-picker"    onclick="go('picker')">Profiles</button>
+    <button class="nb" id="nb-picker"    onclick="goToProfiles()">Profiles</button>
     <button class="nb" id="nb-dashboard" onclick="need('dashboard')">Dashboard</button>
     <button class="nb" id="nb-junior"    onclick="need('junior')">Junior Journey</button>
     <button class="nb" id="nb-senior"    onclick="need('senior')">Senior Journey</button>
@@ -193,6 +193,9 @@
         <button class="btn btn-am" onclick="markLessonDone()">✓ Mark Done</button>
       </div>
     </div>
+    <!-- Lesson explanation panel — shown before user starts coding -->
+    <div id="lessonExplanation" style="display:none;max-height:420px;overflow-y:auto;border-bottom:1.5px solid var(--border);background:var(--slate)"></div>
+
     <div class="elayout">
       <div class="code-pane">
         <div class="pane-bar">
@@ -201,7 +204,7 @@
           <div class="pane-dot" style="background:#28C840"></div>
           <span class="pane-label">index.html</span>
         </div>
-        <textarea class="code-textarea" id="codeInput" spellcheck="false" oninput="runCode()"><!DOCTYPE html>
+        <textarea class="code-textarea" id="codeInput" spellcheck="false"><!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -235,7 +238,7 @@
         <div class="preview-bar">
           <span>🌐</span>
           <div class="url-pill">preview · my-page.html</div>
-          <span class="live-badge">● LIVE</span>
+          <span class="live-badge" id="previewStatusBadge">▶ Press Run</span>
         </div>
         <iframe class="preview-frame" id="previewFrame"></iframe>
       </div>
@@ -958,12 +961,113 @@ async function clearAllData() {
 }
 
 // ── Code editor helpers ─────────────────────────────────────────────────
+
+// Validates HTML for common structural errors. Returns array of error strings.
+function _validateHTML(code) {
+  const errors = [];
+  if (!code.trim()) return errors;
+
+  // Void (self-closing) tags that never need a closing tag
+  const voidTags = new Set(['area','base','br','col','embed','hr','img','input',
+    'link','meta','param','source','track','wbr']);
+
+  // Known valid HTML tags — anything outside this list is flagged
+  const knownTags = new Set(['!doctype','html','head','body','div','span','p','a',
+    'h1','h2','h3','h4','h5','h6','ul','ol','li','img','br','hr','input','button',
+    'form','label','select','option','textarea','table','tr','td','th','thead','tbody',
+    'tfoot','nav','main','header','footer','section','article','aside','figure',
+    'figcaption','blockquote','pre','code','em','strong','b','i','u','s','del',
+    'ins','sup','sub','small','style','script','link','meta','title','iframe',
+    'canvas','video','audio','source','picture','details','summary','noscript',
+    'base','time','mark','template','slot']);
+
+  // Strip HTML comments so they don't confuse the tag scanner
+  const stripped = code.replace(/<!--[\s\S]*?-->/g, '');
+
+  // Scan all tags
+  const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)(\s[^>]*)?\s*\/?>/g;
+  const stack = [];
+  let m;
+  while ((m = tagRe.exec(stripped)) !== null) {
+    const isClose = m[1] === '/';
+    const tagName = m[2].toLowerCase();
+    const selfClose = m[0].endsWith('/>') || voidTags.has(tagName);
+
+    if (!knownTags.has(tagName)) {
+      errors.push(`Unknown tag &lt;${tagName}&gt; — check your spelling`);
+      continue;
+    }
+    if (voidTags.has(tagName)) continue; // void tags: no pairing needed
+
+    if (isClose) {
+      if (stack.length === 0) {
+        errors.push(`Extra closing tag &lt;/${tagName}&gt; with no matching opening tag`);
+      } else if (stack[stack.length - 1] !== tagName) {
+        errors.push(`Tag &lt;/${tagName}&gt; closed out of order — expected &lt;/${stack[stack.length - 1]}&gt;`);
+      } else {
+        stack.pop();
+      }
+    } else if (!selfClose) {
+      stack.push(tagName);
+    }
+  }
+
+  // Anything left in the stack is unclosed (ignore html/head/body — browsers auto-close)
+  const autoClose = new Set(['html','head','body']);
+  for (const tag of stack) {
+    if (!autoClose.has(tag)) {
+      errors.push(`Unclosed tag &lt;${tag}&gt; — did you forget &lt;/${tag}&gt;?`);
+    }
+  }
+
+  return errors;
+}
+
 function runCode() {
-  const code  = document.getElementById('codeInput')?.value;
+  const code  = document.getElementById('codeInput')?.value || '';
   const frame = document.getElementById('previewFrame');
-  if (!frame || !code) return;
+  const badge = document.getElementById('previewStatusBadge');
+  if (!frame) return;
+
+  if (!code.trim()) {
+    // Empty editor — show placeholder
+    const d = frame.contentDocument || frame.contentWindow.document;
+    d.open();
+    d.write(`<html><body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#F8FAFC;font-family:sans-serif;color:#8899AA;text-align:center"><div><div style="font-size:32px;margin-bottom:12px">▶</div><div style="font-size:14px">Press <strong>▶ Run</strong> to preview your code</div></div></body></html>`);
+    d.close();
+    if (badge) { badge.textContent = '▶ Press Run'; badge.style.color = ''; }
+    return;
+  }
+
+  const errors = _validateHTML(code);
+
+  if (errors.length > 0) {
+    // Show error panel in the preview instead of rendering broken HTML
+    const errList = errors.map(e => `<li style="margin-bottom:10px">${e}</li>`).join('');
+    const d = frame.contentDocument || frame.contentWindow.document;
+    d.open();
+    d.write(`<!DOCTYPE html><html><head><style>
+      body { margin:0; padding:24px; font-family:'Segoe UI',sans-serif; background:#1A0A0A; color:#FFD0D0; }
+      h2 { color:#FF6B6B; font-size:18px; margin:0 0 6px; }
+      .sub { font-size:12px; color:#FF9A9A; margin-bottom:20px; }
+      ul { padding-left:20px; font-size:14px; line-height:1.8; }
+      li { background:rgba(255,107,107,0.12); border-radius:6px; padding:8px 12px; margin-bottom:8px; list-style:none; border-left:3px solid #FF6B6B; }
+      .tip { margin-top:20px; font-size:12px; color:#FF9A9A; background:rgba(255,255,255,0.05); padding:12px; border-radius:8px; }
+    </style></head><body>
+      <h2>🐛 HTML Error${errors.length > 1 ? 's' : ''} Found</h2>
+      <div class="sub">Fix the issue${errors.length > 1 ? 's' : ''} in your code, then press ▶ Run again</div>
+      <ul>${errList}</ul>
+      <div class="tip">💡 Tip: every opening tag like &lt;div&gt; needs a matching closing tag &lt;/div&gt;</div>
+    </body></html>`);
+    d.close();
+    if (badge) { badge.textContent = '⚠ Error'; badge.style.color = '#FF6B6B'; }
+    return;
+  }
+
+  // Valid — render the code
   const d = frame.contentDocument || frame.contentWindow.document;
   d.open(); d.write(code); d.close();
+  if (badge) { badge.textContent = '✓ Running'; badge.style.color = '#00C9B1'; }
 }
 
 function showHint() {
@@ -1075,7 +1179,7 @@ function _renderStepDots(current, total) {
 // Editor route — loads the user's current (first incomplete) Phase 2 lesson
 TSA.routes['editor'] = async () => {
   if (!window.TSACodeEditor) {
-    setTimeout(() => { runCode(); _renderStepDots(0, 5); _hintTier = 0;
+    setTimeout(() => { _renderStepDots(0, 5); _hintTier = 0;
       const hb = document.getElementById('hintBar'); if (hb) hb.style.display = 'none'; }, 100);
     return;
   }
