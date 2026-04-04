@@ -1,11 +1,18 @@
 export default async function handler(req, res) {
+  // Only allow POST
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
     const { prompt } = req.body || {};
 
-    if (!prompt) {
-      return res.status(400).json({ text: "No prompt provided" });
+    // Basic validation
+    if (!prompt || typeof prompt !== "string") {
+      return res.status(400).json({ error: "Invalid prompt" });
     }
 
+    // Call OpenRouter
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -13,11 +20,11 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "mistralai/mistral-7b-instruct", // free model
+        model: "mistralai/mistral-7b-instruct",
         messages: [
           {
             role: "system",
-            content: "You are a coding tutor for children. Give hints, not full answers."
+            content: "You are a coding tutor for children. Give helpful hints, not full answers."
           },
           {
             role: "user",
@@ -29,17 +36,11 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    console.log("FULL RESPONSE:", JSON.stringify(data, null, 2));
-
-    const text =
-      data?.choices?.[0]?.message?.content ||
-      data?.choices?.[0]?.text ||
-      "No response";
-
-    res.status(200).json({ text });
+    // 👇 TEMP DEBUG MODE — return full response
+    return res.status(200).json(data);
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ text: "AI failed" });
+    console.error("AI ERROR:", err);
+    return res.status(500).json({ error: "AI request failed" });
   }
 }
