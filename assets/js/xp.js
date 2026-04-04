@@ -20,20 +20,26 @@ const TSAXp = (() => {
     BADGE_EARNED:       10,
     TYPING_SESSION:     10,
     TYPING_PERSONAL_BEST: 15,
+    QUIZ_PASS:          15,
+    QUIZ_PERFECT:       25,
+    PHASE_COMPLETE:     50,
   };
 
   // ── Milestones ────────────────────────────────────────────────────────────
   const MILESTONES = [
-    { xp: 100,  badge: 'first_builder',      label: 'First Builder',       emoji: '🏗️' },
-    { xp: 250,  badge: 'code_curious',       label: 'Code Curious',        emoji: '🔍' },
-    { xp: 500,  badge: 'web_weaver',         label: 'Web Weaver',          emoji: '🌐' },
-    { xp: 1000, badge: 'logic_legend',       label: 'Logic Legend',        emoji: '⚡' },
-    { xp: 2500, badge: 'digital_architect',  label: 'Digital Architect',   emoji: '🏛️' },
+    { xp: 100,   badge: 'first_builder',      label: 'First Builder',       emoji: '🏗️' },
+    { xp: 250,   badge: 'code_curious',       label: 'Code Curious',        emoji: '🔍' },
+    { xp: 500,   badge: 'web_weaver',         label: 'Web Weaver',          emoji: '🌐' },
+    { xp: 1000,  badge: 'logic_legend',       label: 'Logic Legend',        emoji: '⚡' },
+    { xp: 2500,  badge: 'digital_architect',  label: 'Digital Architect',   emoji: '🏛️' },
+    { xp: 5000,  badge: 'master_builder',     label: 'Master Builder',      emoji: '🔨' },
+    { xp: 10000, badge: 'code_titan',         label: 'Code Titan',          emoji: '💎' },
   ];
 
   // ── Other badge definitions ───────────────────────────────────────────────
   const BADGES = {
-    first_build:        { label: 'First Build',         emoji: '🚀' },
+    // ── Achievement badges ────────────────────────────────────────────────────
+    first_build:        { label: 'First Build',          emoji: '🚀' },
     streak_7:           { label: '7-Day Streak',         emoji: '🔥' },
     streak_30:          { label: '30-Day Streak',        emoji: '🌟' },
     streak_100:         { label: '100-Day Streak',       emoji: '👑' },
@@ -41,16 +47,24 @@ const TSAXp = (() => {
     speed_typer:        { label: 'Speed Typer (40 WPM)', emoji: '⌨️' },
     ai_explorer:        { label: 'AI Explorer',          emoji: '🤖' },
     portfolio_published:{ label: 'Portfolio Published',  emoji: '🎨' },
+    quiz_ace:           { label: 'Quiz Ace',             emoji: '🎯' },
+    challenge_champion: { label: 'Challenge Champion',   emoji: '🏆' },
+    phase_j_complete:   { label: 'Junior Graduate',      emoji: '🎓' },
+    phase_s_complete:   { label: 'Senior Graduate',      emoji: '🏅' },
+    // ── Phase completion badges ───────────────────────────────────────────────
     phase1_complete:    { label: 'Phase 1 Complete',     emoji: '✅' },
     phase2_complete:    { label: 'Phase 2 Complete',     emoji: '✅' },
     phase3_complete:    { label: 'Phase 3 Complete',     emoji: '✅' },
     phase4_complete:    { label: 'Phase 4 Complete',     emoji: '✅' },
-    // Milestone badges (also in MILESTONES)
+    phase5_complete:    { label: 'Phase 5 Complete',     emoji: '✅' },
+    // ── Milestone badges (also in MILESTONES) ─────────────────────────────────
     first_builder:      { label: 'First Builder',        emoji: '🏗️' },
     code_curious:       { label: 'Code Curious',         emoji: '🔍' },
     web_weaver:         { label: 'Web Weaver',           emoji: '🌐' },
     logic_legend:       { label: 'Logic Legend',         emoji: '⚡' },
     digital_architect:  { label: 'Digital Architect',    emoji: '🏛️' },
+    master_builder:     { label: 'Master Builder',       emoji: '🔨' },
+    code_titan:         { label: 'Code Titan',           emoji: '💎' },
   };
 
   // ── Add XP ────────────────────────────────────────────────────────────────
