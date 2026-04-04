@@ -13,7 +13,7 @@ window.TSA = {
     storageVersion:  5,          // Schema v5 — added userId for Release 2 sync
     deviceId:        _getOrCreateDeviceId(),
     featureFlags: {
-      onlineAI:      false,      // Disabled by default — enabled per-profile Y5+
+      onlineAI:      true,       // Online AI active for Y5+
       googleFonts:   true,
     },
   },

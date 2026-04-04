@@ -183,7 +183,8 @@ Format: "Score: X/10 — [feedback]"`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          prompt: `${systemPrompts[tool] || systemPrompts.codeHelper}\n\n${userContent}`,
+          prompt: userContent,
+          system: systemPrompts[tool] || systemPrompts.codeHelper,
         }),
       });
       if (!resp.ok) throw new Error(`API ${resp.status}`);

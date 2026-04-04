@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { prompt } = req.body || {};
+    const { prompt, system } = req.body || {};
 
     if (!prompt || typeof prompt !== "string") {
       return res.status(400).json({ error: "Invalid prompt" });
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
           body: JSON.stringify({
             model: "claude-haiku-4-5-20251001",
             max_tokens: 300,
-            system: "You are a friendly coding tutor for school students. Give helpful hints — never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise.",
+            system: system || "You are a friendly coding tutor for school students. Give helpful hints — never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise.",
             messages: [{ role: "user", content: prompt }]
           })
         }
