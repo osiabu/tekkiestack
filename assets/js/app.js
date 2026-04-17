@@ -373,19 +373,26 @@ async function _verifyPin() {
 }
 
 // ── Guardian PIN Reset ────────────────────────────────────────────────────
-let _grStep = 1;   // 1 = enter new PIN, 2 = confirm
-let _grPin1 = '';  // first entry stored here
-let _grBuf  = '';  // current numpad input
+// Modes: 'setup-1' | 'setup-2' | 'verify' | 'reset-1' | 'reset-2'
+const _GK = 'ts_guardian_hash';
+
+async function _hashGuardianCode(code) {
+  const data = new TextEncoder().encode('guardian:' + code);
+  const buf  = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+let _grMode = 'verify';
+let _grPin1 = '';
+let _grBuf  = '';
 
 function openGuardianReset() {
   if (!_pinTarget) return;
-  _grStep = 1;
-  _grPin1 = '';
   _grBuf  = '';
+  _grPin1 = '';
+  _grMode = localStorage.getItem(_GK) ? 'verify' : 'setup-1';
   _grUpdateDots();
-  document.getElementById('grKidName').textContent = _pinTarget.name;
-  document.getElementById('grStep').textContent    = 'Step 1 of 2 — Enter new PIN';
-  document.getElementById('grErr').textContent     = '';
+  _grRender();
   closePinModal();
   document.getElementById('grOvl')?.classList.add('show');
 }
@@ -394,7 +401,24 @@ function closeGuardianReset() {
   document.getElementById('grOvl')?.classList.remove('show');
   _grBuf  = '';
   _grPin1 = '';
-  _grStep = 1;
+  _grMode = 'verify';
+}
+
+function _grRender() {
+  const name = window.TSASecurity ? TSASecurity.esc(_pinTarget?.name || '') : (_pinTarget?.name || '');
+  const map = {
+    'setup-1': { title: 'Guardian Setup',    sub: 'Create a 4-digit guardian passcode. Only parents or teachers should know this.',               step: 'Create guardian passcode' },
+    'setup-2': { title: 'Guardian Setup',    sub: 'Enter it again to confirm.',                                                                    step: 'Confirm guardian passcode' },
+    'verify':  { title: 'Guardian Required', sub: `Enter the guardian passcode to reset <strong>${name}</strong>'s PIN.`,                          step: 'Enter guardian passcode' },
+    'reset-1': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 1 of 2 — Enter new PIN' },
+    'reset-2': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 2 of 2 — Confirm new PIN' },
+  };
+  const cfg = map[_grMode];
+  const el = id => document.getElementById(id);
+  if (el('grTitle')) el('grTitle').textContent = cfg.title;
+  if (el('grSub'))   el('grSub').innerHTML     = cfg.sub;
+  if (el('grStep'))  el('grStep').textContent  = cfg.step;
+  if (el('grErr'))   el('grErr').textContent   = '';
 }
 
 function gpk(digit) {
@@ -418,44 +442,54 @@ function _grUpdateDots() {
   }
 }
 
-async function _grNext() {
-  if (_grStep === 1) {
-    // Validate strength before accepting
-    if (window.TSASecurity) {
-      const { ok, error } = TSASecurity.validatePIN(_grBuf);
-      if (!ok) {
-        document.getElementById('grErr').textContent = error;
-        document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.add('err'));
-        setTimeout(() => {
-          _grBuf = '';
-          _grUpdateDots();
-          document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.remove('err'));
-          document.getElementById('grErr').textContent = '';
-        }, 900);
-        return;
-      }
-    }
-    _grPin1 = _grBuf;
+function _grShakeErr(msg, nextMode) {
+  document.getElementById('grErr').textContent = msg;
+  document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.add('err'));
+  setTimeout(() => {
     _grBuf  = '';
-    _grStep = 2;
+    _grPin1 = '';
+    if (nextMode) _grMode = nextMode;
     _grUpdateDots();
-    document.getElementById('grStep').textContent = 'Step 2 of 2 — Confirm new PIN';
-  } else {
-    if (_grBuf !== _grPin1) {
-      document.getElementById('grErr').textContent = "PINs don't match — start again.";
-      document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.add('err'));
-      setTimeout(() => {
-        _grBuf  = '';
-        _grPin1 = '';
-        _grStep = 1;
-        _grUpdateDots();
-        document.getElementById('grStep').textContent = 'Step 1 of 2 — Enter new PIN';
-        document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.remove('err'));
-        document.getElementById('grErr').textContent = '';
-      }, 900);
-      return;
+    document.querySelectorAll('#grOvl .pd').forEach(d => d.classList.remove('err'));
+    _grRender();
+  }, 900);
+}
+
+async function _grNext() {
+  switch (_grMode) {
+    case 'setup-1': {
+      const { ok, error } = TSASecurity.validatePIN(_grBuf);
+      if (!ok) { _grShakeErr(error); return; }
+      _grPin1 = _grBuf; _grBuf = ''; _grMode = 'setup-2';
+      _grUpdateDots(); _grRender();
+      break;
     }
-    await _grSave(_grBuf);
+    case 'setup-2': {
+      if (_grBuf !== _grPin1) { _grShakeErr("Codes don't match — try again.", 'setup-1'); return; }
+      localStorage.setItem(_GK, await _hashGuardianCode(_grBuf));
+      _grBuf = ''; _grPin1 = ''; _grMode = 'reset-1';
+      _grUpdateDots(); _grRender();
+      break;
+    }
+    case 'verify': {
+      const hash = await _hashGuardianCode(_grBuf);
+      if (hash !== localStorage.getItem(_GK)) { _grShakeErr('Wrong passcode — try again.'); return; }
+      _grBuf = ''; _grMode = 'reset-1';
+      _grUpdateDots(); _grRender();
+      break;
+    }
+    case 'reset-1': {
+      const { ok, error } = TSASecurity.validatePIN(_grBuf);
+      if (!ok) { _grShakeErr(error); return; }
+      _grPin1 = _grBuf; _grBuf = ''; _grMode = 'reset-2';
+      _grUpdateDots(); _grRender();
+      break;
+    }
+    case 'reset-2': {
+      if (_grBuf !== _grPin1) { _grShakeErr("PINs don't match — start again.", 'reset-1'); return; }
+      await _grSave(_grBuf);
+      break;
+    }
   }
 }
 
@@ -469,7 +503,6 @@ async function _grSave(newPin) {
       TSASecurity.auditLog('pin_reset', { profileId: _pinTarget.profileId });
     }
     closeGuardianReset();
-    // Re-open PIN modal so the kid can log in straight away
     openPinModal(_pinTarget);
   } catch {
     document.getElementById('grErr').textContent = 'Something went wrong. Please try again.';
@@ -519,13 +552,21 @@ function _initFooter() {
 
 // ── Service worker registration ────────────────────────────────────────────
 function _registerSW() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').then(reg => {
-      console.log('[SW] Registered:', reg.scope);
-    }).catch(err => {
-      console.warn('[SW] Registration failed:', err);
-    });
-  }
+  if (!('serviceWorker' in navigator)) return;
+
+  // Reload when a new SW takes control so kids always get fresh assets.
+  // _hadController guards against reloading on the very first SW install.
+  let _hadController = !!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (_hadController) window.location.reload();
+    _hadController = true;
+  });
+
+  navigator.serviceWorker.register('./sw.js').then(reg => {
+    console.log('[SW] Registered:', reg.scope);
+  }).catch(err => {
+    console.warn('[SW] Registration failed:', err);
+  });
 }
 
 // ── Bootstrap ────────────────────────────────────────────────────────────
