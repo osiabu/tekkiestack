@@ -148,21 +148,22 @@ const TSAGames = (() => {
   // ════════════════════════════════════════════════════════════════════════
   //  GAME 1: TOWER STACKER
   //  Top block slides left-right. Tap to drop. Anything outside the previous
-  //  block falls off and the next block becomes that little. Build as tall
-  //  as you can. Inspired by the iOS "Stack" mechanic.
+  //  block snaps off as a falling piece. The tower below stays anchored —
+  //  the camera lerps so you can see the last 5-6 placed blocks plus the
+  //  one in flight. Sky gradient + stars give a real "climbing higher"
+  //  feel, and blocks are shaded to look 3D instead of flat strips.
   // ════════════════════════════════════════════════════════════════════════
   function _startTowerStacker() {
-    _state = { activeGame: 'tower_stacker', score: 0, raf: null };
+    _state = { activeGame: 'tower_stacker', raf: null };
     const stage = document.getElementById('gameStage');
     if (!stage) return;
 
     stage.innerHTML = `
       <div class="game-stage">
-        ${_stageBar('Tap or press SPACE to drop the block.')}
-        <div class="ts-instructions">Stack as many blocks as you can. Misalign and the overhang chops off, leaving a smaller landing zone.</div>
+        ${_stageBar('Tap or press SPACE to drop the block. Build the tallest tower!')}
         <div class="ts-stack-wrap">
-          <canvas id="tsStackCanvas" width="400" height="540" aria-label="Tower Stacker"></canvas>
-          <div class="ts-stack-score">Tower height: <strong id="tsScore">0</strong></div>
+          <canvas id="tsStackCanvas" width="380" height="600" aria-label="Tower Stacker"></canvas>
+          <div class="ts-stack-score">Tower height: <strong id="tsScore">0</strong> blocks</div>
         </div>
       </div>
     `;
@@ -170,48 +171,153 @@ const TSAGames = (() => {
     const cv = document.getElementById('tsStackCanvas');
     const ctx = cv.getContext('2d');
     const W = cv.width, H = cv.height;
-    const baseColors = ['#00C9B1','#FF9500','#FF6B6B','#6C63FF','#80E8DE','#FFB347'];
-    let stack = [{ x: 0, w: W * 0.6 }]; // first block at the bottom, centered position pre-shifted below
-    stack[0].x = (W - stack[0].w) / 2;
-    let blockH = 24;
-    let camOffset = 0;
-    let target = stack[0].x + Math.random() * 60;
+    const COLORS = ['#00C9B1','#FF9500','#FF6B6B','#6C63FF','#80E8DE','#FFB347','#FF4F8B','#5BD8FF'];
+    const blockH = 32;
+    const sideDepth = 7;     // 3D side strip width
+    const groundY  = H - 60; // y of the BOTTOM of the very first block
+    const startW = W * 0.62;
+
+    let stack = [{ x: (W - startW) / 2, w: startW }];
+    let movingX = 0;
+    let movingW = startW;
     let dir = 1;
-    let speed = 2.0;
-    let movingX = stack[0].x;
-    let movingW = stack[0].w;
+    let speed = 2.4;
+    let camOffset = 0;
+    let camTarget = 0;
     let alive = true;
     let dropped = 0;
+    const falling = []; // {x, y, w, color, vy, rot, spin}
+
+    // Pre-generated stars (revealed at altitude)
+    const stars = [];
+    for (let i = 0; i < 60; i++) {
+      stars.push({ x: Math.random() * W, y: Math.random() * 1200, r: Math.random() * 1.4 + 0.4 });
+    }
+
+    function _shade(hex, amt) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      const adj = c => Math.max(0, Math.min(255, Math.round(c + 255 * amt)));
+      return `rgb(${adj(r)},${adj(g)},${adj(b)})`;
+    }
+
+    function _drawBlock(x, y, w, h, color, withSide = true) {
+      // Front face
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, w, h);
+      // Top highlight (lighter strip)
+      ctx.fillStyle = _shade(color, 0.22);
+      ctx.fillRect(x, y, w, 4);
+      // Bottom shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.18)';
+      ctx.fillRect(x, y + h - 3, w, 3);
+
+      if (!withSide) return;
+      // 3D right side
+      ctx.fillStyle = _shade(color, -0.32);
+      ctx.beginPath();
+      ctx.moveTo(x + w,             y);
+      ctx.lineTo(x + w + sideDepth, y - sideDepth);
+      ctx.lineTo(x + w + sideDepth, y - sideDepth + h);
+      ctx.lineTo(x + w,             y + h);
+      ctx.closePath();
+      ctx.fill();
+      // 3D top face
+      ctx.fillStyle = _shade(color, 0.12);
+      ctx.beginPath();
+      ctx.moveTo(x,                 y);
+      ctx.lineTo(x + sideDepth,     y - sideDepth);
+      ctx.lineTo(x + w + sideDepth, y - sideDepth);
+      ctx.lineTo(x + w,             y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function _drawSky() {
+      const altitude = Math.min(camOffset / 800, 1); // 0 = ground, 1 = space
+      // Lerp two sky stops
+      const lerp = (a, b) => Math.round(a + (b - a) * altitude);
+      const top = `rgb(${lerp(15, 5)},${lerp(31, 10)},${lerp(61, 28)})`;
+      const bot = `rgb(${lerp(26, 0)},${lerp(50, 0)},${lerp(96, 18)})`;
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, top);
+      grad.addColorStop(1, bot);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+      // Stars at higher altitudes
+      if (altitude > 0.18) {
+        ctx.fillStyle = `rgba(255,255,255,${(altitude - 0.18) * 1.1})`;
+        for (const s of stars) {
+          const sy = ((s.y + camOffset * 0.3) % H + H) % H;
+          ctx.beginPath();
+          ctx.arc(s.x, sy, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    function _drawHud() {
+      if (dropped === 0) return;
+      ctx.save();
+      ctx.fillStyle = 'rgba(255,255,255,0.92)';
+      ctx.font = 'bold 30px "Fredoka One", cursive';
+      ctx.textAlign = 'right';
+      ctx.fillText(String(dropped), W - 14, 40);
+      ctx.font = '600 11px "DM Sans", sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.65)';
+      ctx.fillText('blocks high', W - 14, 56);
+      ctx.restore();
+    }
 
     function step() {
-      // Move the active block
-      movingX += dir * speed;
-      if (movingX < 0) { movingX = 0; dir = 1; }
-      if (movingX + movingW > W) { movingX = W - movingW; dir = -1; }
+      if (alive) {
+        movingX += dir * speed;
+        if (movingX < 0) { movingX = 0; dir = 1; }
+        if (movingX + movingW > W) { movingX = W - movingW; dir = -1; }
+      }
+      // Smooth camera
+      camOffset += (camTarget - camOffset) * 0.16;
+      // Update falling pieces
+      for (let i = falling.length - 1; i >= 0; i--) {
+        const f = falling[i];
+        f.vy += 0.7;
+        f.y += f.vy;
+        f.rot += f.spin;
+        if (f.y > H + 120) falling.splice(i, 1);
+      }
 
-      // Render
-      ctx.fillStyle = '#0F1F3D';
-      ctx.fillRect(0, 0, W, H);
+      // === DRAW ===
+      _drawSky();
 
-      // Stack
+      // Stack — bottom (i=0) at groundY, growing upward
       for (let i = 0; i < stack.length; i++) {
         const b = stack[i];
-        const y = H - 24 - i * blockH + camOffset;
-        if (y < -blockH) continue;
-        ctx.fillStyle = baseColors[i % baseColors.length];
-        ctx.fillRect(b.x, y, b.w, blockH);
-        ctx.fillStyle = 'rgba(0,0,0,0.10)';
-        ctx.fillRect(b.x, y + blockH - 4, b.w, 4);
+        const y = groundY - i * blockH + camOffset;
+        if (y < -blockH || y > H + blockH) continue;
+        _drawBlock(b.x, y, b.w, blockH, COLORS[i % COLORS.length]);
       }
-      // Active moving block
-      const yActive = H - 24 - stack.length * blockH + camOffset;
-      ctx.fillStyle = baseColors[stack.length % baseColors.length];
-      ctx.fillRect(movingX, yActive, movingW, blockH);
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(movingX + 0.5, yActive + 0.5, movingW - 1, blockH - 1);
+      // Active block (one slot above the top of stack)
+      if (alive) {
+        const yActive = groundY - stack.length * blockH + camOffset;
+        _drawBlock(movingX, yActive, movingW, blockH, COLORS[stack.length % COLORS.length]);
+        // pulse outline
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(movingX + 1, yActive + 1, movingW - 2, blockH - 2);
+      }
+      // Falling chopped pieces
+      for (const f of falling) {
+        ctx.save();
+        ctx.translate(f.x + f.w / 2, f.y + blockH / 2);
+        ctx.rotate(f.rot);
+        _drawBlock(-f.w / 2, -blockH / 2, f.w, blockH, f.color, false);
+        ctx.restore();
+      }
+      _drawHud();
 
-      if (alive) _state.raf = requestAnimationFrame(step);
+      // Keep animating (falling pieces continue after game over)
+      _state.raf = requestAnimationFrame(step);
     }
 
     function drop() {
@@ -219,23 +325,48 @@ const TSAGames = (() => {
       const last = stack[stack.length - 1];
       const overlapStart = Math.max(movingX, last.x);
       const overlapEnd   = Math.min(movingX + movingW, last.x + last.w);
-      const overlap     = overlapEnd - overlapStart;
+      const overlap = overlapEnd - overlapStart;
+      const yLand = groundY - stack.length * blockH + camOffset;
+      const color = COLORS[stack.length % COLORS.length];
+
       if (overlap <= 0) {
+        // Complete miss — entire active block falls off
+        falling.push({
+          x: movingX, y: yLand, w: movingW, color,
+          vy: -2, rot: 0, spin: (Math.random() - 0.5) * 0.18,
+        });
         alive = false;
-        cancelAnimationFrame(_state.raf);
-        _state.raf = null;
-        _finishGame('tower_stacker', dropped);
+        setTimeout(() => _finishGame('tower_stacker', dropped), 900);
         return;
       }
+
+      // Spawn falling overhang(s) before mutating the stack
+      if (movingX < overlapStart) {
+        falling.push({
+          x: movingX, y: yLand, w: overlapStart - movingX, color,
+          vy: 0, rot: 0, spin: (Math.random() - 0.5) * 0.16,
+        });
+      }
+      if (movingX + movingW > overlapEnd) {
+        falling.push({
+          x: overlapEnd, y: yLand, w: (movingX + movingW) - overlapEnd, color,
+          vy: 0, rot: 0, spin: (Math.random() - 0.5) * 0.16,
+        });
+      }
+
       stack.push({ x: overlapStart, w: overlap });
       movingX = overlapStart;
       movingW = overlap;
       dropped++;
       _setText('tsScore', dropped);
       // Speed up gradually
-      speed = Math.min(2.0 + dropped * 0.10, 8.0);
-      // Camera scrolls up so tower stays in view
-      camOffset += blockH;
+      speed = Math.min(2.4 + dropped * 0.09, 7.5);
+      // Camera stays still until the tower fills the visible area, then
+      // scrolls up just enough to keep the active block in view. The user
+      // SEES the tower grow for the first ~14 blocks instead of every
+      // block immediately scrolling off the bottom.
+      const visibleBlocks = 14;
+      camTarget = Math.max(0, (stack.length - visibleBlocks) * blockH);
       // Reset moving block to opposite side
       dir = (dir === 1) ? -1 : 1;
       movingX = (dir === 1) ? 0 : (W - movingW);

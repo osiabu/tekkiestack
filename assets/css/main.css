@@ -2386,8 +2386,10 @@ pre, code {
   border-radius: 14px;
   border: 1.5px solid var(--border);
   max-width: 100%;
+  height: auto;
   cursor: pointer;
   touch-action: manipulation;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
 }
 .ts-stack-score {
   font-family: 'Fredoka One', cursive;
@@ -2658,6 +2660,53 @@ pre, code {
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12.5px;
+}
+
+/* Step hint pane — collapsible "Show example" reveal */
+.builder-hint { margin-bottom: 16px; }
+.builder-hint-toggle {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,179,71,0.12);
+  border: 1px solid rgba(255,179,71,0.45);
+  color: #B86E00;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  padding: 8px 14px; border-radius: 8px;
+  cursor: pointer; transition: all .18s;
+}
+.builder-hint-toggle:hover { background: rgba(255,179,71,0.20); }
+.builder-hint-toggle .ts-i { width: 16px; height: 16px; }
+.builder-hint-body {
+  margin-top: 10px;
+  background: #0D1B2E;
+  border-radius: 11px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,179,71,0.25);
+}
+.builder-hint-intro {
+  color: rgba(255,255,255,0.78);
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.builder-hint-code {
+  margin: 0 0 10px;
+  background: #061226;
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  max-height: 320px;
+  overflow-y: auto;
+}
+.builder-hint-code code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #C7F4EE;
+  white-space: pre;
+}
+.builder-hint-paste {
+  font-size: 12.5px; padding: 6px 12px;
 }
 
 .builder-editor-wrap {

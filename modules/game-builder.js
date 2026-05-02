@@ -77,8 +77,15 @@ const TSAGameBuilder = (() => {
 
     coin_flip: [
       {
-        instruction: `<p><strong>Step 1: Build the page.</strong> Add a heading and a button. The button should say <code>Flip!</code>. Press Run to see your page.</p>`,
+        instruction: `<p><strong>Step 1: Build the page.</strong> Add a heading and a button. The button should say <code>Flip!</code>. Press Run to see your page.</p><p>The starter code already has the heading. Find <code>&lt;button&gt;Flip!&lt;/button&gt;</code> inside the <code>&lt;body&gt;</code> tag.</p>`,
         starterCode: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Coin Flip</h1>
+  <button>Flip!</button>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Coin Flip</h1>
@@ -91,12 +98,19 @@ const TSAGameBuilder = (() => {
         }),
       },
       {
-        instruction: `<p><strong>Step 2: Connect the button.</strong> Add <code>onclick="flip()"</code> to the button so it calls a function called <code>flip</code>.</p>`,
+        instruction: `<p><strong>Step 2: Connect the button.</strong> Add <code>onclick="flip()"</code> inside the <code>&lt;button&gt;</code> tag so it calls a function named <code>flip</code> when clicked.</p><p>The button line currently looks like <code>&lt;button onclick=""&gt;Flip!&lt;/button&gt;</code>. Put <code>flip()</code> between the empty quotes.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Coin Flip</h1>
   <button onclick="">Flip!</button>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Coin Flip</h1>
+  <button onclick="flip()">Flip!</button>
 </body>
 </html>`,
         check: code => ({
@@ -105,12 +119,20 @@ const TSAGameBuilder = (() => {
         }),
       },
       {
-        instruction: `<p><strong>Step 3: Add a place to show the result.</strong> Below the button, add a paragraph tag <code>&lt;p id="result"&gt;&lt;/p&gt;</code>.</p>`,
+        instruction: `<p><strong>Step 3: Add a place to show the result.</strong> Right after the <code>&lt;button&gt;</code> line and before <code>&lt;/body&gt;</code>, add a new line: <code>&lt;p id="result"&gt;&lt;/p&gt;</code>. The empty paragraph is where JavaScript will write Heads or Tails.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Coin Flip</h1>
   <button onclick="flip()">Flip!</button>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Coin Flip</h1>
+  <button onclick="flip()">Flip!</button>
+  <p id="result"></p>
 </body>
 </html>`,
         check: code => ({
@@ -119,7 +141,7 @@ const TSAGameBuilder = (() => {
         }),
       },
       {
-        instruction: `<p><strong>Step 4: Write the flip function.</strong> Inside a <code>&lt;script&gt;</code> tag, write <code>function flip()</code>. Inside, use <code>Math.random() &lt; 0.5</code> to pick heads or tails. Set the result paragraph's text.</p>`,
+        instruction: `<p><strong>Step 4: Write the flip function.</strong> Inside the <code>&lt;script&gt;</code> tag (replacing the comment), write a function called <code>flip</code>. It should:</p><ol><li>Use <code>Math.random() &lt; 0.5</code> to pick true or false.</li><li>Set <code>result</code> to <code>'Heads'</code> if true, otherwise <code>'Tails'</code>.</li><li>Update <code>#result</code>'s text using <code>document.getElementById</code>.</li></ol>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -128,6 +150,20 @@ const TSAGameBuilder = (() => {
   <p id="result"></p>
   <script>
     // Write your function here
+  <\/script>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Coin Flip</h1>
+  <button onclick="flip()">Flip!</button>
+  <p id="result"></p>
+  <script>
+    function flip() {
+      const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+      document.getElementById('result').textContent = result;
+    }
   <\/script>
 </body>
 </html>`,
@@ -168,11 +204,18 @@ const TSAGameBuilder = (() => {
 
     click_counter: [
       {
-        instruction: `<p><strong>Step 1.</strong> Add an <code>&lt;h1&gt;</code> with the title "Click Counter" and a paragraph that shows your count, e.g. <code>&lt;p id="count"&gt;0&lt;/p&gt;</code>.</p>`,
+        instruction: `<p><strong>Step 1.</strong> Below the heading, add a paragraph that will hold the count: <code>&lt;p id="count"&gt;0&lt;/p&gt;</code>. The id lets JavaScript find it later.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Click Counter</h1>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Click Counter</h1>
+  <p id="count">0</p>
 </body>
 </html>`,
         check: code => ({
@@ -181,12 +224,20 @@ const TSAGameBuilder = (() => {
         }),
       },
       {
-        instruction: `<p><strong>Step 2.</strong> Add a button with text "Click me!" and onclick=<code>"add()"</code>.</p>`,
+        instruction: `<p><strong>Step 2.</strong> Below the count paragraph, add a button: <code>&lt;button onclick="add()"&gt;Click me!&lt;/button&gt;</code>. The <code>onclick</code> will call a function we'll write next.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Click Counter</h1>
   <p id="count">0</p>
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Click Counter</h1>
+  <p id="count">0</p>
+  <button onclick="add()">Click me!</button>
 </body>
 </html>`,
         check: code => ({
@@ -195,7 +246,7 @@ const TSAGameBuilder = (() => {
         }),
       },
       {
-        instruction: `<p><strong>Step 3.</strong> In a <code>&lt;script&gt;</code>, declare <code>let n = 0;</code> outside any function.</p>`,
+        instruction: `<p><strong>Step 3.</strong> Inside the <code>&lt;script&gt;</code> (replacing the comment), declare a variable to hold the count: <code>let n = 0;</code>. Putting it OUTSIDE the function means its value is remembered between clicks.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -207,13 +258,24 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Click Counter</h1>
+  <p id="count">0</p>
+  <button onclick="add()">Click me!</button>
+  <script>
+    let n = 0;
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /\blet\s+n\s*=\s*0/.test(code),
           message: 'Declare let n = 0; in your <script>.',
         }),
       },
       {
-        instruction: `<p><strong>Step 4.</strong> Write <code>function add()</code> that does <code>n = n + 1</code> and updates the <code>#count</code> paragraph's text.</p>`,
+        instruction: `<p><strong>Step 4.</strong> Write a function called <code>add</code>. Inside it should: (1) add 1 to <code>n</code>; (2) put the new value of <code>n</code> into the <code>#count</code> paragraph using <code>document.getElementById</code>.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -226,13 +288,28 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Click Counter</h1>
+  <p id="count">0</p>
+  <button onclick="add()">Click me!</button>
+  <script>
+    let n = 0;
+    function add() {
+      n = n + 1;
+      document.getElementById('count').textContent = n;
+    }
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /function\s+add\s*\(\s*\)/.test(code) && /n\s*=\s*n\s*\+\s*1|n\+\+/.test(code) && /getElementById\(['"]count['"]\)/.test(code),
           message: 'Write function add() that increments n and updates the #count text.',
         }),
       },
       {
-        instruction: `<p><strong>Step 5.</strong> Add a <strong>5-second timer</strong>. Use <code>setTimeout</code> to disable the button after 5 seconds and show the final score.</p>`,
+        instruction: `<p><strong>Step 5.</strong> Add a <strong>5-second timer</strong>. After the page loads, use <code>setTimeout(..., 5000)</code> to disable the button and show the final score in <code>#msg</code>. <code>5000</code> is 5000 milliseconds = 5 seconds.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -250,13 +327,33 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Click Counter</h1>
+  <p id="count">0</p>
+  <button id="btn" onclick="add()">Click me!</button>
+  <p id="msg"></p>
+  <script>
+    let n = 0;
+    function add() {
+      n = n + 1;
+      document.getElementById('count').textContent = n;
+    }
+    setTimeout(() => {
+      document.getElementById('btn').disabled = true;
+      document.getElementById('msg').textContent = 'Time up! You scored ' + n;
+    }, 5000);
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /setTimeout\s*\(/.test(code) && /5000/.test(code) && /\.disabled\s*=\s*true/.test(code),
           message: 'Use setTimeout(..., 5000) and set the button .disabled = true.',
         }),
       },
       {
-        instruction: `<p><strong>Step 6: Polish.</strong> Add CSS to make it look fun. When you're done, click <strong>Check & Finish</strong>.</p>`,
+        instruction: `<p><strong>Step 6: Polish.</strong> Add CSS inside <code>&lt;style&gt;</code> to make it look fun, big numbers, a coloured background, hover effects on the button. The starter has a polished version already, run it to see. Tweak it however you like, then click <strong>Check & Finish</strong>.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <head>
@@ -293,7 +390,7 @@ const TSAGameBuilder = (() => {
 
     number_guess: [
       {
-        instruction: `<p><strong>Step 1.</strong> Add a heading and an input box where the player types their guess. Use <code>&lt;input id="guess" type="number"&gt;</code>.</p>`,
+        instruction: `<p><strong>Step 1.</strong> Below the explanation paragraph, add an input box where the player types their guess: <code>&lt;input id="guess" type="number" min="1" max="100"&gt;</code>. The <code>type="number"</code> makes it accept only numbers.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -301,14 +398,7 @@ const TSAGameBuilder = (() => {
   <p>I'm thinking of a number from 1 to 100.</p>
 </body>
 </html>`,
-        check: code => ({
-          ok: /<input[^>]*id\s*=\s*["']guess["'][^>]*type\s*=\s*["']number["']|<input[^>]*type\s*=\s*["']number["'][^>]*id\s*=\s*["']guess["']/i.test(code),
-          message: 'Add an input with id="guess" and type="number".',
-        }),
-      },
-      {
-        instruction: `<p><strong>Step 2.</strong> Add a button with text "Guess" and onclick=<code>"check()"</code>, plus a paragraph with id="msg" for messages.</p>`,
-        starterCode: `<!DOCTYPE html>
+        hint: `<!DOCTYPE html>
 <html>
 <body>
   <h1>Number Guess</h1>
@@ -317,12 +407,37 @@ const TSAGameBuilder = (() => {
 </body>
 </html>`,
         check: code => ({
+          ok: /<input[^>]*id\s*=\s*["']guess["'][^>]*type\s*=\s*["']number["']|<input[^>]*type\s*=\s*["']number["'][^>]*id\s*=\s*["']guess["']/i.test(code),
+          message: 'Add an input with id="guess" and type="number".',
+        }),
+      },
+      {
+        instruction: `<p><strong>Step 2.</strong> After the input, add a Guess button: <code>&lt;button onclick="check()"&gt;Guess&lt;/button&gt;</code>. Then add a paragraph with id <code>msg</code> where we'll show "Too high"/"Too low"/"Correct".</p>`,
+        starterCode: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Number Guess</h1>
+  <p>I'm thinking of a number from 1 to 100.</p>
+  <input id="guess" type="number" min="1" max="100">
+</body>
+</html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Number Guess</h1>
+  <p>I'm thinking of a number from 1 to 100.</p>
+  <input id="guess" type="number" min="1" max="100">
+  <button onclick="check()">Guess</button>
+  <p id="msg"></p>
+</body>
+</html>`,
+        check: code => ({
           ok: /<button[^>]*onclick\s*=\s*["']check\(\)["']/.test(code) && /<p[^>]*id\s*=\s*["']msg["']/i.test(code),
           message: 'Add a Guess button with onclick="check()" and a <p id="msg">.',
         }),
       },
       {
-        instruction: `<p><strong>Step 3.</strong> In a <code>&lt;script&gt;</code>, generate a secret number with <code>Math.floor(Math.random() * 100) + 1</code>. Store it in a variable called <code>secret</code>.</p>`,
+        instruction: `<p><strong>Step 3.</strong> Inside the <code>&lt;script&gt;</code>, pick a secret number from 1 to 100: <code>const secret = Math.floor(Math.random() * 100) + 1;</code>. <code>Math.random()</code> gives a number from 0 to 1; multiplying by 100 then flooring rounds it down to 0-99; adding 1 makes it 1-100.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -336,13 +451,26 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Number Guess</h1>
+  <p>I'm thinking of a number from 1 to 100.</p>
+  <input id="guess" type="number" min="1" max="100">
+  <button onclick="check()">Guess</button>
+  <p id="msg"></p>
+  <script>
+    const secret = Math.floor(Math.random() * 100) + 1;
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /\b(const|let|var)\s+secret\s*=\s*Math\.floor\(Math\.random\(\)\s*\*\s*100\s*\)\s*\+\s*1/.test(code),
           message: 'Declare secret = Math.floor(Math.random() * 100) + 1.',
         }),
       },
       {
-        instruction: `<p><strong>Step 4.</strong> Write <code>function check()</code>. Read the input value, convert with <code>parseInt</code>, and compare to <code>secret</code>. Set the message to "Too high", "Too low", or "Correct!".</p>`,
+        instruction: `<p><strong>Step 4.</strong> Write <code>function check()</code>. Inside: read the input value with <code>document.getElementById('guess').value</code>, convert it with <code>parseInt</code>, then compare to <code>secret</code>. Set <code>#msg</code>'s text to "Too high", "Too low", or "Correct!".</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -357,13 +485,33 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Number Guess</h1>
+  <p>I'm thinking of a number from 1 to 100.</p>
+  <input id="guess" type="number" min="1" max="100">
+  <button onclick="check()">Guess</button>
+  <p id="msg"></p>
+  <script>
+    const secret = Math.floor(Math.random() * 100) + 1;
+    function check() {
+      const guess = parseInt(document.getElementById('guess').value);
+      const msg = document.getElementById('msg');
+      if (guess < secret) msg.textContent = 'Too low';
+      else if (guess > secret) msg.textContent = 'Too high';
+      else msg.textContent = 'Correct!';
+    }
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /function\s+check\s*\(/.test(code) && /Too high/i.test(code) && /Too low/i.test(code) && /Correct/i.test(code),
           message: 'Write function check() that says "Too high", "Too low", or "Correct".',
         }),
       },
       {
-        instruction: `<p><strong>Step 5.</strong> Add a "tries" counter. Declare <code>let tries = 0;</code>. Increase it inside check(). Show "You used X tries" when correct.</p>`,
+        instruction: `<p><strong>Step 5.</strong> Add a "tries" counter. Add <code>let tries = 0;</code> outside the function (next to <code>secret</code>). Inside <code>check()</code>, do <code>tries = tries + 1;</code> at the top. When the guess is Correct, show "Correct! You used X tries" using string concatenation: <code>'Correct! You used ' + tries + ' tries.'</code></p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <body>
@@ -382,13 +530,35 @@ const TSAGameBuilder = (() => {
   <\/script>
 </body>
 </html>`,
+        hint: `<!DOCTYPE html>
+<html>
+<body>
+  <h1>Number Guess</h1>
+  <p>I'm thinking of a number from 1 to 100.</p>
+  <input id="guess" type="number" min="1" max="100">
+  <button onclick="check()">Guess</button>
+  <p id="msg"></p>
+  <script>
+    const secret = Math.floor(Math.random() * 100) + 1;
+    let tries = 0;
+    function check() {
+      tries = tries + 1;
+      const guess = parseInt(document.getElementById('guess').value);
+      const msg = document.getElementById('msg');
+      if (guess < secret) msg.textContent = 'Too low';
+      else if (guess > secret) msg.textContent = 'Too high';
+      else msg.textContent = 'Correct! You used ' + tries + ' tries.';
+    }
+  <\/script>
+</body>
+</html>`,
         check: code => ({
           ok: /\blet\s+tries\s*=\s*0/.test(code) && /tries\s*=\s*tries\s*\+\s*1|tries\+\+/.test(code) && /tries/.test(code),
           message: 'Add let tries = 0; and increment it inside check().',
         }),
       },
       {
-        instruction: `<p><strong>Step 6.</strong> Style your game with CSS to make it feel polished. Add a background colour, larger text, and styled inputs.</p>`,
+        instruction: `<p><strong>Step 6: Polish.</strong> Inside <code>&lt;style&gt;</code>, add CSS rules to style the body, h1, input, and button. Try a coloured background, padding, larger fonts. The starter has a complete polished version, run it and tweak.</p>`,
         starterCode: `<!DOCTYPE html>
 <html>
 <head>
@@ -629,6 +799,19 @@ const TSAGameBuilder = (() => {
 
         <div class="builder-instruction">${step.instruction}</div>
 
+        ${step.hint ? `
+        <div class="builder-hint" id="builderHint">
+          <button class="builder-hint-toggle" type="button" onclick="TSAGameBuilder._toggleHint()">
+            <span class="ts-i ts-i-hint"></span>
+            <span id="builderHintLabel">Show example</span>
+          </button>
+          <div class="builder-hint-body" id="builderHintBody" style="display:none">
+            <div class="builder-hint-intro">Here's what your code could look like for this step. Read it, then write your own version (or paste it in to learn how it works).</div>
+            <pre class="builder-hint-code"><code>${_esc(step.hint)}</code></pre>
+            <button class="btn btn-gh builder-hint-paste" type="button" onclick="TSAGameBuilder._pasteHint()"><span class="ts-i ts-i-copy"></span>Paste this into the editor</button>
+          </div>
+        </div>` : ''}
+
         <div class="builder-editor-wrap">
           <div class="builder-editor-pane">
             <div class="builder-pane-bar">
@@ -718,6 +901,24 @@ const TSAGameBuilder = (() => {
     }
   }
 
+  function _toggleHint() {
+    const body = document.getElementById('builderHintBody');
+    const lbl  = document.getElementById('builderHintLabel');
+    if (!body || !lbl) return;
+    const showing = body.style.display !== 'none';
+    body.style.display = showing ? 'none' : 'block';
+    lbl.textContent    = showing ? 'Show example' : 'Hide example';
+  }
+
+  function _pasteHint() {
+    const playbook = PLAYBOOKS[_activeProject];
+    const step = playbook && playbook[_activeStep];
+    const ta = document.getElementById('builderCode');
+    if (!step || !step.hint || !ta) return;
+    ta.value = step.hint;
+    _run();
+  }
+
   function exitProject() {
     _activeProject = null;
     renderHub();
@@ -735,7 +936,7 @@ const TSAGameBuilder = (() => {
     document.addEventListener('DOMContentLoaded', _register, { once: true });
   }
 
-  return { renderHub, openProject, exitProject, _check, _run, _reset, _prevStep, PROJECTS };
+  return { renderHub, openProject, exitProject, _check, _run, _reset, _prevStep, _toggleHint, _pasteHint, PROJECTS };
 })();
 
 if (typeof window !== 'undefined') {
