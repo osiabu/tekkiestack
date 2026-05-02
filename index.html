@@ -572,18 +572,7 @@
       <input class="ob-input" id="obName" placeholder="Your first name..." oninput="document.getElementById('obNamePreview').textContent=this.value?'Hi '+this.value+'! Great to meet you 👋':''">
       <div id="obNamePreview" style="font-size:14px;color:var(--cyan2);font-weight:700;margin-bottom:14px;min-height:20px"></div>
       <div style="font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px;text-align:left">Choose your avatar</div>
-      <div class="avatar-grid">
-        <button class="av-btn sel" onclick="selectAvatar(this,'🚀')">🚀</button>
-        <button class="av-btn" onclick="selectAvatar(this,'⚡')">⚡</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🎮')">🎮</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🌟')">🌟</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🦁')">🦁</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🐉')">🐉</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🦊')">🦊</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🎨')">🎨</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🔥')">🔥</button>
-        <button class="av-btn" onclick="selectAvatar(this,'🧠')">🧠</button>
-      </div>
+      <div class="avatar-grid" id="obAvatarGrid"><!-- populated by populateAvatarGrid() --></div>
       <button class="btn btn-cy btn-full" onclick="obStep(2)">Continue</button>
     </div>
 
@@ -969,6 +958,7 @@
      SCRIPTS
 ════════════════════════════════════════════════════ -->
 <script src="assets/js/icons.js"></script>
+<script src="assets/js/avatars.js"></script>
 <script src="assets/js/security.js"></script>
 <script src="assets/js/storage.js"></script>
 <script src="assets/js/session.js"></script>
@@ -988,10 +978,30 @@
 
 <script>
 // ── Onboarding state ────────────────────────────────────────────────────
-let _obAvatar   = '🚀';
+let _obAvatar   = 'rocket';
 let _obYear     = null;
 let _pinVals    = Array(8).fill('');   // let (not const) so resetOnboarding can clear it
 let _obGuardian = false;               // true when registering as a parent/guardian/teacher
+
+/**
+ * Render the onboarding avatar grid from the TSAAvatars registry.
+ * Idempotent: rebuilds the grid each time so any newly-added avatars
+ * (or a rotation order change) take effect on next visit.
+ */
+function populateAvatarGrid() {
+  const grid = document.getElementById('obAvatarGrid');
+  if (!grid || !window.TSAAvatars) return;
+  const ids = TSAAvatars.ids();
+  grid.innerHTML = ids.map((id, i) => {
+    const av = TSAAvatars.get(id);
+    return `
+      <button class="av-btn ${i === 0 ? 'sel' : ''}" type="button" data-avatar-id="${id}" onclick="selectAvatar(this, '${id}')" aria-label="${av.name}" style="background:${av.bg}">
+        <span class="av-art" data-no-icons="1">${av.svg}</span>
+        <span class="av-name">${av.name}</span>
+      </button>
+    `;
+  }).join('');
+}
 
 /**
  * resetOnboarding — called every time the onboarding screen opens.
@@ -1000,7 +1010,7 @@ let _obGuardian = false;               // true when registering as a parent/guar
  * and the "You're a builder" duplicate-profile bug.
  */
 function resetOnboarding() {
-  _obAvatar   = '🚀';
+  _obAvatar   = 'rocket';
   _obYear     = null;
   _pinVals    = Array(8).fill('');
   _obGuardian = false;
@@ -1011,10 +1021,8 @@ function resetOnboarding() {
   const namePreview = document.getElementById('obNamePreview');
   if (namePreview) namePreview.textContent = '';
 
-  // Avatar grid — restore default selection
-  document.querySelectorAll('.av-btn').forEach(b => b.classList.remove('sel'));
-  const firstAv = document.querySelector('.av-btn');
-  if (firstAv) firstAv.classList.add('sel');
+  // Avatar grid — rebuild from registry, first option selected by default
+  populateAvatarGrid();
 
   // PIN fields
   for (let i = 0; i < 8; i++) {
@@ -1049,9 +1057,10 @@ function obStep(n) {
     if (el) el.style.display = i === n ? 'block' : 'none';
   }
 }
-function selectAvatar(el, em) {
+function selectAvatar(el, idOrEmoji) {
   document.querySelectorAll('.av-btn').forEach(b => b.classList.remove('sel'));
-  el.classList.add('sel'); _obAvatar = em;
+  el.classList.add('sel');
+  _obAvatar = idOrEmoji;
 }
 function selectYear(el, y) {
   document.querySelectorAll('.yr-btn').forEach(b => b.classList.remove('sel'));

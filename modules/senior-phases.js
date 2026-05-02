@@ -1622,7 +1622,7 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
 
         <!-- Learner card -->
         <div style="background:linear-gradient(130deg,var(--navy),var(--navy2));border-radius:var(--r-lg);padding:20px;margin-bottom:20px;display:flex;align-items:center;gap:16px">
-          <div style="font-size:46px">${e(profile.avatar)}</div>
+          <div data-no-icons="1">${window.TSAAvatars ? TSAAvatars.renderHTML(profile.avatar, { size: 56 }) : `<span style="font-size:46px">${e(profile.avatar)}</span>`}</div>
           <div>
             <div style="font-family:'Fredoka One',cursive;font-size:21px;color:#fff">${e(profile.name)}</div>
             <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:2px;font-weight:500">Year ${e(String(profile.yearGroup))} · ${profile.journeyType === 'junior' ? 'Junior' : 'Senior'} Journey</div>
@@ -1717,7 +1717,8 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Segoe UI',sans-serif; background:#0F1F3D; color:#CDD9F0; padding:36px 24px; }
   .hero { text-align:center; margin-bottom:48px; padding:48px 24px; background:rgba(0,201,177,.05); border:1px solid rgba(0,201,177,.15); border-radius:20px; }
-  .avatar { font-size:72px; display:block; margin-bottom:14px; }
+  .avatar { font-size:72px; display:block; margin:0 auto 14px; width:96px; height:96px; }
+  .avatar svg { width:100%; height:100%; display:block; }
   h1 { font-size:42px; color:#fff; margin-bottom:6px; }
   .tagline { font-size:17px; color:rgba(255,255,255,.55); margin-bottom:20px; }
   .stats { display:flex; gap:28px; justify-content:center; flex-wrap:wrap; }
@@ -1739,7 +1740,7 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
 </head>
 <body>
 <div class="hero">
-  <span class="avatar">${profile.avatar}</span>
+  <span class="avatar">${window.TSAAvatars && TSAAvatars.resolveId(profile.avatar) ? TSAAvatars.get(TSAAvatars.resolveId(profile.avatar)).svg : profile.avatar}</span>
   <h1>${profile.name}'s Portfolio</h1>
   <p class="tagline">Year ${profile.yearGroup} · TekkieStack Learner · Built with code</p>
   <div class="stats">

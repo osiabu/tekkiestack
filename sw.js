@@ -16,7 +16,7 @@
  * Author: Aperintel Ltd
  */
 
-const CACHE_VERSION = 'ts-20260502-200320';  // bump this string on every production deploy
+const CACHE_VERSION = 'ts-20260502-201303';  // bump this string on every production deploy
 const NETWORK_TIMEOUT_MS = 4000;
 const SHELL_ASSETS = [
   './',
@@ -24,6 +24,7 @@ const SHELL_ASSETS = [
   './manifest.json',
   './assets/css/main.css',
   './assets/js/icons.js',
+  './assets/js/avatars.js',
   './assets/js/security.js',
   './assets/js/storage.js',
   './assets/js/session.js',

@@ -145,7 +145,7 @@ function _showSessionUI(profile) {
   document.getElementById('endBtn')?.style    && (document.getElementById('endBtn').style.display    = 'block');
 
   const el = (id) => document.getElementById(id);
-  if (el('cAv'))    el('cAv').textContent    = profile.avatar;
+  if (el('cAv'))    window.TSAAvatars ? TSAAvatars.mount(el('cAv'), profile.avatar, { size: 22 }) : (el('cAv').textContent = profile.avatar);
   if (el('cName'))  el('cName').textContent  = profile.name;
   if (el('cXp'))    el('cXp').textContent    = `${profile.xp} XP`;
   if (el('nStreak')) el('nStreak').textContent = profile.streak || 0;
@@ -169,7 +169,7 @@ function promptEnd() {
     if (!p) return;
     const av = document.getElementById('eMoAv');
     const ti = document.getElementById('eMoTi');
-    if (av) av.textContent = p.avatar;
+    if (av) window.TSAAvatars ? TSAAvatars.mount(av, p.avatar, { size: 64 }) : (av.textContent = p.avatar);
     if (ti) ti.textContent = `Done for now, ${p.name}?`;
     // Restore default button text (in case it was changed by _promptEndBeforeNewProfile)
     const endBtn  = document.querySelector('#endOvl .btn-co');
@@ -232,7 +232,7 @@ function goToProfiles() {
       const av  = document.getElementById('eMoAv');
       const ti  = document.getElementById('eMoTi');
       const sub = document.querySelector('#endOvl .modal-sub');
-      if (av)  av.textContent  = p ? p.avatar : '👤';
+      if (av)  window.TSAAvatars ? TSAAvatars.mount(av, p ? p.avatar : 'rocket', { size: 64 }) : (av.textContent = p ? p.avatar : '👤');
       if (ti)  ti.textContent  = p ? `Still logged in as ${p.name}` : 'Session still active';
       if (sub) sub.textContent = 'End your current session first to view or switch profiles.';
       const endBtn  = document.querySelector('#endOvl .btn-co');
@@ -350,8 +350,11 @@ async function renderPicker() {
   profiles.forEach(p => {
     const card = document.createElement('div');
     card.className = 'profile-card';
+    const avatarHTML = window.TSAAvatars
+      ? TSAAvatars.renderHTML(p.avatar, { size: 56 })
+      : `<span class="pav-emoji">${e(p.avatar)}</span>`;
     card.innerHTML = `
-      <span class="pav">${e(p.avatar)}</span>
+      <span class="pav" data-no-icons="1">${avatarHTML}</span>
       <div class="pnm">${e(p.name)}</div>
       <div class="pmt">Year ${e(String(p.yearGroup))} · ${p.journeyType === 'junior' ? 'Junior' : 'Senior'}</div>
       <div class="pxp"><span class="ts-i ts-i-star_filled ts-i-on-amber" aria-hidden="true"></span> ${e(String(p.xp))} XP</div>
@@ -394,7 +397,7 @@ function openPinModal(profile) {
   _pinBuf    = '';
   _updatePinDots();
   const el = (id) => document.getElementById(id);
-  if (el('mAv'))   el('mAv').textContent   = profile.avatar;
+  if (el('mAv'))   window.TSAAvatars ? TSAAvatars.mount(el('mAv'), profile.avatar, { size: 72 }) : (el('mAv').textContent = profile.avatar);
   if (el('mNm'))   el('mNm').textContent   = profile.name;
   if (el('pinErr')) el('pinErr').textContent = '';
   el('pinOvl')?.classList.add('show');
