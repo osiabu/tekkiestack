@@ -1,3 +1,24 @@
+// Shared default system prompt used when the client doesn't supply one.
+// Includes the em-dash style rule that all AI Lab responses must follow.
+const DEFAULT_SYSTEM = `You are a friendly coding tutor for school students. Give helpful hints, never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise.
+
+STYLE RULES (mandatory):
+- Never use em-dashes (—) in your response. Use commas, full stops, colons, parentheses, or split into separate sentences instead.
+- Use proper British English punctuation. Plain hyphens are fine for compound words.
+- Do not write in an "AI-shorthand" style.`;
+
+// Strip em-dashes from any model output before returning it to the client.
+// Defence-in-depth: the prompt asks the model not to use them; this guarantees
+// none reach the user even if a model ignores the instruction.
+function scrubStyle(text) {
+  if (!text || typeof text !== "string") return text;
+  return text
+    .replace(/ — /g, ", ")
+    .replace(/\s—(?=\S)/g, ", ")
+    .replace(/(?<=\w)—(?=\w)/g, "-")
+    .replace(/—\s*/g, ", ");
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -28,7 +49,7 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({
             systemInstruction: {
-              parts: [{ text: system || "You are a friendly coding tutor for school students. Give helpful hints — never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise." }]
+              parts: [{ text: system || DEFAULT_SYSTEM }]
             },
             contents: [
               {
@@ -53,7 +74,7 @@ export default async function handler(req, res) {
         geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
 
       if (text) {
-        return res.status(200).json({ text, source: "gemini" });
+        return res.status(200).json({ text: scrubStyle(text), source: "gemini" });
       }
 
     } catch (err) {
@@ -76,7 +97,7 @@ export default async function handler(req, res) {
           body: JSON.stringify({
             model: "claude-haiku-4-5-20251001",
             max_tokens: 300,
-            system: system || "You are a friendly coding tutor for school students. Give helpful hints — never write the full solution. Focus only on HTML, CSS, and JavaScript. Keep responses concise.",
+            system: system || DEFAULT_SYSTEM,
             messages: [{ role: "user", content: prompt }]
           })
         }
@@ -98,7 +119,7 @@ export default async function handler(req, res) {
           .join("") || null;
 
       if (text) {
-        return res.status(200).json({ text, source: "anthropic" });
+        return res.status(200).json({ text: scrubStyle(text), source: "anthropic" });
       }
 
     } catch (err) {
@@ -124,8 +145,7 @@ export default async function handler(req, res) {
             messages: [
               {
                 role: "system",
-                content:
-                  "You are a coding tutor for kids. Give helpful hints, not full answers."
+                content: system || DEFAULT_SYSTEM
               },
               {
                 role: "user",
@@ -150,7 +170,7 @@ export default async function handler(req, res) {
 
       if (text) {
         return res.status(200).json({
-          text,
+          text: scrubStyle(text),
           source: "openrouter"
         });
       }
@@ -195,7 +215,7 @@ export default async function handler(req, res) {
 
       if (text) {
         return res.status(200).json({
-          text,
+          text: scrubStyle(text),
           source: "huggingface"
         });
       }
@@ -217,17 +237,17 @@ export default async function handler(req, res) {
         "HTML is the structure of a webpage. Think of it like the skeleton that holds everything together.";
     } else if (lower.includes("css")) {
       fallback =
-        "CSS controls how a webpage looks — colors, layouts, and styles.";
+        "CSS controls how a webpage looks: colours, layouts, and styles.";
     } else if (lower.includes("javascript")) {
       fallback =
-        "JavaScript makes websites interactive — like buttons, animations, and logic.";
+        "JavaScript makes websites interactive, like buttons, animations, and logic.";
     } else if (lower.includes("bug") || lower.includes("error")) {
       fallback =
         "Try checking your code step by step. What line is causing the issue?";
     }
 
     return res.status(200).json({
-      text: fallback,
+      text: scrubStyle(fallback),
       source: "local"
     });
 

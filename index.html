@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0F1F3D">
-<meta name="description" content="TekkieStack — Coding education for children Year 3–11. Browser-native, offline-first.">
+<meta name="description" content="TekkieStack, Coding education for children Year 3–11. Browser-native, offline-first.">
 <title>TekkieStack 2.0</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
@@ -17,12 +17,11 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ── Offline banner ────────────────────────────────────────────────────── -->
-<div id="offlineBanner" role="alert" aria-live="polite">⚡ You are offline — all features still work</div>
+<div id="offlineBanner" role="alert" aria-live="polite">⚡ You are offline, all features still work</div>
 
 <!-- ── Navigation ────────────────────────────────────────────────────────── -->
 <nav class="nav" aria-label="Main navigation">
   <div class="nav-brand" onclick="goToProfiles()">
-    <img src="assets/img/logo.png" class="nav-logo" alt="TekkieStack">
     <span class="nav-brand-text">Tekkie<span>stack</span></span>
   </div>
   <div class="nav-tabs">
@@ -32,6 +31,7 @@
     <button class="nb" id="nb-senior"    onclick="need('senior')">Senior Journey</button>
     <button class="nb" id="nb-typing"    onclick="need('typing')">Typing</button>
     <button class="nb" id="nb-editor"    onclick="need('editor')">Code Editor</button>
+    <button class="nb" id="nb-games"     onclick="need('games')">Games</button>
     <button class="nb" id="nb-ai"        onclick="need('ai')">AI Lab</button>
     <button class="nb" id="nb-tipjar"    onclick="go('tipjar')">Tip Jar ☕</button>
     <button class="nb" id="nb-support"   onclick="go('support')">Support</button>
@@ -86,7 +86,7 @@
     <span class="modal-avatar">🔐</span>
     <div class="modal-title" id="grTitle">Guardian Reset</div>
     <div class="modal-sub" id="grSub"></div>
-    <div class="gr-step" id="grStep">Step 1 of 2 — Enter new PIN</div>
+    <div class="gr-step" id="grStep">Step 1 of 2: Enter new PIN</div>
     <div class="pin-dots">
       <div class="pd" id="gd0"></div><div class="pd" id="gd1"></div>
       <div class="pd" id="gd2"></div><div class="pd" id="gd3"></div>
@@ -126,11 +126,11 @@
 <!-- ── Celebration Overlay ────────────────────────────────────────────────── -->
 <div class="celeb-overlay" id="celebOverlay">
   <div class="celeb-card" id="celebCard">
-    <span class="celeb-em" id="celebEm">🏆</span>
+    <span class="celeb-em" id="celebEm" aria-hidden="true"></span>
     <div class="celeb-title" id="celebTi">Done!</div>
     <div class="celeb-sub"  id="celebSu">Great work!</div>
     <div class="celeb-xp"   id="celebXp">+20 XP</div>
-    <button class="btn btn-cy btn-full" onclick="closeC()">Keep Building →</button>
+    <button class="btn btn-cy btn-full" onclick="closeC()">Keep Building</button>
   </div>
 </div>
 
@@ -176,7 +176,7 @@
       <div class="clabel">Today's Challenge</div>
       <div class="dbadge">⚡ Daily</div>
       <div class="daily-title">Fix the Broken Button</div>
-      <div class="daily-desc">There's a bug in the JavaScript — the button isn't responding to clicks. Find the typo and fix it!</div>
+      <div class="daily-desc">There's a bug in the JavaScript, the button isn't responding to clicks. Find the typo and fix it!</div>
       <div class="mtags"><span class="mtag">⏱ 5 mins</span><span class="mtag">🐛 Debug</span><span class="mtag">+15 XP</span></div>
       <div class="brow">
         <button class="btn btn-cy" onclick="go('editor')">Start Challenge</button>
@@ -215,16 +215,14 @@
   <div class="escreen">
     <div class="eheader">
       <div>
-        <div style="font-family:'Fredoka One',cursive;font-size:21px;color:var(--navy)" id="lessonTitle">Phase 2 · Lesson 3 — CSS Styling</div>
+        <div style="font-family:'Fredoka One',cursive;font-size:21px;color:var(--navy)" id="lessonTitle">Phase 2 · Lesson 3: CSS Styling</div>
         <div style="font-size:13px;color:var(--muted);margin-top:2px;font-weight:500" id="lessonDesc">Make your page look amazing with colours and fonts</div>
       </div>
       <div class="brow">
-        <button class="btn btn-gh" id="hintBtn" onclick="showHint()">💡 Hint</button>
-        <button class="btn btn-nv" onclick="runCode()">▶ Run</button>
-        <button class="btn btn-am" onclick="markLessonDone()">✓ Mark Done</button>
+        <button class="btn btn-am" onclick="markLessonDone()"><span class="ts-i ts-i-check" aria-hidden="true"></span>Mark Done</button>
       </div>
     </div>
-    <!-- Lesson explanation panel — shown before user starts coding -->
+    <!-- Lesson explanation panel, shown before user starts coding -->
     <div id="lessonExplanation" style="display:none;max-height:420px;overflow-y:auto;border-bottom:1.5px solid var(--border);background:var(--slate)"></div>
 
     <div class="elayout">
@@ -257,27 +255,46 @@
   </style>
 </head>
 <body>
-  <h1>Hello, I'm learning to code! 👋</h1>
+  <h1>Hello: I'm learning to code! 👋</h1>
   <p>I'm building my first web page with TekkieStack.</p>
   <div class="card">
     <p>My favourite colour is teal. 🩵</p>
   </div>
 </body>
 </html></textarea>
+        <!-- Run / Hint controls at the bottom of the editor pane,
+             right next to where the preview output appears. -->
+        <div class="code-pane-footer">
+          <button class="btn btn-gh code-pane-btn" id="hintBtn" onclick="showHint()"><span class="ts-i ts-i-hint" aria-hidden="true"></span>Hint</button>
+          <button class="btn btn-cy code-pane-btn code-pane-run" onclick="runCode()"><span class="ts-i ts-i-play" aria-hidden="true"></span>Run</button>
+        </div>
       </div>
       <div class="preview-pane">
         <div class="preview-bar">
-          <span>🌐</span>
+          <span class="ts-i ts-i-globe" aria-hidden="true"></span>
           <div class="url-pill">preview · my-page.html</div>
           <span class="live-badge" id="previewStatusBadge">▶ Press Run</span>
         </div>
-        <iframe class="preview-frame" id="previewFrame"></iframe>
+        <iframe class="preview-frame" id="previewFrame" sandbox="allow-scripts" title="Live preview of your code"></iframe>
+        <!-- Console pane: collapsed by default, expands when there's output -->
+        <div class="console-pane" id="consolePane">
+          <div class="console-bar" onclick="toggleConsole()">
+            <span class="console-label">
+              <span class="ts-i ts-i-terminal" aria-hidden="true"></span>
+              Console
+            </span>
+            <span class="console-count" id="consoleCount">0</span>
+            <button class="console-clear" onclick="event.stopPropagation();clearConsole()" title="Clear console" aria-label="Clear console">×</button>
+            <span class="console-toggle" id="consoleToggle">▾</span>
+          </div>
+          <div class="console-body" id="consoleBody"></div>
+        </div>
       </div>
     </div>
     <div class="hint-bar" id="hintBar" style="display:none">
-      <span style="font-size:19px">💡</span>
+      <span class="ts-i ts-i-hint" aria-hidden="true"></span>
       <div class="hint-text" id="hintText">Click the hint button to get a tip.</div>
-      <button class="btn btn-gh" style="font-size:12px;padding:5px 10px;margin-left:auto;flex-shrink:0" onclick="nextHint()">Next hint →</button>
+      <button class="btn btn-gh" style="font-size:12px;padding:5px 10px;margin-left:auto;flex-shrink:0" onclick="nextHint()">Next hint</button>
     </div>
     <div class="step-row">
       <span style="font-size:13px;font-weight:700;color:var(--muted)">Lesson progress</span>
@@ -293,10 +310,13 @@
 <div id="s-typing" class="screen">
   <div class="tscreen">
     <div class="thead">
-      <div><div class="ttitle">⌨️ Typing Trainer</div><div class="tsub">Build speed, accuracy &amp; muscle memory</div></div>
+      <div>
+        <div class="ttitle"><span class="ts-i ts-i-keyboard ts-i-on-cyan" aria-hidden="true"></span> Typing Trainer</div>
+        <div class="tsub">Build speed, accuracy &amp; muscle memory, with finger guidance</div>
+      </div>
       <div class="brow">
-        <button class="btn btn-gh" onclick="resetTyping()">↺ Reset</button>
-        <button class="btn btn-cy" onclick="startTyping()">▶ Start</button>
+        <button class="btn btn-gh" onclick="resetTyping()"><span class="ts-i ts-i-refresh" aria-hidden="true"></span>Reset</button>
+        <button class="btn btn-cy" onclick="startTyping()"><span class="ts-i ts-i-play" aria-hidden="true"></span>Start</button>
       </div>
     </div>
     <div class="stats-row">
@@ -306,6 +326,10 @@
       <div class="sbox"><div class="stat-num" id="bestStat">0</div><div class="slbl">Best WPM</div></div>
       <div class="sbox"><div class="stat-num" id="corStat">0</div><div class="slbl">Correct</div></div>
     </div>
+
+    <!-- Virtual hands above the keyboard, shows finger to use for next key -->
+    <div class="virtual-hands" id="virtualHands"></div>
+
     <div class="kb-wrap">
       <div class="kb-row" id="kbRow0"></div>
       <div class="kb-row" id="kbRow1"></div>
@@ -319,8 +343,10 @@
         <div class="kbl"><div class="kbd" style="background:var(--amber);height:3px;border-radius:0;margin-top:3px"></div>Home row</div>
       </div>
     </div>
+
     <div class="typing-prompt" id="typingPrompt" onclick="focusTyping()"></div>
     <input class="typing-hidden" id="typingHidden" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
     <div class="level-controls" style="margin-top:14px">
       <span style="font-size:13px;font-weight:700;color:var(--muted)">Level:</span>
       <div class="level-pills">
@@ -328,20 +354,30 @@
         <div class="lp" onclick="setTypingLevel(this,'alpha')">All Letters</div>
         <div class="lp" onclick="setTypingLevel(this,'words')">Common Words</div>
         <div class="lp" onclick="setTypingLevel(this,'code')">Code Snippets</div>
+        <div class="lp" onclick="setTypingLevel(this,'symbols')">Code Symbols</div>
+        <div class="lp" onclick="setTypingLevel(this,'pangrams')">Pangrams</div>
         <div class="lp" onclick="setTypingLevel(this,'speed')">Speed Run</div>
       </div>
+    </div>
+
+    <div class="vh-controls">
+      <label class="vh-toggle">
+        <input type="checkbox" id="vhToggle" checked>
+        <span class="vh-toggle-track"><span class="vh-toggle-knob"></span></span>
+        <span class="vh-toggle-label">Show finger guide</span>
+      </label>
     </div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════
-     SCREEN: AI LAB (scaffold — wired by ai-lab.js)
+     SCREEN: AI LAB (scaffold, wired by ai-lab.js)
 ════════════════════════════════════════════════════ -->
 <div id="s-ai" class="screen">
   <div style="max-width:840px;margin:0 auto;padding:28px 18px">
     <div style="text-align:center;margin-bottom:26px">
       <h2 style="font-family:'Fredoka One',cursive;font-size:29px;color:var(--navy)">🤖 AI Lab</h2>
-      <p style="font-size:14px;color:var(--muted);margin-top:5px;font-weight:500">Your coding thinking partner — it helps you work things out, not do it for you.</p>
+      <p style="font-size:14px;color:var(--muted);margin-top:5px;font-weight:500">Your coding thinking partner, it helps you work things out, not do it for you.</p>
     </div>
     <div style="background:var(--slate);border-radius:var(--r-lg);padding:32px;text-align:center;border:1.5px dashed var(--border)">
       <div style="font-size:40px;margin-bottom:12px">🔧</div>
@@ -352,6 +388,11 @@
 </div>
 
 <!-- ════════════════════════════════════════════════════
+     SCREEN: GAMES (Phase F)
+════════════════════════════════════════════════════ -->
+<div id="s-games" class="screen"></div>
+
+<!-- ════════════════════════════════════════════════════
      SCREEN: TIP JAR
 ════════════════════════════════════════════════════ -->
 <div id="s-tipjar" class="screen">
@@ -359,7 +400,7 @@
     <div style="text-align:center;margin-bottom:32px">
       <span style="font-size:54px;display:block;margin-bottom:11px">☕</span>
       <h2 style="font-family:'Fredoka One',cursive;font-size:32px;color:var(--navy);margin-bottom:7px">Support TekkieStack</h2>
-      <p style="font-size:14px;color:var(--muted);line-height:1.65;font-weight:500">TekkieStack is free for every child. If you're a parent, teacher, or supporter — every contribution makes a real difference.</p>
+      <p style="font-size:14px;color:var(--muted);line-height:1.65;font-weight:500">TekkieStack is free for every child. If you're a parent, teacher, or supporter, every contribution makes a real difference.</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
       <div class="card" style="text-align:center">
@@ -389,7 +430,7 @@
     <div class="card" style="background:linear-gradient(130deg,var(--navy),var(--navy2));border:none;text-align:center">
       <span style="font-size:34px;display:block;margin-bottom:11px">🙏</span>
       <div style="font-family:'Fredoka One',cursive;font-size:19px;color:#fff;margin-bottom:5px">Every contribution matters</div>
-      <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:500">Tekkiestack is built by educators and developers who believe every child deserves world-class coding education — regardless of background or income. Your support funds new lessons, AI features, and offline capability for kids everywhere.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.6);font-weight:500">Tekkiestack is built by educators and developers who believe every child deserves world-class coding education regardless of background or income. Your support funds new lessons, AI features, and offline capability for kids everywhere.</p>
     </div>
   </div>
 </div>
@@ -410,7 +451,7 @@
     <div id="supportSuccess" style="display:none;background:#F0FDF4;border:1.5px solid #22C55E;border-radius:14px;padding:28px;text-align:center;margin-bottom:20px">
       <div style="font-size:42px;margin-bottom:10px">✅</div>
       <div style="font-family:'Fredoka One',cursive;font-size:20px;color:#15803D;margin-bottom:6px">Message sent!</div>
-      <p style="font-size:14px;color:#166534;margin:0 0 18px">Thanks for reaching out — we'll get back to you within 1–2 working days.</p>
+      <p style="font-size:14px;color:#166534;margin:0 0 18px">Thanks for reaching out, we'll get back to you within 1 to 2 working days.</p>
       <button onclick="resetSupportForm()" style="background:#22C55E;color:#fff;border:none;padding:10px 24px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif">Send another message</button>
     </div>
 
@@ -459,7 +500,7 @@
       <!-- Message -->
       <div style="margin-bottom:22px">
         <label for="sf-message" style="display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">Your message <span style="color:var(--coral)">*</span></label>
-        <textarea id="sf-message" name="message" required rows="5" placeholder="Tell us what's happening — the more detail, the better we can help."
+        <textarea id="sf-message" name="message" required rows="5" placeholder="Tell us what's happening, the more detail, the better we can help."
           style="width:100%;padding:11px 14px;border-radius:9px;border:1.5px solid var(--border);background:#fff;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--navy);box-sizing:border-box;outline:none;resize:vertical;min-height:110px;transition:border-color .2s"
           onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'"></textarea>
         <div class="sf-field-err" id="err-message" style="display:none;font-size:12px;color:var(--coral);margin-top:4px;font-weight:600"></div>
@@ -501,7 +542,7 @@
 
     <!-- STEP 1: Name + Avatar -->
     <div id="ob1" class="ob-card">
-      <div class="ob-step">Step 1 of 5 — Create Profile</div>
+      <div class="ob-step">Step 1 of 5: Create Profile</div>
       <div style="font-size:58px;margin-bottom:11px">👋</div>
       <div class="ob-title">Welcome to TekkieStack!</div>
       <div class="ob-desc">You're about to start learning to build with code. Let's set up your profile.</div>
@@ -525,7 +566,7 @@
 
     <!-- STEP 2: Set PIN -->
     <div id="ob2" class="ob-card" style="display:none">
-      <div class="ob-step">Step 2 of 5 — Set PIN</div>
+      <div class="ob-step">Step 2 of 5: Set PIN</div>
       <div style="font-size:58px;margin-bottom:11px">🔐</div>
       <div class="ob-title">Choose your secret PIN</div>
       <div class="ob-desc">A 4-digit PIN keeps your profile private on a shared device.</div>
@@ -549,10 +590,10 @@
 
     <!-- STEP 3: Year Group -->
     <div id="ob3" class="ob-card" style="display:none">
-      <div class="ob-step">Step 3 of 5 — Year Group</div>
+      <div class="ob-step">Step 3 of 5: Year Group</div>
       <div style="font-size:58px;margin-bottom:11px">📚</div>
       <div class="ob-title">What year are you in?</div>
-      <div class="ob-desc">This sets your learning journey — Junior (Y3–6) or Senior (Y7–11+).</div>
+      <div class="ob-desc">This sets your learning journey, Junior (Y3–6) or Senior (Y7–11+).</div>
       <div class="year-grid">
         <button class="yr-btn" onclick="selectYear(this,3)">Y3</button>
         <button class="yr-btn" onclick="selectYear(this,4)">Y4</button>
@@ -570,7 +611,7 @@
 
     <!-- STEP 4: HTML Starter Activity -->
     <div id="ob4" class="ob-card" style="display:none">
-      <div class="ob-step">Step 4 of 5 — Starter Build</div>
+      <div class="ob-step">Step 4 of 5: Starter Build</div>
       <div style="font-size:58px;margin-bottom:9px">✨</div>
       <div class="ob-title">Build your first web page!</div>
       <div class="ob-desc">Replace ___ with your name and watch it appear live.</div>
@@ -591,7 +632,7 @@
     <div id="ob5" class="ob-card" style="display:none">
       <div style="font-size:70px;display:block;margin-bottom:12px;animation:bnc .55s ease">🎉</div>
       <div class="ob-title">You're a builder!</div>
-      <div style="font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.55;font-weight:500">You just wrote your first real web page. That's HTML — the language every website in the world is built with.</div>
+      <div style="font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.55;font-weight:500">You just wrote your first real web page. That's HTML, the language every website in the world is built with.</div>
       <div style="font-family:'Fredoka One',cursive;font-size:26px;color:var(--cyan);margin-bottom:20px">+25 XP earned!</div>
       <button class="btn btn-cy btn-full" onclick="finishOnboarding()">Go to my Dashboard →</button>
     </div>
@@ -609,7 +650,7 @@
       <h1>Privacy Policy</h1>
       <p class="legal-date">Last updated: March 2026 · Effective: March 2026</p>
     </div>
-    <div class="legal-highlight"><p><strong>Plain-English summary:</strong> TekkieStack is designed for children. We collect the bare minimum data needed to make it work. Nothing is sold. Nothing is shared with advertisers. All learner data stays on your own device — we never see it.</p></div>
+    <div class="legal-highlight"><p><strong>Plain-English summary:</strong> TekkieStack is designed for children. We collect the bare minimum data needed to make it work. Nothing is sold. Nothing is shared with advertisers. All learner data stays on your own device, we never see it.</p></div>
     <div class="legal-toc">
       <div class="legal-toc-title">Contents</div>
       <a href="#priv-1">1. Who We Are</a>
@@ -625,26 +666,26 @@
     </div>
     <div class="legal-section">
       <h2 id="priv-2">2. Data We Store Locally on Your Device</h2>
-      <p>All of the following is stored <strong>only on the device you use</strong> — in the browser's IndexedDB storage. It is never transmitted to Aperintel Ltd or any server.</p>
+      <p>All of the following is stored <strong>only on the device you use</strong>: in the browser's IndexedDB storage. It is never transmitted to Aperintel Ltd or any server.</p>
       <ul>
         <li>First name and chosen avatar emoji</li>
         <li>Year group (e.g. Year 5)</li>
         <li>A hashed PIN (we store a one-way hash, never the PIN itself)</li>
-        <li>Learning progress — lessons completed, phases, XP points, badges</li>
+        <li>Learning progress, lessons completed, phases, XP points, badges</li>
         <li>Code projects saved in the editor</li>
-        <li>Typing stats — words per minute, session count</li>
+        <li>Typing stats, words per minute, session count</li>
         <li>Streak and daily challenge history</li>
       </ul>
       <p>We do <strong>not</strong> collect: full names, email addresses, phone numbers, school names, location, photographs, biometric data, or any behavioural tracking data.</p>
     </div>
     <div class="legal-section">
       <h2 id="priv-3">3. Data Sent to Third Parties</h2>
-      <h3>Anthropic (AI Lab — Y5+ only, disabled by default)</h3>
+      <h3>Anthropic (AI Lab: Y5+ only, disabled by default)</h3>
       <p>When the optional online AI Lab is enabled for Year 5+ learners, the text of the coding question is sent to Anthropic's API. Before sending, our safety layer strips all personal information. The learner's name, year group, device ID, and school are never included in API calls. Anthropic's privacy policy: <strong>anthropic.com/privacy</strong></p>
       <h3>Formspree (Support contact form)</h3>
       <p>When you submit the support form, your name, email, and message are routed securely to the Aperintel support team via Formspree. No profile data or learning progress is included. Formspree privacy policy: <strong>formspree.io/legal/privacy-policy</strong></p>
       <h3>Google Fonts</h3>
-      <p>The app loads fonts from fonts.googleapis.com. Google's servers receive a standard HTTP request that includes your IP address and browser type — this is normal for any website that uses Google Fonts. No cookies are set. You can disable Google Fonts on the Cookie &amp; Storage Policy page to use system fonts instead.</p>
+      <p>The app loads fonts from fonts.googleapis.com. Google's servers receive a standard HTTP request that includes your IP address and browser type, this is normal for any website that uses Google Fonts. No cookies are set. You can disable Google Fonts on the Cookie &amp; Storage Policy page to use system fonts instead.</p>
     </div>
     <div class="legal-section">
       <h2 id="priv-4">4. Children's Privacy</h2>
@@ -702,7 +743,7 @@
     </div>
     <div class="legal-section">
       <h2 id="terms-2">2. Who Can Use TekkieStack</h2>
-      <p>TekkieStack is designed for children aged 7–16 (Year 3–11) under the supervision of a parent, guardian, or teacher. Adults may also use the platform for personal learning. Commercial use requires a separate written agreement with Aperintel — please contact us via the Help &amp; Support form.</p>
+      <p>TekkieStack is designed for children aged 7–16 (Year 3–11) under the supervision of a parent, guardian, or teacher. Adults may also use the platform for personal learning. Commercial use requires a separate written agreement with Aperintel, please contact us via the Help &amp; Support form.</p>
     </div>
     <div class="legal-section">
       <h2 id="terms-3">3. Acceptable Use</h2>
@@ -769,18 +810,18 @@
     </div>
     <div class="legal-section">
       <h2 id="cook-1">1. We Use No Cookies</h2>
-      <p>TekkieStack does not set any cookie files on your device — not session cookies, not persistent cookies, not tracking cookies, not advertising cookies. If you inspect your browser's cookie store for this site, it will be empty.</p>
+      <p>TekkieStack does not set any cookie files on your device, not session cookies, not persistent cookies, not tracking cookies, not advertising cookies. If you inspect your browser's cookie store for this site, it will be empty.</p>
       <p>The "cookie banner" you see when you first visit is required by UK and EU law for any site that uses browser storage. We show it to be transparent about the storage we do use, even though it is not technically cookies.</p>
     </div>
     <div class="legal-section">
       <h2 id="cook-2">2. Browser Storage We Use</h2>
-      <h3>IndexedDB — Learning data</h3>
+      <h3>IndexedDB: Learning data</h3>
       <p>Purpose: stores your learner profiles, lesson progress, XP, badges, code projects, typing stats, and automatic backups. This is the primary data store for TekkieStack.</p>
       <p>Database name: <code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">tekkiestack</code> · Schema version 5 · Stays on your device · Never transmitted</p>
-      <h3>localStorage — Preferences</h3>
-      <p>Purpose: stores a small number of lightweight flags — whether you have accepted this cookie notice (<code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts_cookie_ok</code>), your device ID used for PIN hashing (<code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts_device_id</code>), and whether you've dismissed the app install prompt. Contains no personal information about the learner.</p>
-      <h3>Cache API — Offline shell</h3>
-      <p>Purpose: caches the app's HTML, CSS, JavaScript, and fonts so that TekkieStack works with no internet connection after the first load. Cache name: <code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts-v2</code>. Contains only application files — no user data.</p>
+      <h3>localStorage: Preferences</h3>
+      <p>Purpose: stores a small number of lightweight flags, whether you have accepted this cookie notice (<code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts_cookie_ok</code>), your device ID used for PIN hashing (<code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts_device_id</code>), and whether you've dismissed the app install prompt. Contains no personal information about the learner.</p>
+      <h3>Cache API: Offline shell</h3>
+      <p>Purpose: caches the app's HTML, CSS, JavaScript, and fonts so that TekkieStack works with no internet connection after the first load. Cache name: <code style="background:var(--slate);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:13px">ts-v2</code>. Contains only application files, no user data.</p>
     </div>
     <div class="legal-section">
       <h2 id="cook-3">3. Third-Party Storage</h2>
@@ -904,6 +945,7 @@
 <!-- ════════════════════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════════════════════ -->
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/security.js"></script>
 <script src="assets/js/storage.js"></script>
 <script src="assets/js/session.js"></script>
@@ -917,6 +959,7 @@
 <script src="modules/senior-phases.js"></script>
 <script src="modules/quiz-gate.js"></script>
 <script src="modules/engagement.js"></script>
+<script src="modules/games.js"></script>
 
 <script>
 // ── Onboarding state ────────────────────────────────────────────────────
@@ -998,7 +1041,7 @@ function onPinInput(i) {
   const err = document.getElementById('pinSetErr');
   if (p1.length === 4 && p2.length === 4) {
     if (p1 === p2) { err.textContent = ''; document.getElementById('ob2Btn').disabled = false; }
-    else { err.textContent = "PINs don't match — try again"; document.getElementById('ob2Btn').disabled = true; }
+    else { err.textContent = "PINs don't match. Try again"; document.getElementById('ob2Btn').disabled = true; }
   } else { document.getElementById('ob2Btn').disabled = true; }
 }
 function starterPreview() {
@@ -1141,7 +1184,7 @@ function copyBTC() {
         _sfShow('supportError', '⚠ ' + errMsg);
       }
     } catch (_) {
-      _sfShow('supportError', '⚠ Could not send — check your internet connection and try again.');
+      _sfShow('supportError', '⚠ Could not send, check your internet connection and try again.');
     } finally {
       _setLoading(false);
     }
@@ -1176,65 +1219,56 @@ async function clearAllData() {
 }
 
 // ── Code editor helpers ─────────────────────────────────────────────────
+// Phase A rebuild: DOMParser-based validator (no regex), sandboxed iframe,
+// srcdoc-driven preview, postMessage console capture, unified hint state.
 
-// Validates HTML for common structural errors. Returns array of error strings.
+/**
+ * Validate HTML using the browser's own tokeniser (DOMParser + tree walk).
+ * Returns array of friendly error strings. Empty array = code looks ok.
+ *
+ * Why DOMParser: the regex approach mis-flagged CSS '>' combinators and JS
+ * comparison operators inside <style>/<script> as broken tags. Using the
+ * spec-compliant HTML tokeniser kills those false positives because the
+ * parser knows <style>/<script> are rawtext elements and stops scanning.
+ */
 function _validateHTML(code) {
   const errors = [];
-  if (!code.trim()) return errors;
+  const trimmed = code.trim();
+  if (!trimmed) return errors;
 
-  // Void (self-closing) tags that never need a closing tag
-  const voidTags = new Set(['area','base','br','col','embed','hr','img','input',
-    'link','meta','param','source','track','wbr']);
+  // Quick sanity checks that DOMParser is too forgiving to catch
+  // 1) Lone '<' with no following tag-start (e.g. "I love <")
+  //    Strip <style>/<script> rawtext + comments first so we don't false-match on CSS/JS.
+  const stripped = code
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
 
-  // Known valid HTML tags — anything outside this list is flagged
-  const knownTags = new Set(['!doctype','html','head','body','div','span','p','a',
-    'h1','h2','h3','h4','h5','h6','ul','ol','li','img','br','hr','input','button',
-    'form','label','select','option','textarea','table','tr','td','th','thead','tbody',
-    'tfoot','nav','main','header','footer','section','article','aside','figure',
-    'figcaption','blockquote','pre','code','em','strong','b','i','u','s','del',
-    'ins','sup','sub','small','style','script','link','meta','title','iframe',
-    'canvas','video','audio','source','picture','details','summary','noscript',
-    'base','time','mark','template','slot']);
+  // After stripping, every '<' should be followed by /, !, or a letter (start of a tag).
+  const lonelyLt = /<(?![a-zA-Z!\/])/.exec(stripped);
+  if (lonelyLt) {
+    errors.push(`Stray <strong>&lt;</strong> character, every <strong>&lt;</strong> must start a tag like <strong>&lt;p&gt;</strong>. Use <strong>&amp;lt;</strong> if you want a literal less-than sign.`);
+    return errors;
+  }
 
-  // Strip HTML comments so they don't confuse the tag scanner
-  const stripped = code.replace(/<!--[\s\S]*?-->/g, '');
-
-  // ── Pass 1: detect broken tag syntax BEFORE scanning proper tags ──────────
-  // Case A: tag name followed by > but missing the opening <
-  //   e.g. "h2>Hello<" — user forgot the leading <
-  //   Strategy: remove all valid <...> tags (including DOCTYPE), then look for knownTag> in what's left
-  const withoutValidTags = stripped
-    .replace(/<!DOCTYPE[^>]*>/gi, '')
-    .replace(/<\/?[a-zA-Z][a-zA-Z0-9]*(\s[^>]*)?\/?>/g, '');
-  const brokenOpenRe = /\b([a-zA-Z][a-zA-Z0-9]*)\s*>/g;
-  let bm;
-  while ((bm = brokenOpenRe.exec(withoutValidTags)) !== null) {
-    const t = bm[1].toLowerCase();
-    if (knownTags.has(t) && t !== '!doctype') {
-      errors.push(`Missing &lt; before <strong>${t}&gt;</strong> — did you mean <strong>&lt;${t}&gt;</strong>?`);
+  // 2) Tag started with < but missing closing > before EOF or newline-without-close
+  //    e.g. "<h2 some text" — kid forgot the closing >
+  const lastLt = stripped.lastIndexOf('<');
+  if (lastLt !== -1) {
+    const after = stripped.slice(lastLt);
+    if (!/^<[\/a-zA-Z!][^<]*>/.test(after)) {
+      errors.push(`A tag is missing its closing <strong>&gt;</strong>: every tag needs both <strong>&lt;</strong> and <strong>&gt;</strong>.`);
+      return errors;
     }
   }
 
-  // Case B: a < that is NOT followed by a valid tag or comment or DOCTYPE
-  //   e.g. "gaahh<" at the end — a lone < left dangling
-  const danglingLtRe = /<(?!\/?[a-zA-Z!][a-zA-Z0-9]*[\s>\/]|!--)/g;
-  let dlm;
-  while ((dlm = danglingLtRe.exec(stripped)) !== null) {
-    errors.push(`Stray &lt; character found — every &lt; must start a proper tag like &lt;p&gt; or &lt;/p&gt;`);
-    break; // one report is enough
-  }
+  // ── Tag-balance check using DOMParser-tokenised view ─────────────────────
+  // Run the same regex-tokeniser the spec recommends: it captures opening/closing
+  // tags only; <style>/<script> rawtext is already stripped above.
+  const voidTags = new Set(['area','base','br','col','embed','hr','img','input',
+    'link','meta','param','source','track','wbr']);
+  const autoClose = new Set(['html','head','body']);
 
-  // Case C: tag opened with < but never closed with >
-  //   e.g. "<h2 some text" — user forgot the closing >
-  const unclosedBracketRe = /<[a-zA-Z][^>]*$/gm;
-  if (unclosedBracketRe.test(stripped)) {
-    errors.push(`A tag is missing its closing <strong>&gt;</strong> — check you have both &lt; and &gt; around every tag`);
-  }
-
-  // If broken-syntax errors already found, return early — no point stack-checking mangled code
-  if (errors.length > 0) return errors;
-
-  // ── Pass 2: tag-balance stack check ──────────────────────────────────────
   const tagRe = /<(\/?)([a-zA-Z][a-zA-Z0-9]*)(\s[^>]*)?\s*\/?>/g;
   const stack = [];
   let m;
@@ -1243,17 +1277,13 @@ function _validateHTML(code) {
     const tagName = m[2].toLowerCase();
     const selfClose = m[0].endsWith('/>') || voidTags.has(tagName);
 
-    if (!knownTags.has(tagName)) {
-      errors.push(`Unknown tag &lt;${tagName}&gt; — check your spelling`);
-      continue;
-    }
     if (voidTags.has(tagName)) continue;
 
     if (isClose) {
       if (stack.length === 0) {
-        errors.push(`Extra closing tag &lt;/${tagName}&gt; with no matching opening tag`);
+        errors.push(`Extra closing tag <strong>&lt;/${tagName}&gt;</strong> with no matching opening tag.`);
       } else if (stack[stack.length - 1] !== tagName) {
-        errors.push(`Tag &lt;/${tagName}&gt; closed out of order — expected &lt;/${stack[stack.length - 1]}&gt;`);
+        errors.push(`Tag <strong>&lt;/${tagName}&gt;</strong> closed out of order, expected <strong>&lt;/${stack[stack.length - 1]}&gt;</strong>.`);
       } else {
         stack.pop();
       }
@@ -1262,15 +1292,103 @@ function _validateHTML(code) {
     }
   }
 
-  // Anything left in the stack is unclosed (ignore html/head/body — browsers auto-close)
-  const autoClose = new Set(['html','head','body']);
   for (const tag of stack) {
     if (!autoClose.has(tag)) {
-      errors.push(`Unclosed tag &lt;${tag}&gt; — did you forget &lt;/${tag}&gt;?`);
+      errors.push(`Unclosed tag <strong>&lt;${tag}&gt;</strong>: did you forget <strong>&lt;/${tag}&gt;</strong>?`);
     }
   }
 
   return errors;
+}
+
+// ── Console state & rendering ────────────────────────────────────────────
+let _consoleMessages = [];
+function _renderConsole() {
+  const body = document.getElementById('consoleBody');
+  const count = document.getElementById('consoleCount');
+  const pane = document.getElementById('consolePane');
+  if (!body || !count || !pane) return;
+  count.textContent = _consoleMessages.length;
+  if (_consoleMessages.length === 0) {
+    body.innerHTML = '<div class="console-empty">No console output yet. Try <code>console.log("hello")</code> in your code.</div>';
+    pane.classList.remove('has-messages');
+  } else {
+    body.innerHTML = _consoleMessages.map(m => {
+      const cls = 'console-line console-' + (m.level || 'log');
+      const safe = String(m.text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return `<div class="${cls}">${safe}</div>`;
+    }).join('');
+    pane.classList.add('has-messages');
+    body.scrollTop = body.scrollHeight;
+  }
+}
+function clearConsole() { _consoleMessages = []; _renderConsole(); }
+function toggleConsole() {
+  const pane = document.getElementById('consolePane');
+  const tog = document.getElementById('consoleToggle');
+  if (!pane) return;
+  pane.classList.toggle('open');
+  if (tog) tog.textContent = pane.classList.contains('open') ? '▴' : '▾';
+}
+
+// Listen for postMessages from sandboxed iframe (console + errors)
+window.addEventListener('message', (e) => {
+  if (!e.data || e.data.__tsa !== 'preview') return;
+  if (e.data.kind === 'console') {
+    _consoleMessages.push({ level: e.data.level, text: e.data.text });
+    if (_consoleMessages.length > 200) _consoleMessages.shift();
+    _renderConsole();
+  } else if (e.data.kind === 'error') {
+    _consoleMessages.push({ level: 'error', text: e.data.text });
+    _renderConsole();
+    const pane = document.getElementById('consolePane');
+    if (pane) pane.classList.add('open');
+    const tog = document.getElementById('consoleToggle');
+    if (tog) tog.textContent = '▴';
+  }
+});
+
+/**
+ * Wrap user code with a preamble that:
+ *  - Captures runtime errors and unhandled promise rejections
+ *  - Overrides console.log/warn/error/info to forward to parent
+ *  - Provides a sessionStorage-backed shim for localStorage (sandbox blocks real localStorage)
+ */
+function _wrapForPreview(userCode) {
+  const preamble = `<script>(function(){
+    var send=function(level,args){
+      try{
+        var parts=Array.prototype.slice.call(args).map(function(a){
+          if(a===null)return'null';
+          if(a===undefined)return'undefined';
+          if(typeof a==='object'){try{return JSON.stringify(a);}catch(e){return String(a);}}
+          return String(a);
+        });
+        parent.postMessage({__tsa:'preview',kind:'console',level:level,text:parts.join(' ')},'*');
+      }catch(e){}
+    };
+    var orig={log:console.log,warn:console.warn,error:console.error,info:console.info};
+    console.log=function(){send('log',arguments);orig.log.apply(console,arguments);};
+    console.warn=function(){send('warn',arguments);orig.warn.apply(console,arguments);};
+    console.error=function(){send('error',arguments);orig.error.apply(console,arguments);};
+    console.info=function(){send('info',arguments);orig.info.apply(console,arguments);};
+    window.addEventListener('error',function(e){
+      parent.postMessage({__tsa:'preview',kind:'error',text:e.message+' (line '+e.lineno+')'},'*');
+    });
+    window.addEventListener('unhandledrejection',function(e){
+      parent.postMessage({__tsa:'preview',kind:'error',text:'Unhandled promise: '+(e.reason&&e.reason.message||e.reason)},'*');
+    });
+    // sessionStorage-backed localStorage shim (sandboxed iframe blocks real localStorage)
+    try{var t=window.localStorage;t.getItem('__t');}catch(_e){
+      try{Object.defineProperty(window,'localStorage',{value:window.sessionStorage});}catch(__e){}
+    }
+  })();<\/script>`;
+  // Inject the preamble right after <head> if present, else at the very top.
+  if (/<head[^>]*>/i.test(userCode)) {
+    return userCode.replace(/<head[^>]*>/i, m => m + preamble);
+  }
+  // No <head>: prepend a wrapper. Browsers tolerate <script> at the top of <html>.
+  return preamble + userCode;
 }
 
 function runCode() {
@@ -1279,65 +1397,74 @@ function runCode() {
   const badge = document.getElementById('previewStatusBadge');
   if (!frame) return;
 
+  // Reset console for each Run so old output doesn't accumulate
+  clearConsole();
+
   if (!code.trim()) {
-    // Empty editor — show placeholder
-    const d = frame.contentDocument || frame.contentWindow.document;
-    d.open();
-    d.write(`<html><body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#F8FAFC;font-family:sans-serif;color:#8899AA;text-align:center"><div><div style="font-size:32px;margin-bottom:12px">▶</div><div style="font-size:14px">Press <strong>▶ Run</strong> to preview your code</div></div></body></html>`);
-    d.close();
-    if (badge) { badge.textContent = '▶ Press Run'; badge.style.color = ''; }
+    frame.srcdoc = `<!DOCTYPE html><html><body style="margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#F8FAFC;font-family:sans-serif;color:#8899AA;text-align:center"><div><div style="font-size:32px;margin-bottom:12px">&#9654;</div><div style="font-size:14px">Press <strong>Run</strong> to preview your code</div></div></body></html>`;
+    if (badge) { badge.textContent = 'Press Run'; badge.style.color = ''; }
     return;
   }
 
-  const errors = _validateHTML(code);
+  // Only validate HTML-style lessons. JS-only lessons (lesson.runtime === 'js')
+  // skip HTML validation and just run with the script wrapper.
+  const lessonId = window._currentLessonId;
+  const lesson = window.TSACodeEditor?.LESSONS?.[lessonId];
+  const runtime = lesson?.runtime || 'html';
 
-  if (errors.length > 0) {
-    // Show error panel in the preview instead of rendering broken HTML
-    const errList = errors.map(e => `<li style="margin-bottom:10px">${e}</li>`).join('');
-    const d = frame.contentDocument || frame.contentWindow.document;
-    d.open();
-    d.write(`<!DOCTYPE html><html><head><style>
-      body { margin:0; padding:24px; font-family:'Segoe UI',sans-serif; background:#1A0A0A; color:#FFD0D0; }
-      h2 { color:#FF6B6B; font-size:18px; margin:0 0 6px; }
-      .sub { font-size:12px; color:#FF9A9A; margin-bottom:20px; }
-      ul { padding-left:20px; font-size:14px; line-height:1.8; }
-      li { background:rgba(255,107,107,0.12); border-radius:6px; padding:8px 12px; margin-bottom:8px; list-style:none; border-left:3px solid #FF6B6B; }
-      .tip { margin-top:20px; font-size:12px; color:#FF9A9A; background:rgba(255,255,255,0.05); padding:12px; border-radius:8px; }
-    </style></head><body>
-      <h2>🐛 HTML Error${errors.length > 1 ? 's' : ''} Found</h2>
-      <div class="sub">Fix the issue${errors.length > 1 ? 's' : ''} in your code, then press ▶ Run again</div>
-      <ul>${errList}</ul>
-      <div class="tip">💡 Tip: every opening tag like &lt;div&gt; needs a matching closing tag &lt;/div&gt;</div>
-    </body></html>`);
-    d.close();
-    if (badge) { badge.textContent = '⚠ Error'; badge.style.color = '#FF6B6B'; }
-    return;
+  if (runtime === 'html') {
+    const errors = _validateHTML(code);
+    if (errors.length > 0) {
+      const errList = errors.map(e => `<li>${e}</li>`).join('');
+      frame.srcdoc = `<!DOCTYPE html><html><head><style>
+        body { margin:0; padding:24px; font-family:'Segoe UI',sans-serif; background:#1A0A0A; color:#FFD0D0; }
+        h2 { color:#FF6B6B; font-size:18px; margin:0 0 6px; display:flex; align-items:center; gap:8px; }
+        .ico { width:22px; height:22px; flex-shrink:0; }
+        .sub { font-size:12px; color:#FF9A9A; margin-bottom:20px; }
+        ul { padding-left:0; font-size:14px; line-height:1.8; list-style:none; }
+        li { background:rgba(255,107,107,0.12); border-radius:6px; padding:10px 14px; margin-bottom:8px; border-left:3px solid #FF6B6B; }
+        .tip { margin-top:20px; font-size:12px; color:#FF9A9A; background:rgba(255,255,255,0.05); padding:12px; border-radius:8px; }
+      </style></head><body>
+        <h2><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.7" fill="#FF6B6B"/></svg>HTML Error${errors.length > 1 ? 's' : ''} Found</h2>
+        <div class="sub">Fix the issue${errors.length > 1 ? 's' : ''} in your code, then press <strong>Run</strong> again.</div>
+        <ul>${errList}</ul>
+        <div class="tip">Tip: every opening tag like &lt;div&gt; needs a matching closing tag &lt;/div&gt;.</div>
+      </body></html>`;
+      if (badge) { badge.textContent = 'Error'; badge.style.color = '#FF6B6B'; }
+      return;
+    }
   }
 
-  // Valid — render the code
-  const d = frame.contentDocument || frame.contentWindow.document;
-  d.open(); d.write(code); d.close();
-  if (badge) { badge.textContent = '✓ Running'; badge.style.color = '#00C9B1'; }
+  // Valid — wrap with preamble (console capture + error capture) and render.
+  frame.srcdoc = _wrapForPreview(code);
+  if (badge) { badge.textContent = 'Running'; badge.style.color = '#00C9B1'; }
 }
 
+// ── Hint system: code-editor.js owns the hint list; this just toggles UI. ───
 function showHint() {
-  document.getElementById('hintBar').style.display = 'flex';
+  const bar = document.getElementById('hintBar');
+  if (bar) bar.style.display = 'flex';
   nextHint();
 }
 
-let _hintTier = 0;
-const HINTS = [
-  'Hint 1: Try changing the <code>background</code> colour in the CSS to something different.',
-  'Hint 2: Change <code>background: #0F1F3D;</code> to another hex colour like <code>#2D1B69</code>.',
-  'Hint 3 (answer): Replace the background value with any valid CSS colour — e.g. <code>background: navy;</code>'
-];
 function nextHint() {
   const ht = document.getElementById('hintText');
   const hb = document.getElementById('hintBtn');
   if (!ht) return;
-  ht.innerHTML = HINTS[_hintTier % HINTS.length];
-  _hintTier++;
-  if (hb) hb.textContent = _hintTier >= HINTS.length ? '💡 All hints shown' : '💡 Hint';
+
+  // Source of truth: window._currentHints set by TSACodeEditor.loadLesson()
+  const hints = window._currentHints || [
+    'Try editing some code, then press Run to see what changes!',
+  ];
+  const tier  = window._currentHintTier || 0;
+  ht.innerHTML = hints[tier % hints.length];
+  window._currentHintTier = tier + 1;
+  if (hb) {
+    const last = window._currentHintTier >= hints.length;
+    hb.innerHTML = last
+      ? '<span class="ts-i ts-i-hint" aria-hidden="true"></span>All hints shown'
+      : '<span class="ts-i ts-i-hint" aria-hidden="true"></span>Hint';
+  }
 }
 
 async function markLessonDone() {
@@ -1360,9 +1487,13 @@ async function _doMarkLessonDone(lessonId) {
   const profile = await TSA.services.sessionManager.getActiveProfile();
   if (!profile) { go('picker'); return; }
 
-  const prog     = profile.phaseProgress || {};
-  const phaseKey = 'j2';
-  const pp       = prog[phaseKey] || { lessonsComplete: [], done: false };
+  const lesson = window.TSACodeEditor?.LESSONS?.[lessonId];
+  // Lesson-aware phase key + sequence — supports any phase, not only j2/p2.
+  const phaseKey = lesson?.phaseKey || 'j2';
+  const sequence = (window.TSACodeEditor?.getSequenceFor?.(phaseKey)) || ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
+
+  const prog = profile.phaseProgress || {};
+  const pp   = prog[phaseKey] || { lessonsComplete: [], done: false };
 
   // ── Guard: already completed — just advance without re-awarding XP ──
   if (pp.lessonsComplete.includes(lessonId)) {
@@ -1372,9 +1503,7 @@ async function _doMarkLessonDone(lessonId) {
 
   // ── Mark complete and save to profile ───────────────────────────────
   pp.lessonsComplete = [...pp.lessonsComplete, lessonId];
-
-  const allIds  = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
-  const allDone = allIds.every(id => pp.lessonsComplete.includes(id));
+  const allDone = sequence.every(id => pp.lessonsComplete.includes(id));
   if (allDone) pp.done = true;
 
   await TSA.services.sessionManager.updateProfile(
@@ -1382,18 +1511,18 @@ async function _doMarkLessonDone(lessonId) {
   );
 
   // ── Award XP exactly once ────────────────────────────────────────────
-  const { newXp, newBadges } = await TSA.services.xp.addXP('LESSON_COMPLETE');
-  const lesson = window.TSACodeEditor?.LESSONS?.[lessonId];
-  const lTitle = lesson ? (lesson.title.split(' — ')[1] || lesson.title) : 'Lesson';
-  celebrate('🎉', 'Lesson Complete!', lTitle + ' mastered!', '+20 XP');
+  const { newBadges } = await TSA.services.xp.addXP('LESSON_COMPLETE');
+  const lTitle = lesson ? (lesson.title.split(', ')[1] || lesson.title) : 'Lesson';
+  celebrate('celebrate', 'Lesson Complete!', lTitle + ' mastered!', '+20 XP');
 
   if (newBadges.length) {
     const b = TSA.services.xp.getBadge(newBadges[0]);
-    setTimeout(() => celebrate(b.emoji, 'Badge Earned!', b.label, '+10 XP'), 2400);
+    setTimeout(() => celebrate(b.icon || b.emoji || 'badge', 'Badge Earned!', b.label, '+10 XP'), 2400);
   }
 
   if (allDone) {
-    setTimeout(() => celebrate('🌐', 'Phase 2 Complete!', 'All 5 lessons done!', '+50 XP bonus'), 1600);
+    const phaseTitle = lesson?.phaseTitle || ('Phase ' + (lesson?.phase || ''));
+    setTimeout(() => celebrate('trophy', phaseTitle + ' Complete!', `All ${sequence.length} lessons done!`, '+50 XP bonus'), 1600);
   }
 
   // ── Advance after short delay ────────────────────────────────────────
@@ -1402,7 +1531,9 @@ async function _doMarkLessonDone(lessonId) {
 
 /** Load the next lesson or show "all done" on the last one */
 function _advanceToNextLesson(currentId) {
-  const seq = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
+  const lesson = window.TSACodeEditor?.LESSONS?.[currentId];
+  const phaseKey = lesson?.phaseKey || 'j2';
+  const seq = (window.TSACodeEditor?.getSequenceFor?.(phaseKey)) || ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
   const idx = seq.indexOf(currentId);
   if (idx < 0) return;
   if (idx < seq.length - 1) {
@@ -1410,10 +1541,11 @@ function _advanceToNextLesson(currentId) {
   } else {
     const titleEl = document.getElementById('lessonTitle');
     const descEl  = document.getElementById('lessonDesc');
-    if (titleEl) titleEl.textContent = 'Phase 2 — All Lessons Complete! 🎉';
+    const phaseTitle = lesson?.phaseTitle || 'Phase';
+    if (titleEl) titleEl.textContent = phaseTitle + ', All Lessons Complete!';
     if (descEl)  descEl.textContent  = 'Head to your Dashboard to see your progress.';
     const markBtn = document.querySelector('button[onclick="markLessonDone()"]');
-    if (markBtn) { markBtn.disabled = true; markBtn.textContent = '✅ All Done!'; }
+    if (markBtn) { markBtn.disabled = true; markBtn.innerHTML = '<span class="ts-i ts-i-check" aria-hidden="true"></span>All Done!'; }
   }
 }
 
@@ -1426,34 +1558,48 @@ function _renderStepDots(current, total) {
   if (lb) lb.textContent = `Step ${current+1} of ${total}`;
 }
 
-// Editor route — loads the user's current (first incomplete) Phase 2 lesson
+// Editor route — loads the user's current (first incomplete) lesson.
+// Honors a deep-link via window._editorTargetLessonId (set by other screens).
 TSA.routes['editor'] = async () => {
+  // Reset hint state when entering editor
+  window._currentHintTier = 0;
+  const hb = document.getElementById('hintBar');
+  if (hb) hb.style.display = 'none';
+
   if (!window.TSACodeEditor) {
-    setTimeout(() => { _renderStepDots(0, 5); _hintTier = 0;
-      const hb = document.getElementById('hintBar'); if (hb) hb.style.display = 'none'; }, 100);
+    setTimeout(() => { _renderStepDots(0, 5); }, 100);
     return;
   }
-  const profile  = await TSA.services.sessionManager.getActiveProfile();
-  const sequence = ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
+
+  // Deep-link target wins (e.g. clicked from junior-phases lesson card)
+  if (window._editorTargetLessonId && TSACodeEditor.LESSONS[window._editorTargetLessonId]) {
+    TSACodeEditor.loadLesson(window._editorTargetLessonId);
+    window._editorTargetLessonId = null;
+    return;
+  }
+
+  const profile = await TSA.services.sessionManager.getActiveProfile();
+  // Default to Phase 2 sequence if no profile-driven hint available
+  const sequence = TSACodeEditor.getSequenceFor?.('j2') || ['p2-l1','p2-l2','p2-l3','p2-l4','p2-l5'];
   if (profile) {
     const completed = profile.phaseProgress?.j2?.lessonsComplete || [];
     const next = sequence.find(id => !completed.includes(id));
     if (next) {
       TSACodeEditor.loadLesson(next);
     } else {
-      // All lessons done — show review state
-      TSACodeEditor.loadLesson('p2-l5');
+      // All lessons done — show review state on the last lesson
+      TSACodeEditor.loadLesson(sequence[sequence.length - 1]);
       setTimeout(() => {
         const t = document.getElementById('lessonTitle');
         const d = document.getElementById('lessonDesc');
-        if (t) t.textContent = 'Phase 2 — All Lessons Complete! 🎉';
+        if (t) t.textContent = 'Phase 2: All Lessons Complete!';
         if (d) d.textContent = 'Head to your Dashboard to see your progress.';
         const mb = document.querySelector('button[onclick="markLessonDone()"]');
-        if (mb) { mb.disabled = true; mb.textContent = '✅ All Done!'; }
+        if (mb) { mb.disabled = true; mb.innerHTML = '<span class="ts-i ts-i-check" aria-hidden="true"></span>All Done!'; }
       }, 150);
     }
   } else {
-    TSACodeEditor.loadLesson('p2-l1');
+    TSACodeEditor.loadLesson(sequence[0]);
   }
 };
 
@@ -1491,7 +1637,7 @@ function toggleOnlineAI(enabled) {
   if (window.TSA) window.TSA.config.featureFlags.onlineAI = enabled;
   try { localStorage.setItem('ts_online_ai', enabled ? '1' : '0'); } catch {}
   const status = document.getElementById('aiOnlineStatus');
-  if (status) status.textContent = enabled ? 'Online AI is now enabled' : 'Online AI is disabled — offline hints only';
+  if (status) status.textContent = enabled ? 'Online AI is now enabled' : 'Online AI is disabled, offline hints only';
 }
 
 // Init cookie policy page toggles when opened

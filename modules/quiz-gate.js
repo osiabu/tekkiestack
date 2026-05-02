@@ -19,12 +19,12 @@ const TSAQuizGate = (() => {
     ],
     'j1-l2': [
       { q: 'Why does the order of steps matter in a sequence?', options: ['It does not matter at all','Different orders produce different results','Only the first step matters','Sequences must always have exactly 5 steps'], answer: 1 },
-      { q: 'If you put on your shoes BEFORE your socks, what happens?', options: ['Nothing changes','The algorithm is faster','The result is wrong — socks go on first','Both orders work fine'], answer: 2 },
+      { q: 'If you put on your shoes BEFORE your socks, what happens?', options: ['Nothing changes','The algorithm is faster','The result is wrong, socks go on first','Both orders work fine'], answer: 2 },
       { q: 'What is sequencing in computing?', options: ['Running steps at the same time','Randomly picking instructions','Executing instructions in a specific order','Skipping steps you do not need'], answer: 2 },
     ],
     'j1-l3': [
       { q: 'What is a loop in programming?', options: ['A mistake in your code','A way to repeat a set of instructions','A type of variable','A special kind of button'], answer: 1 },
-      { q: 'Which loop would you use to print "Hello" exactly 10 times?', options: ['A loop that runs while a condition is true','A loop that runs for a fixed number of times','A loop that only runs once','You cannot repeat code — you must type it 10 times'], answer: 1 },
+      { q: 'Which loop would you use to print "Hello" exactly 10 times?', options: ['A loop that runs while a condition is true','A loop that runs for a fixed number of times','A loop that only runs once','You cannot repeat code, you must type it 10 times'], answer: 1 },
       { q: 'What is an infinite loop?', options: ['A loop that runs for exactly 100 times','A loop with no condition that never stops','A loop that runs backwards','A loop inside another loop'], answer: 1 },
     ],
     'j1-l4': [
@@ -146,7 +146,7 @@ const TSAQuizGate = (() => {
       { q: 'Why should you save the last searched city to localStorage?', options: ['To speed up the API call','So the app feels personalised and loads the user\'s last search on next visit','localStorage is required for fetch() to work','To cache the weather data forever'], answer: 1 },
     ],
     's2-l7': [
-      { q: 'What is CRUD?', options: ['A JavaScript framework','Create, Read, Update, Delete — the four basic operations on data','A CSS methodology','A Git workflow'], answer: 1 },
+      { q: 'What is CRUD?', options: ['A JavaScript framework','Create, Read, Update, Delete, the four basic operations on data','A CSS methodology','A Git workflow'], answer: 1 },
       { q: 'What happens to localStorage data when the browser tab is closed?', options: ['It is deleted','It persists until manually cleared or the app removes it','It is encrypted','It expires after 24 hours'], answer: 1 },
       { q: 'Which JavaScript method converts a JavaScript object to a JSON string for storage?', options: ['JSON.parse()','JSON.stringify()','JSON.encode()','JSON.serialize()'], answer: 1 },
     ],
@@ -179,7 +179,7 @@ const TSAQuizGate = (() => {
     ],
     's3-l6': [
       { q: 'Why should you never commit a .env file to Git?', options: ['It makes the repository too large','It contains sensitive secrets like API keys that would be exposed publicly','.env files are not valid text files','Git cannot process .env files'], answer: 1 },
-      { q: 'What is CI/CD?', options: ['A JavaScript testing framework','Continuous Integration / Continuous Deployment — automatically building and deploying code on push','A CSS methodology','A database backup strategy'], answer: 1 },
+      { q: 'What is CI/CD?', options: ['A JavaScript testing framework','Continuous Integration / Continuous Deployment, automatically building and deploying code on push','A CSS methodology','A database backup strategy'], answer: 1 },
       { q: 'Which platform is best suited for deploying a full Node.js backend for free?', options: ['GitHub Pages (static only)','Railway or Render','CodePen','Figma'], answer: 1 },
     ],
     's3-l7': [
@@ -244,7 +244,7 @@ const TSAQuizGate = (() => {
     's5-l5': [
       { q: 'What should the "Architecture Decisions" section of a README explain?', options: ['How to install Node.js','Why you made specific technical choices and the trade-offs considered','A list of all your files','Your project\'s colour palette'], answer: 1 },
       { q: 'What is the purpose of a portfolio case study?', options: ['To replace your CV','To tell the story of a project: the problem, your approach, what you built, and what you learned','To list your GitHub repositories','To document every line of code'], answer: 1 },
-      { q: 'What should you include in the "What I\'d do differently" section?', options: ['Nothing — it makes you look bad','Honest reflection on mistakes and what you learned, demonstrating self-awareness and growth','Only positive things','A list of bugs you never fixed'], answer: 1 },
+      { q: 'What should you include in the "What I\'d do differently" section?', options: ['Nothing, it makes you look bad','Honest reflection on mistakes and what you learned, demonstrating self-awareness and growth','Only positive things','A list of bugs you never fixed'], answer: 1 },
     ],
     's5-l6': [
       { q: 'What format should your LinkedIn headline use as a student developer?', options: ['Just your school year','Something like "Year 10 | Aspiring Developer | Built X and Y" that shows activity and initiative','Your full academic transcript','A list of every programming language you know'], answer: 1 },
@@ -256,7 +256,7 @@ const TSAQuizGate = (() => {
     'p2-l1': [
       { q: 'What does the <!DOCTYPE html> declaration do?', options: ['Loads the CSS stylesheet','Tells the browser this document is HTML5','Creates the page title','Defines the page charset'], answer: 1 },
       { q: 'What is the correct nesting order of a basic HTML document?', options: ['body → html → head','html → body → head','html → head → body','head → html → body'], answer: 2 },
-      { q: 'What is the purpose of the <head> element?', options: ['To display the page header to users','To contain metadata, links to stylesheets, and the page title — not visible content','To hold the main body content','To create the navigation bar'], answer: 1 },
+      { q: 'What is the purpose of the <head> element?', options: ['To display the page header to users','To contain metadata, links to stylesheets, and the page title, not visible content','To hold the main body content','To create the navigation bar'], answer: 1 },
     ],
     'p2-l2': [
       { q: 'What is the correct HTML tag for the most important heading on a page?', options: ['<heading>','<h6>','<h1>','<title>'], answer: 2 },
@@ -275,7 +275,7 @@ const TSAQuizGate = (() => {
     ],
     'p2-l5': [
       { q: 'What should a portfolio page include to showcase your skills?', options: ['Only a photo','A bio, skills section, and links to projects you have built','Just a contact form','Only your name and email'], answer: 1 },
-      { q: 'Why is it important for your portfolio page to look good on a phone?', options: ['It is not important — only employers use desktops','Over 60% of web browsing happens on mobile devices','Phones display CSS differently and will break your layout','Mobile users cannot see images'], answer: 1 },
+      { q: 'Why is it important for your portfolio page to look good on a phone?', options: ['It is not important, only employers use desktops','Over 60% of web browsing happens on mobile devices','Phones display CSS differently and will break your layout','Mobile users cannot see images'], answer: 1 },
       { q: 'What makes a portfolio project card useful to someone viewing your portfolio?', options: ['A very long description of every line of code','A title, brief description, screenshot or preview, and a link to the live project or code','Just the project name','Only a link to your GitHub profile'], answer: 1 },
     ],
   };
@@ -389,8 +389,8 @@ const TSAQuizGate = (() => {
       if (resultEl) {
         resultEl.style.color = passed ? '#00C9B1' : '#FF6B6B';
         resultEl.textContent = passed
-          ? `${correct}/3 correct — passed! ✅`
-          : `${correct}/3 correct — try again ❌`;
+          ? `${correct}/3 correct, passed! ✅`
+          : `${correct}/3 correct, try again ❌`;
       }
 
       // Store score

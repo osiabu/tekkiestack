@@ -10,7 +10,7 @@
 window.TSA = {
   config: {
     version:        '2.0.0',
-    storageVersion:  5,          // Schema v5 — added userId for Release 2 sync
+    storageVersion:  5,          // Schema v5, added userId for Release 2 sync
     deviceId:        _getOrCreateDeviceId(),
     featureFlags: {
       onlineAI:      true,       // Online AI active for Y5+
@@ -22,7 +22,7 @@ window.TSA = {
   modules:  {},    // loaded module references
   services: {},    // populated in init()
   storage:  null,  // TSAStorage instance
-  guard:    {},    // { aiInput, aiOutput } — wired by ai-lab.js
+  guard:    {},    // { aiInput, aiOutput }, wired by ai-lab.js
   ui:       {},    // shared helpers below
 };
 
@@ -204,14 +204,28 @@ function goToProfiles() {
 // ── Celebration overlay ───────────────────────────────────────────────────
 /**
  * Show the celebration overlay.
- * @param {string} emoji
+ * @param {string} iconOrEmoji — icon name (preferred) OR legacy emoji string
  * @param {string} title
  * @param {string} subtitle
  * @param {string} xpLabel  — e.g. '+20 XP'
  */
-function celebrate(emoji, title, subtitle, xpLabel) {
+function celebrate(iconOrEmoji, title, subtitle, xpLabel) {
   const el = (id) => document.getElementById(id);
-  if (el('celebEm'))  el('celebEm').textContent  = emoji;
+  const iconHost = el('celebEm');
+  if (iconHost) {
+    // Resolve emoji or icon-name to an SVG. Falls back to text for unknown emojis.
+    let html = '';
+    if (window.TSAIcons) {
+      const isLikelyEmoji = /[\uD83C-\uDBFF☀-➿]/.test(iconOrEmoji || '');
+      const name = isLikelyEmoji
+        ? (TSAIcons.EMOJI_MAP[iconOrEmoji] || 'celebrate')
+        : (iconOrEmoji || 'celebrate');
+      html = TSAIcons.render(name);
+    } else {
+      html = iconOrEmoji || '';
+    }
+    iconHost.innerHTML = html;
+  }
   if (el('celebTi'))  el('celebTi').textContent  = title;
   if (el('celebSu'))  el('celebSu').textContent  = subtitle;
   if (el('celebXp'))  el('celebXp').textContent  = xpLabel;
@@ -237,40 +251,71 @@ function closeC() { document.getElementById('celebOverlay')?.classList.remove('s
 async function renderPicker() {
   const storage = TSA.storage;
   const grid    = document.getElementById('profilesGrid');
+  const sub     = document.getElementById('pickerSub');
+  const picker  = document.querySelector('.picker');
   if (!grid) return;
 
-  const profiles = await storage.getAll('profiles_store');
-  grid.innerHTML  = '';
-
-  profiles.forEach(p => {
-    // Validate profile integrity before rendering — skip corrupted records
+  // Filter to valid profiles only
+  const all = await storage.getAll('profiles_store');
+  const profiles = all.filter(p => {
     const errors = window.TSASecurity?.validateProfile(p);
     if (errors && errors.length) {
       console.warn('[Security] Skipping malformed profile:', p.profileId, errors);
-      return;
+      return false;
     }
+    return true;
+  });
+
+  grid.innerHTML  = '';
+  // Apply state class to picker for CSS-driven layout (centered when empty/single)
+  if (picker) {
+    picker.classList.remove('state-empty','state-single','state-multi');
+    if (profiles.length === 0) picker.classList.add('state-empty');
+    else if (profiles.length === 1) picker.classList.add('state-single');
+    else picker.classList.add('state-multi');
+  }
+
+  // Tweak the subtitle text for the empty state
+  if (sub) {
+    if (profiles.length === 0) {
+      sub.textContent = 'Create your first profile to start the journey';
+    } else if (profiles.length === 1) {
+      sub.textContent = 'Welcome back, tap to continue';
+    } else {
+      sub.textContent = 'Tap your profile to get started';
+    }
+  }
+
+  const e = window.TSASecurity ? window.TSASecurity.esc : (s => String(s));
+  profiles.forEach(p => {
     const card = document.createElement('div');
     card.className = 'profile-card';
-    // Escape all user-supplied data — XSS prevention
-    const e = window.TSASecurity ? window.TSASecurity.esc : (s => String(s));
     card.innerHTML = `
       <span class="pav">${e(p.avatar)}</span>
       <div class="pnm">${e(p.name)}</div>
       <div class="pmt">Year ${e(String(p.yearGroup))} · ${p.journeyType === 'junior' ? 'Junior' : 'Senior'}</div>
-      <div class="pxp">&#11088; ${e(String(p.xp))} XP</div>
+      <div class="pxp"><span class="ts-i ts-i-star_filled ts-i-on-amber" aria-hidden="true"></span> ${e(String(p.xp))} XP</div>
     `;
     card.onclick = () => openPinModal(p);
     grid.appendChild(card);
   });
 
-  // Add "New Profile" card
+  // Add card — visually different in empty state (premium hero CTA)
   const addCard = document.createElement('div');
   addCard.className = 'add-card';
-  addCard.innerHTML = `<span class="ai-">＋</span><div class="al">New Profile</div>`;
+  if (profiles.length === 0) {
+    addCard.classList.add('add-card-hero');
+    addCard.innerHTML = `
+      <span class="ai-"><span class="ts-i ts-i-add" aria-hidden="true"></span></span>
+      <div class="al">Create Your First Profile</div>
+      <div class="al-sub">Pick an avatar, set a PIN, start coding</div>
+    `;
+  } else {
+    addCard.innerHTML = `<span class="ai-"><span class="ts-i ts-i-add" aria-hidden="true"></span></span><div class="al">New Profile</div>`;
+  }
   addCard.onclick = async () => {
     const sess = await TSA.services.sessionManager.getActiveSession();
     if (sess) {
-      // A profile is active — show prompt to end session first
       const ap = await TSA.storage.get('profiles_store', sess.profileId);
       _promptEndBeforeNewProfile(ap ? ap.name : 'Current user');
     } else {
@@ -314,6 +359,36 @@ function pd_() {
   document.querySelectorAll('.pd').forEach(d => d.classList.remove('err'));
 }
 
+// ── Keyboard input for PIN modals ────────────────────────────────────────
+// Lets users type digits + use Backspace + Escape on physical keyboards
+// (or mobile soft keyboards), instead of having to click the on-screen pad.
+// Routes to whichever PIN overlay is currently open.
+document.addEventListener('keydown', (e) => {
+  const pinOpen = document.getElementById('pinOvl')?.classList.contains('show');
+  const grOpen  = document.getElementById('grOvl')?.classList.contains('show');
+  if (!pinOpen && !grOpen) return;
+
+  // Don't hijack typing while a real input/textarea has focus inside the modal.
+  const t = e.target;
+  if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+
+  // Route to the active modal's handlers
+  const onDigit  = grOpen ? gpk  : pk;
+  const onBack   = grOpen ? gpd_ : pd_;
+  const onClose  = grOpen ? closeGuardianReset : closePinModal;
+
+  if (/^[0-9]$/.test(e.key)) {
+    e.preventDefault();
+    onDigit(e.key);
+  } else if (e.key === 'Backspace' || e.key === 'Delete') {
+    e.preventDefault();
+    onBack();
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    if (typeof onClose === 'function') onClose();
+  }
+});
+
 function _updatePinDots() {
   for (let i = 0; i < 4; i++) {
     const d = document.getElementById(`pd${i}`);
@@ -352,7 +427,7 @@ async function _verifyPin() {
     if (window.TSAEngagement) setTimeout(() => TSAEngagement.init(), 400);
   } catch {
     // Record failed attempt — may trigger lockout
-    let errMsg = "That PIN isn't right — try again!";
+    let errMsg = "That PIN isn't right, try again!";
     if (window.TSASecurity && profileId) {
       const result = TSASecurity.recordFailedAttempt(profileId);
       TSASecurity.auditLog('pin_fail', { profileId, remaining: result.remaining });
@@ -410,8 +485,8 @@ function _grRender() {
     'setup-1': { title: 'Guardian Setup',    sub: 'Create a 4-digit guardian passcode. Only parents or teachers should know this.',               step: 'Create guardian passcode' },
     'setup-2': { title: 'Guardian Setup',    sub: 'Enter it again to confirm.',                                                                    step: 'Confirm guardian passcode' },
     'verify':  { title: 'Guardian Required', sub: `Enter the guardian passcode to reset <strong>${name}</strong>'s PIN.`,                          step: 'Enter guardian passcode' },
-    'reset-1': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 1 of 2 — Enter new PIN' },
-    'reset-2': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 2 of 2 — Confirm new PIN' },
+    'reset-1': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 1 of 2: Enter new PIN' },
+    'reset-2': { title: 'New PIN',           sub: `Set a new PIN for <strong>${name}</strong>.`,                                                   step: 'Step 2 of 2: Confirm new PIN' },
   };
   const cfg = map[_grMode];
   const el = id => document.getElementById(id);
@@ -465,7 +540,7 @@ async function _grNext() {
       break;
     }
     case 'setup-2': {
-      if (_grBuf !== _grPin1) { _grShakeErr("Codes don't match — try again.", 'setup-1'); return; }
+      if (_grBuf !== _grPin1) { _grShakeErr("Codes don't match. Try again.", 'setup-1'); return; }
       localStorage.setItem(_GK, await _hashGuardianCode(_grBuf));
       _grBuf = ''; _grPin1 = ''; _grMode = 'reset-1';
       _grUpdateDots(); _grRender();
@@ -473,7 +548,7 @@ async function _grNext() {
     }
     case 'verify': {
       const hash = await _hashGuardianCode(_grBuf);
-      if (hash !== localStorage.getItem(_GK)) { _grShakeErr('Wrong passcode — try again.'); return; }
+      if (hash !== localStorage.getItem(_GK)) { _grShakeErr('Wrong passcode, try again.'); return; }
       _grBuf = ''; _grMode = 'reset-1';
       _grUpdateDots(); _grRender();
       break;
@@ -486,7 +561,7 @@ async function _grNext() {
       break;
     }
     case 'reset-2': {
-      if (_grBuf !== _grPin1) { _grShakeErr("PINs don't match — start again.", 'reset-1'); return; }
+      if (_grBuf !== _grPin1) { _grShakeErr("PINs don't match. Start again.", 'reset-1'); return; }
       await _grSave(_grBuf);
       break;
     }

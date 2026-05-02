@@ -4,12 +4,13 @@
  * Author: Aperintel Ltd
  */
 
-const CACHE_VERSION = 'ts-20260417-104518';  // bump this string on every production deploy
+const CACHE_VERSION = 'ts-20260502-111427';  // bump this string on every production deploy
 const SHELL_ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './assets/css/main.css',
+  './assets/js/icons.js',
   './assets/js/security.js',
   './assets/js/storage.js',
   './assets/js/session.js',
@@ -23,7 +24,9 @@ const SHELL_ASSETS = [
   './modules/junior-phases.js',
   './modules/senior-phases.js',
   './modules/engagement.js',
-  // Google Fonts — cached on first fetch
+  './modules/quiz-gate.js',
+  './modules/games.js',
+  // Google Fonts, cached on first fetch
   'https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap'
 ];
 

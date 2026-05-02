@@ -142,7 +142,7 @@ const TSASupport = (() => {
           <div class="clabel">Common Questions</div>
           ${[
             ['I forgot my PIN', 'If you forgot your PIN, a parent or teacher can delete the profile from the profile picker screen (long-press on desktop or use the settings when available) and create a new one. Progress is saved in backups for up to 5 snapshots.'],
-            ['Does TekkieStack work offline?', 'Yes! TekkieStack is built offline-first. Once you\'ve loaded it once, everything works without an internet connection — except the online AI Lab feature.'],
+            ['Does TekkieStack work offline?', 'Yes! TekkieStack is built offline-first. Once you\'ve loaded it once, everything works without an internet connection, except the online AI Lab feature.'],
             ['My progress disappeared', 'Progress is stored locally on your device. If you cleared your browser data, the progress may be gone. Avoid clearing browser data for sites you use regularly to preserve your learning progress.'],
             ['Can two children share a device?', 'Yes! TekkieStack supports up to 10 profiles per device. Each profile has its own PIN and separate progress.'],
           ].map(([q, a]) => `
@@ -193,7 +193,7 @@ const TSASupport = (() => {
     try {
       const result = await sendReport({
         name,
-        subject: `[TekkieStack] ${category} — ${message.slice(0, 60)}`,
+        subject: `[TekkieStack] ${category}, ${message.slice(0, 60)}`,
         message,
         category,
       });

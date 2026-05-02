@@ -20,24 +20,24 @@ const TSAAILab = (() => {
   // ── Offline AI responses (Y3–Y4 + offline mode) ────────────────────────
   const OFFLINE_HINTS = {
     codeHelper: [
-      "Good thinking! Look at your HTML tags — make sure every opening tag like <code>&lt;h1&gt;</code> has a matching closing tag like <code>&lt;/h1&gt;</code>.",
+      "Good thinking! Look at your HTML tags, make sure every opening tag like <code>&lt;h1&gt;</code> has a matching closing tag like <code>&lt;/h1&gt;</code>.",
       "Try reading your code out loud! If something sounds odd, it might be in the wrong place.",
       "Check your CSS: every property needs a colon <code>:</code> and every rule needs a semicolon <code>;</code> at the end.",
-      "Look at where you want the element to appear on the page — is it inside the right parent tag?",
+      "Look at where you want the element to appear on the page, is it inside the right parent tag?",
       "Computers are very precise! Check for any typos in your tag names or class names.",
       "Have you saved your file? Sometimes the preview doesn't update until you do!",
-      "Try breaking your problem into smaller pieces — what is the very first thing that needs to work?",
+      "Try breaking your problem into smaller pieces, what is the very first thing that needs to work?",
     ],
     codeDetective: [
-      "🔍 I can see something suspicious! Check your function name — it might have a typo. Function names must match exactly when you call them.",
-      "🔍 Look closely at your quotation marks — are they all properly paired? A missing quote can break everything after it.",
+      "🔍 I can see something suspicious! Check your function name, it might have a typo. Function names must match exactly when you call them.",
+      "🔍 Look closely at your quotation marks, are they all properly paired? A missing quote can break everything after it.",
       "🔍 I spotted it! One of your HTML tags isn't closed properly. Count your opening and closing tags.",
-      "🔍 The bug is in your CSS! Check the colour value — hex colours need exactly 6 characters after the #.",
-      "🔍 Check your JavaScript carefully — you might be calling a function that doesn't exist yet, or spelled differently.",
+      "🔍 The bug is in your CSS! Check the colour value, hex colours need exactly 6 characters after the #.",
+      "🔍 Check your JavaScript carefully, you might be calling a function that doesn't exist yet, or spelled differently.",
     ],
     promptTrainer: {
       scores: [
-        { score: 4, feedback: "Your prompt is a good start! Try adding more detail about what you want — describe the colours, the layout, or how it should work." },
+        { score: 4, feedback: "Your prompt is a good start! Try adding more detail about what you want, describe the colours, the layout, or how it should work." },
         { score: 6, feedback: "Nice prompt! You've given me some context. To get an 8 or 9, try explaining *why* you need this and what success looks like." },
         { score: 7, feedback: "Good specific detail! To reach a 9, add: who will use this, what device they're on, and what should happen when it works perfectly." },
         { score: 8, feedback: "Really strong prompt! You've got context, specifics, and a clear goal. For a perfect 10, add examples of what you like or don't like." },
@@ -97,7 +97,16 @@ const TSAAILab = (() => {
       .replace(/https?:\/\/\S+/gi, '')
       .replace(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g, '');
 
-    // Junior (Y3–Y6): truncate to 3 sentences
+    // Strip em-dashes — every AI response must use proper punctuation,
+    // never the AI-shorthand em-dash. Backed by the system prompt rules
+    // but this guarantees it even if a model ignores the instruction.
+    clean = clean
+      .replace(/ — /g, ', ')
+      .replace(/\s—(?=\S)/g, ', ')
+      .replace(/(?<=\w)—(?=\w)/g, '-')
+      .replace(/—\s*/g, ', ');
+
+    // Junior (Y3 to Y6): truncate to 3 sentences
     if (yearGroup <= 6) {
       const sentences = clean.match(/[^.!?]+[.!?]+/g) || [clean];
       clean = sentences.slice(0, 3).join(' ').trim();
@@ -140,7 +149,7 @@ const TSAAILab = (() => {
       if (hasWhy)    score++;
       score = Math.min(score, 9);
       const entry = responses.scores.find(s => s.score >= score) || responses.scores[responses.scores.length - 1];
-      return `Score: ${score}/10 — ${entry.feedback}`;
+      return `Score: ${score}/10, ${entry.feedback}`;
     }
     return "Keep experimenting with your code!";
   }
@@ -155,21 +164,30 @@ const TSAAILab = (() => {
    * @param {number} yearGroup
    * @returns {Promise<string>}
    */
+  // Shared style rules appended to every AI Lab system prompt.
+  // The em-dash rule prevents AI-shorthand "—" from leaking into user-facing text.
+  const STYLE_RULES = `
+STYLE RULES (mandatory, follow exactly):
+- Never use em-dashes (—) in your response. Use commas, full stops, colons, parentheses, or split into separate sentences instead.
+- Never use en-dashes (–) except for numeric ranges like "1–10".
+- Use proper British English punctuation. Plain hyphens are fine for compound words ("real-time", "step-by-step").
+- Do not write in an "AI-shorthand" style: avoid sentences that join clauses with " — " breaks.`;
+
   async function onlineResponse(tool, input, editorCode, yearGroup) {
     const systemPrompts = {
-      codeHelper: `You are a friendly coding tutor for a ${yearGroup === 5 || yearGroup === 6 ? 'junior' : 'senior'} school student (Year ${yearGroup}). 
-Give ONE helpful hint — never write the full solution. Use simple language. 
-If Year 5–6: max 3 sentences. If Year 7+: max 5 sentences.
+      codeHelper: `You are a friendly coding tutor for a ${yearGroup === 5 || yearGroup === 6 ? 'junior' : 'senior'} school student (Year ${yearGroup}).
+Give ONE helpful hint, never write the full solution. Use simple language.
+If Year 5 to 6: max 3 sentences. If Year 7 and above: max 5 sentences.
 Focus only on HTML, CSS, and JavaScript. If asked about anything else, say "I only help with coding questions."
-Never include URLs, email addresses, or personal information.`,
+Never include URLs, email addresses, or personal information.${STYLE_RULES}`,
       codeDetective: `You are a code detective for a Year ${yearGroup} student.
-Find ONE specific bug in their code and describe WHERE it is (line/area) WITHOUT fixing it yourself.
-Tell them what TYPE of bug it is (typo, missing bracket, wrong name, etc.).
-Max 3 sentences. Never write corrected code.`,
+Find ONE specific bug in their code and describe WHERE it is (line or area) WITHOUT fixing it yourself.
+Tell them what TYPE of bug it is (typo, missing bracket, wrong name, and so on).
+Max 3 sentences. Never write corrected code.${STYLE_RULES}`,
       promptTrainer: `You are a prompt-writing coach for a Year ${yearGroup} student learning to use AI tools.
-Score their prompt from 1–10 based on: clarity, specificity, context, and goal.
-Give a score and 2–3 sentences of constructive feedback.
-Format: "Score: X/10 — [feedback]"`,
+Score their prompt from 1 to 10 based on: clarity, specificity, context, and goal.
+Give a score and 2 to 3 sentences of constructive feedback.
+Format: "Score: X/10, [feedback]"${STYLE_RULES}`,
     };
 
     const userContent = tool === 'codeDetective'
@@ -189,11 +207,23 @@ Format: "Score: X/10 — [feedback]"`,
       });
       if (!resp.ok) throw new Error(`API ${resp.status}`);
       const data = await resp.json();
-      return data.text || 'Sorry, I could not generate a response. Try again!';
+      return _scrubStyle(data.text) || 'Sorry, I could not generate a response. Try again!';
     } catch(e) {
       console.warn('[AI] Online request failed, falling back to offline:', e);
-      return offlineResponse(tool, input, yearGroup);
+      return _scrubStyle(offlineResponse(tool, input, yearGroup));
     }
+  }
+
+  // Defence-in-depth: scrub em-dashes from any AI response before showing it.
+  // The system prompt asks the model to avoid em-dashes, but this catches the
+  // edge cases where a model ignores or partially-follows the instruction.
+  function _scrubStyle(text) {
+    if (!text || typeof text !== 'string') return text;
+    return text
+      .replace(/ — /g, ', ')           // " — "  (space em-dash space) -> ", "
+      .replace(/\s—(?=\S)/g, ', ')     // " —word"                     -> ", word"
+      .replace(/(?<=\w)—(?=\w)/g, '-') // "word—word"                  -> "word-word"
+      .replace(/—\s*/g, ', ');         // any remaining lonely em-dash -> ", "
   }
 
   // ── Main ask function ───────────────────────────────────────────────────
@@ -243,61 +273,74 @@ Format: "Score: X/10 — [feedback]"`,
     window.TSA.services.sessionManager.getActiveProfile().then(profile => {
       const yr = profile?.yearGroup || 3;
       const isOnline = window.TSA.config.featureFlags.onlineAI;
+      const TOOLS = [
+        { id:'codeHelper',    icon:'hint',     label:'Code Helper',    desc:'Get a hint without spoilers',
+          quick:["Why isn't my CSS working?","What does this tag do?","How do I centre something?","My button doesn't click"] },
+        { id:'codeDetective', icon:'bug',      label:'Code Detective', desc:'Find the bug yourself',
+          quick:["What's wrong with my code?","I get a syntax error","My loop runs forever","Something prints undefined"] },
+        { id:'promptTrainer', icon:'pencil',   label:'Prompt Trainer', desc:'Score your AI prompts',
+          quick:["Build me a quiz game","Explain HTML to a 7 year old","Make a portfolio page","Write a fun bedtime story"] },
+      ];
 
       screen.innerHTML = `
-        <div style="max-width:860px;margin:0 auto;padding:28px 18px">
-          <div style="text-align:center;margin-bottom:24px">
-            <h2 style="font-family:'Fredoka One',cursive;font-size:29px;color:var(--navy)">🤖 AI Lab</h2>
-            <p style="font-size:14px;color:var(--muted);margin-top:5px;font-weight:500">Your coding thinking partner. It helps you work things out — not do it for you.</p>
-            <div style="display:inline-flex;align-items:center;gap:7px;background:${isOnline ? 'rgba(46,196,182,.12)' : 'rgba(255,179,71,.1)'};border:1px solid ${isOnline ? 'rgba(46,196,182,.3)' : 'rgba(255,179,71,.25)'};border-radius:20px;padding:5px 14px;margin-top:8px;font-size:12px;font-weight:700;color:${isOnline ? 'var(--green)' : '#92400E'}">
-              <span>${isOnline ? '🌐 Online AI Active' : '💾 Offline Mode'}</span>
+        <div class="ai-screen">
+          <!-- Hero -->
+          <div class="ai-hero">
+            <div class="ai-hero-mascot" aria-hidden="true">
+              <span class="ts-i ts-i-ai"></span>
+              <span class="ai-hero-mascot-glow"></span>
+            </div>
+            <div class="ai-hero-text">
+              <h2 class="ai-hero-title">AI Lab</h2>
+              <p class="ai-hero-sub">Your coding thinking partner. I help you work things out, never just hand you the answer.</p>
+              <div class="ai-hero-status ${isOnline ? 'online' : 'offline'}">
+                <span class="ai-status-dot"></span>
+                <span>${isOnline ? 'Online AI active' : 'Offline mode'}</span>
+              </div>
             </div>
           </div>
 
-          <!-- Tool selector -->
-          <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-            ${[
-              { id:'codeHelper',    emoji:'🔧', label:'Code Helper',    desc:'Get a hint without spoilers' },
-              { id:'codeDetective', emoji:'🔍', label:'Code Detective', desc:'Find the bug yourself' },
-              { id:'promptTrainer', emoji:'📝', label:'Prompt Trainer',  desc:'Score your AI prompts' },
-            ].map(t => `
-              <div class="ai-tool-btn card" onclick="TSAAILab.selectTool('${t.id}')" id="tool-${t.id}" style="flex:1;min-width:160px;cursor:pointer;padding:16px;border:1.5px solid var(--border);border-radius:14px;text-align:center;transition:all .18s">
-                <div style="font-size:28px;margin-bottom:7px">${t.emoji}</div>
-                <div style="font-family:'Fredoka One',cursive;font-size:16px;color:var(--navy)">${t.label}</div>
-                <div style="font-size:12px;color:var(--muted);font-weight:500;margin-top:3px">${t.desc}</div>
-              </div>
+          <!-- Tool tabs -->
+          <div class="ai-tabs" role="tablist">
+            ${TOOLS.map(t => `
+              <button class="ai-tab ai-tool-btn" id="tool-${t.id}" role="tab"
+                onclick="TSAAILab.selectTool('${t.id}')">
+                <span class="ai-tab-icon"><span class="ts-i ts-i-${t.icon}" aria-hidden="true"></span></span>
+                <div class="ai-tab-text">
+                  <div class="ai-tab-label">${t.label}</div>
+                  <div class="ai-tab-desc">${t.desc}</div>
+                </div>
+              </button>
             `).join('')}
           </div>
 
           <!-- Chat area -->
-          <div style="background:var(--navy);border-radius:var(--r-lg);padding:20px;min-height:220px;margin-bottom:14px" id="aiChatArea">
-            <div style="font-size:13px;color:rgba(255,255,255,.5);text-align:center;padding-top:60px">Select a tool above to get started</div>
-          </div>
-
-          <!-- Input -->
-          <div style="display:flex;gap:10px;align-items:flex-end">
-            <div style="flex:1">
-              <textarea id="aiInput" placeholder="${yr <= 4 ? 'Ask a coding question (max 150 chars)...' : 'Ask a coding question...'}" 
-                ${yr <= 4 ? 'maxlength="150"' : ''}
-                style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:14px;resize:none;outline:none;height:58px;transition:border-color .2s"
-                onfocus="this.style.borderColor='var(--cyan)'" onblur="this.style.borderColor='var(--border)'"
-              ></textarea>
-              ${yr <= 4 ? '<div style="font-size:11px;color:var(--muted);margin-top:4px;font-weight:600">Max 150 characters for Year 3–4</div>' : ''}
+          <div class="ai-chat" id="aiChatArea">
+            <div class="ai-chat-empty">
+              <div class="ai-chat-empty-icon"><span class="ts-i ts-i-ai"></span></div>
+              <div class="ai-chat-empty-text">Pick a tool above to get started.</div>
             </div>
-            <button class="btn btn-cy" style="height:58px;padding:0 22px;flex-shrink:0" onclick="TSAAILab.sendMessage()" id="aiSendBtn">Ask ↗</button>
           </div>
 
-          <!-- Quick prompts -->
-          <div style="margin-top:12px;display:flex;gap:7px;flex-wrap:wrap">
-            <span style="font-size:12px;color:var(--muted);font-weight:700;align-self:center">Quick:</span>
-            ${['Why isn\'t my CSS working?','What does this tag do?','How do I centre something?','Review my prompt'].map(q =>
-              `<button class="btn btn-gh" style="font-size:12px;padding:5px 11px" onclick="document.getElementById('aiInput').value='${q}'">${q}</button>`
-            ).join('')}
+          <!-- Compose -->
+          <div class="ai-compose">
+            <textarea id="aiInput" rows="1"
+              placeholder="${yr <= 4 ? 'Ask a coding question (max 150 chars)' : 'Ask a coding question, or paste a prompt to score'}"
+              ${yr <= 4 ? 'maxlength="150"' : ''}
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();TSAAILab.sendMessage();}"></textarea>
+            <button class="ai-send" id="aiSendBtn" onclick="TSAAILab.sendMessage()" aria-label="Send">
+              <span class="ts-i ts-i-send" aria-hidden="true"></span>
+            </button>
           </div>
+          ${yr <= 4 ? '<div class="ai-compose-hint">Max 150 characters for Year 3 to 4</div>' : ''}
 
-          <!-- Interaction log (local only, cleared on session end) -->
-          <div style="margin-top:18px;font-size:11px;color:var(--muted);font-weight:600;text-align:center">
-            All AI interactions are logged locally for your learning record · No conversations are sent to third parties except the question itself when online AI is active
+          <!-- Quick prompts (per tool) -->
+          <div class="ai-quick" id="aiQuick"></div>
+
+          <!-- Footer note -->
+          <div class="ai-foot">
+            <span class="ts-i ts-i-shield" aria-hidden="true"></span>
+            All AI chats are logged locally on your device. Only your question is sent online when AI is active.
           </div>
         </div>
       `;
@@ -307,28 +350,43 @@ Format: "Score: X/10 — [feedback]"`,
     });
   }
 
+  // Update the quick-prompt chips when a tool is selected
+  function _renderQuickPrompts(tool) {
+    const QUICK = {
+      codeHelper:    ["Why isn't my CSS working?","What does this tag do?","How do I centre something?","My button doesn't click"],
+      codeDetective: ["What's wrong with my code?","I get a syntax error","My loop runs forever","Something prints undefined"],
+      promptTrainer: ["Build me a quiz game","Explain HTML to a 7 year old","Make a portfolio page","Write a fun bedtime story"],
+    };
+    const host = document.getElementById('aiQuick');
+    if (!host) return;
+    const prompts = QUICK[tool] || QUICK.codeHelper;
+    host.innerHTML = `
+      <span class="ai-quick-label">Try one:</span>
+      ${prompts.map(q => `<button class="ai-quick-chip" onclick="document.getElementById('aiInput').value=this.dataset.q;document.getElementById('aiInput').focus();" data-q="${q.replace(/"/g,'&quot;')}">${q}</button>`).join('')}
+    `;
+  }
+
   let _activeTool = 'codeHelper';
   let _messages   = [];
 
   function selectTool(tool) {
     _activeTool = tool;
     _messages   = [];
-    document.querySelectorAll('.ai-tool-btn').forEach(b => {
-      b.style.borderColor  = 'var(--border)';
-      b.style.background   = '#fff';
-    });
+    document.querySelectorAll('.ai-tab').forEach(b => b.classList.remove('active'));
     const active = document.getElementById(`tool-${tool}`);
-    if (active) {
-      active.style.borderColor = 'var(--cyan)';
-      active.style.background  = '#F0FDFB';
-    }
+    if (active) active.classList.add('active');
+
+    // Reset chat area to a friendly opening message for the chosen tool
+    const chat = document.getElementById('aiChatArea');
+    if (chat) chat.innerHTML = '';
 
     const prompts = {
-      codeHelper:    'Ask me about any part of your code and I\'ll give you a hint — without just giving you the answer!',
-      codeDetective: 'Paste the code with the bug in the editor, then describe what\'s going wrong. I\'ll point you to it — but YOU fix it!',
-      promptTrainer: 'Write a prompt you\'d give an AI to build something. I\'ll score it and give you tips to make it better.',
+      codeHelper:    "Ask me about any part of your code. I'll give you a hint, never the full answer.",
+      codeDetective: "Paste your buggy code in the editor, then describe what's going wrong. I'll point you to the bug, but you fix it!",
+      promptTrainer: "Write a prompt you'd give an AI. I'll score it from 1 to 10 and tell you how to make it better.",
     };
     _addBubble('ai', prompts[tool] || '');
+    _renderQuickPrompts(tool);
   }
 
   async function sendMessage() {
@@ -339,44 +397,71 @@ Format: "Score: X/10 — [feedback]"`,
 
     _addBubble('user', text);
     input.value = '';
-    if (btn) { btn.disabled = true; btn.textContent = '...'; }
+    input.style.height = '';                   // reset auto-grow
+    if (btn) btn.disabled = true;
 
-    // Small delay for UX
-    await new Promise(r => setTimeout(r, 500));
+    // Show typing indicator while waiting
+    const typing = _addTypingIndicator();
 
     try {
       const response = await ask(_activeTool, text);
+      typing?.remove();
       _addBubble('ai', response);
-      // Award XP for first AI interaction
+      // Award AI Explorer badge once
       window.TSA.services.xp.awardBadge('ai_explorer').then(awarded => {
-        if (awarded) celebrate('🤖', 'AI Explorer!', 'You used the AI Lab', '+10 XP');
+        if (awarded) celebrate('ai', 'AI Explorer!', 'You used the AI Lab', '+10 XP');
       });
     } catch(e) {
+      typing?.remove();
       _addBubble('ai', 'Something went wrong. Please try again!');
     } finally {
-      if (btn) { btn.disabled = false; btn.textContent = 'Ask ↗'; }
+      if (btn) btn.disabled = false;
     }
+  }
+
+  function _formatMessage(text) {
+    if (!text) return '';
+    // Escape HTML, then re-apply minimal markdown: `code` and **bold**
+    const esc = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return esc
+      .replace(/`([^`]+)`/g, '<code class="ai-inline-code">$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
   }
 
   function _addBubble(role, text) {
     const area = document.getElementById('aiChatArea');
     if (!area) return;
-    // Clear placeholder
-    if (area.querySelector('[style*="padding-top"]')) area.innerHTML = '';
+    // Clear placeholder if present
+    const empty = area.querySelector('.ai-chat-empty');
+    if (empty) empty.remove();
 
     const isAI = role === 'ai';
     const div  = document.createElement('div');
-    div.style.cssText = `display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;${isAI ? '' : 'flex-direction:row-reverse'}`;
+    div.className = `ai-msg ${isAI ? 'ai-msg-bot' : 'ai-msg-user'}`;
     div.innerHTML = `
-      <div style="width:30px;height:30px;border-radius:50%;background:${isAI ? 'var(--cyan)' : 'var(--amber)'};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${isAI ? '🤖' : '👤'}</div>
-      <div style="background:${isAI ? 'rgba(255,255,255,.08)' : 'rgba(0,201,177,.15)'};border-radius:${isAI ? '4px 14px 14px 14px' : '14px 4px 14px 14px'};padding:11px 15px;max-width:80%">
-        <div style="font-size:13px;color:${isAI ? 'rgba(255,255,255,.9)' : 'rgba(255,255,255,.85)'};line-height:1.6">${text.replace(/`([^`]+)`/g, '<code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px;font-family:JetBrains Mono,monospace">$1</code>')
-          .replace(/<code>/g,'<code style="background:rgba(0,0,0,.25);padding:2px 6px;border-radius:3px;font-family:JetBrains Mono,monospace;font-size:12px">')}</div>
+      <div class="ai-msg-avatar">
+        <span class="ts-i ts-i-${isAI ? 'ai' : 'profile'}" aria-hidden="true"></span>
       </div>
+      <div class="ai-msg-bubble">${_formatMessage(text)}</div>
     `;
     area.appendChild(div);
     area.scrollTop = area.scrollHeight;
     _messages.push({ role, text, timestamp: new Date().toISOString() });
+  }
+
+  function _addTypingIndicator() {
+    const area = document.getElementById('aiChatArea');
+    if (!area) return null;
+    const div = document.createElement('div');
+    div.className = 'ai-msg ai-msg-bot ai-msg-typing';
+    div.innerHTML = `
+      <div class="ai-msg-avatar"><span class="ts-i ts-i-ai" aria-hidden="true"></span></div>
+      <div class="ai-msg-bubble"><span class="ai-typing"><span></span><span></span><span></span></span></div>
+    `;
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+    return div;
   }
 
   // ── Register route ──────────────────────────────────────────────────────

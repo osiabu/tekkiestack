@@ -22,10 +22,10 @@ const TSAJunior = (() => {
       title: 'Think Like a Builder',
       emoji: '🏗️', color: '#00C9B1', bgColor: '#EDFDF8',
       yearMin: 3, yearMax: 6,
-      gate: null,    // No gate — entry phase
+      gate: null,    // No gate, entry phase
       certificate: 'cert_j1',
       weeks: '4–6 weeks',
-      description: 'Discover how computers think. Learn sequencing, algorithms, and the basics of coding logic — no keyboard needed!',
+      description: 'Discover how computers think. Learn sequencing, algorithms, and the basics of coding logic, no keyboard needed!',
       xpReward: 50,
       lessons: [
         {
@@ -34,19 +34,19 @@ const TSAJunior = (() => {
           activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🧩 What is an Algorithm?</h2>
-            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 1 of 4 — Phase 1: Think Like a Builder</p>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 1 of 4, Phase 1: Think Like a Builder</p>
 
             <div style="margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1 — What Does Algorithm Even Mean?</h3>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">An <strong>algorithm</strong> is a set of step-by-step instructions that solve a problem or complete a task. Every time a computer does something — from showing you a YouTube video to sending a text message — it follows an algorithm.</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Think of it like a recipe. A recipe tells a baker exactly what to do, in what order, to make a cake. If you skip a step or do them in the wrong order, the cake comes out wrong — or doesn't come out at all! Computers are the same: they follow instructions <em>exactly</em> as written, with zero guessing.</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Fun fact: the word "algorithm" comes from the name of a 9th-century Persian mathematician called Al-Khwarizmi. So next time someone says algorithms are modern — they're actually over 1,000 years old! 🤯</p>
-              <p style="line-height:1.8;font-size:15px">A good algorithm is: <strong>clear</strong> (no ambiguous steps), <strong>ordered</strong> (steps happen in the right sequence), and <strong>finite</strong> (it eventually ends — it doesn't loop forever).</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: What Does Algorithm Even Mean?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">An <strong>algorithm</strong> is a set of step-by-step instructions that solve a problem or complete a task. Every time a computer does something, from showing you a YouTube video to sending a text message, it follows an algorithm.</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Think of it like a recipe. A recipe tells a baker exactly what to do, in what order, to make a cake. If you skip a step or do them in the wrong order, the cake comes out wrong, or doesn't come out at all! Computers are the same: they follow instructions <em>exactly</em> as written, with zero guessing.</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Fun fact: the word "algorithm" comes from the name of a 9th-century Persian mathematician called Al-Khwarizmi. So next time someone says algorithms are modern, they're actually over 1,000 years old! 🤯</p>
+              <p style="line-height:1.8;font-size:15px">A good algorithm is: <strong>clear</strong> (no ambiguous steps), <strong>ordered</strong> (steps happen in the right sequence), and <strong>finite</strong> (it eventually ends, it doesn't loop forever).</p>
             </div>
 
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2 — 🥪 Worked Example: Make a Sandwich</h3>
-              <p style="font-size:14px;margin-bottom:12px">Here is a complete algorithm for making a peanut butter sandwich. Notice every step is specific — the computer can't "figure out" what you mean:</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: 🥪 Worked Example: Make a Sandwich</h3>
+              <p style="font-size:14px;margin-bottom:12px">Here is a complete algorithm for making a peanut butter sandwich. Notice every step is specific, the computer can't "figure out" what you mean:</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:16px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2">
                 START<br>
                 1. Get two slices of bread from the bag<br>
@@ -63,13 +63,13 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3 — ✍️ Your Turn Activity</h3>
-              <p style="font-size:14px;margin-bottom:12px">Write your own algorithm for brushing your teeth. Be as specific as a robot that has never brushed teeth before needs to be — assume it knows nothing! Include at least 6 steps.</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
+              <p style="font-size:14px;margin-bottom:12px">Write your own algorithm for brushing your teeth. Be as specific as a robot that has never brushed teeth before needs to be, assume it knows nothing! Include at least 6 steps.</p>
               <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Step 1: Pick up the toothbrush&#10;Step 2: Turn on the tap&#10;Step 3: ...&#10;Step 4: ...&#10;Step 5: ...&#10;Step 6: ..."></textarea>
             </div>
 
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4 — Bug Hunt!</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
               <p style="font-size:14px;margin-bottom:12px">This algorithm for getting dressed in the morning has a problem. Can you find what's wrong?</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
                 1. Put on your shoes<br>
@@ -83,31 +83,31 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5 — Think About It</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
               <p style="font-size:15px;font-weight:600;margin-bottom:10px">When did YOU follow an algorithm today without realising it?</p>
-              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Think about your morning routine, how you play a video game, or how you make a meal. Write 2–3 sentences about an algorithm you used today — even if you didn't know it was one at the time.</p>
+              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Think about your morning routine, how you play a video game, or how you make a meal. Write 2–3 sentences about an algorithm you used today, even if you didn't know it was one at the time.</p>
               <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Today I followed an algorithm when I..."></textarea>
             </div>
           </div>`,
         },
         {
           id: 'j1-l2', title: 'Sequencing & Order',
-          desc: 'Computers do EXACTLY what you tell them — in exactly the right order.',
+          desc: 'Computers do EXACTLY what you tell them, in exactly the right order.',
           activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🔢 Sequencing & Order</h2>
-            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 2 of 4 — Phase 1: Think Like a Builder</p>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 2 of 4, Phase 1: Think Like a Builder</p>
 
             <div style="margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1 — Why Does Order Matter So Much?</h3>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Computers follow instructions in <strong>sequence</strong> — one step at a time, exactly in the order they are written. They cannot skip ahead, guess what you meant, or say "hmm, that doesn't feel right."</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Imagine asking a robot to make you a bowl of cereal. If you tell it "add milk" before "get the bowl", it pours milk onto the table. Oops! The robot did exactly what you said — in exactly the order you said it. This is called a <strong>sequence error</strong>.</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: Why Does Order Matter So Much?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Computers follow instructions in <strong>sequence</strong>: one step at a time, exactly in the order they are written. They cannot skip ahead, guess what you meant, or say "hmm, that doesn't feel right."</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Imagine asking a robot to make you a bowl of cereal. If you tell it "add milk" before "get the bowl", it pours milk onto the table. Oops! The robot did exactly what you said, in exactly the order you said it. This is called a <strong>sequence error</strong>.</p>
               <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Sequencing matters in everything: pouring a glass of juice (glass first, then pour!), making a game character jump (check input first, then play animation), and even loading a webpage (download HTML first, then apply CSS).</p>
-              <p style="line-height:1.8;font-size:15px">The word "sequence" comes from the Latin word for "follow" — because in a sequence, each step follows the one before it.</p>
+              <p style="line-height:1.8;font-size:15px">The word "sequence" comes from the Latin word for "follow", because in a sequence, each step follows the one before it.</p>
             </div>
 
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2 — 🍳 Worked Example: Making Toast</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: 🍳 Worked Example: Making Toast</h3>
               <p style="font-size:14px;margin-bottom:12px">Here are two sequences. One is correct. One will either make a mess or leave you hungry:</p>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                 <div>
@@ -131,11 +131,11 @@ const TSAJunior = (() => {
                   </div>
                 </div>
               </div>
-              <p style="font-size:13px;color:var(--muted);margin-top:10px">🔍 In the wrong sequence, we try to butter the bread before it even exists in our hand — and before it's toasted!</p>
+              <p style="font-size:13px;color:var(--muted);margin-top:10px">🔍 In the wrong sequence, we try to butter the bread before it even exists in our hand, and before it's toasted!</p>
             </div>
 
             <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3 — ✍️ Your Turn Activity</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:12px">Below are the steps for washing your hands, but they are in the WRONG order. Number them 1–6 in the correct sequence:</p>
               ${[
                 'Dry hands with a towel',
@@ -148,7 +148,7 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4 — Bug Hunt!</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
               <p style="font-size:14px;margin-bottom:12px">This algorithm for logging into a website has a sequencing error. Find it!</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
                 1. Click the "Log In" button<br>
@@ -162,7 +162,7 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5 — Think About It</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
               <p style="font-size:15px;font-weight:600;margin-bottom:10px">Can you think of a time when doing steps in the wrong order caused a problem for you or someone you know?</p>
               <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Maybe in cooking, sport, getting ready for school, or in a game. Write 2–3 sentences describing what happened and what the correct order should have been.</p>
               <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Once, I did steps in the wrong order when..."></textarea>
@@ -170,32 +170,32 @@ const TSAJunior = (() => {
           </div>`,
         },
         {
-          id: 'j1-l3', title: 'Loops — Repeat Yourself',
+          id: 'j1-l3', title: 'Loops, Repeat Yourself',
           desc: 'Instead of writing the same instructions over and over, we use loops!',
           activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🔁 Loops — Don't Repeat Yourself!</h2>
-            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 3 of 4 — Phase 1: Think Like a Builder</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🔁 Loops: Don't Repeat Yourself!</h2>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 3 of 4, Phase 1: Think Like a Builder</p>
 
             <div style="margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1 — What Is a Loop?</h3>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Imagine you had to write "I will not throw paper aeroplanes in class" 100 times as a punishment. That would take ages. But a computer could do it in milliseconds — using a <strong>loop</strong>.</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A <strong>loop</strong> is an instruction that tells a computer to repeat a set of steps — either a specific number of times, or until a certain condition becomes true. Loops are one of the most powerful ideas in all of computing.</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: What Is a Loop?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Imagine you had to write "I will not throw paper aeroplanes in class" 100 times as a punishment. That would take ages. But a computer could do it in milliseconds, using a <strong>loop</strong>.</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A <strong>loop</strong> is an instruction that tells a computer to repeat a set of steps, either a specific number of times, or until a certain condition becomes true. Loops are one of the most powerful ideas in all of computing.</p>
               <p style="line-height:1.8;font-size:15px;margin-bottom:10px">There are two main types of loop: <strong>count-controlled loops</strong> (repeat exactly 10 times) and <strong>condition-controlled loops</strong> (keep going until the pizza is ready). You'll use both types when you start coding for real.</p>
               <p style="line-height:1.8;font-size:15px">Real-world loops: your phone checks for new messages every 30 seconds (condition loop), a game character's walking animation loops while you hold the button (condition loop), a high score table shows your top 10 scores (count loop).</p>
             </div>
 
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2 — 🎮 Worked Example: Pac-Man Walk Cycle</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: 🎮 Worked Example: Pac-Man Walk Cycle</h3>
               <p style="font-size:14px;margin-bottom:12px">When Pac-Man moves, his mouth opens and closes. Without a loop, a programmer would have to write every frame manually. With a loop, they write it once:</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:16px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                <span style="color:#FFB347">// Without a loop — awful! 😱</span><br>
+                <span style="color:#FFB347">// Without a loop, awful! 😱</span><br>
                 open mouth → close mouth<br>
                 open mouth → close mouth<br>
                 open mouth → close mouth<br>
                 open mouth → close mouth<br>
                 <br>
-                <span style="color:#FFB347">// With a loop — brilliant! ✅</span><br>
+                <span style="color:#FFB347">// With a loop, brilliant! ✅</span><br>
                 REPEAT WHILE moving:<br>
                 &nbsp;&nbsp;open mouth<br>
                 &nbsp;&nbsp;close mouth
@@ -212,7 +212,7 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3 — ✍️ Your Turn Activity</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:14px">For each scenario below, write the loop instruction in plain English. Say whether it's a COUNT loop or a CONDITION loop, and write the repeat instruction.</p>
               ${[
                 'A robot hoovering a room back and forth until the whole floor is clean',
@@ -222,14 +222,14 @@ const TSAJunior = (() => {
               ].map((q, i) => `
                 <div style="margin-bottom:14px;padding:14px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid var(--border)">
                   <p style="font-size:14px;font-weight:600;margin-bottom:8px">${i+1}. ${q}</p>
-                  <textarea style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="Type: COUNT or CONDITION — then write the loop instruction..."></textarea>
+                  <textarea style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="Type: COUNT or CONDITION, then write the loop instruction..."></textarea>
                 </div>
               `).join('')}
             </div>
 
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4 — Bug Hunt!</h3>
-              <p style="font-size:14px;margin-bottom:12px">This loop is supposed to print the numbers 1 through 5. But something is wrong — it will run forever! Can you see why?</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
+              <p style="font-size:14px;margin-bottom:12px">This loop is supposed to print the numbers 1 through 5. But something is wrong, it will run forever! Can you see why?</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
                 count = 1<br>
                 REPEAT WHILE count &lt; 6:<br>
@@ -240,7 +240,7 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5 — Think About It</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
               <p style="font-size:15px;font-weight:600;margin-bottom:10px">What is one thing you do every single day that works like a loop? How many times does it repeat, and what makes it stop?</p>
               <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Hint: think about breathing, chewing food, watching a TV episode, or scrolling through a social media feed. Write 2–3 sentences.</p>
               <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="A loop in my daily life is..."></textarea>
@@ -248,23 +248,23 @@ const TSAJunior = (() => {
           </div>`,
         },
         {
-          id: 'j1-l4', title: 'Decisions — If This, Then That',
+          id: 'j1-l4', title: 'Decisions, If This, Then That',
           desc: 'Computers can make decisions using IF/THEN logic.',
           activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🤔 Decisions — If This, Then That</h2>
-            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 4 of 4 — Phase 1: Think Like a Builder</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">🤔 Decisions: If This, Then That</h2>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 4 of 4, Phase 1: Think Like a Builder</p>
 
             <div style="margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1 — How Do Computers Make Choices?</h3>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Computers seem really smart — they show you different content depending on who you are, they unlock new game levels when you have enough points, they send you to the right page when you click a link. How? They use <strong>decisions</strong>.</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A decision in programming is called an <strong>IF statement</strong>. It works just like a fork in the road: IF a condition is true, go left. ELSE (otherwise), go right. The computer checks the condition — which is always either true or false — and then follows the correct path.</p>
-              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">You use IF logic every day: IF it is raining, take an umbrella. IF there is no cereal, have toast instead. IF the traffic light is red, stop. Your brain processes dozens of these every hour — computers can check millions per second!</p>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: How Do Computers Make Choices?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">Computers seem really smart, they show you different content depending on who you are, they unlock new game levels when you have enough points, they send you to the right page when you click a link. How? They use <strong>decisions</strong>.</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A decision in programming is called an <strong>IF statement</strong>. It works just like a fork in the road: IF a condition is true, go left. ELSE (otherwise), go right. The computer checks the condition, which is always either true or false, and then follows the correct path.</p>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">You use IF logic every day: IF it is raining, take an umbrella. IF there is no cereal, have toast instead. IF the traffic light is red, stop. Your brain processes dozens of these every hour, computers can check millions per second!</p>
               <p style="line-height:1.8;font-size:15px">IF statements can be nested: IF you are hungry AND it is after 6pm, then have dinner. The AND and OR make conditions more powerful. You'll learn about these when you start coding!</p>
             </div>
 
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2 — 🎮 Worked Example: Minecraft Mob Spawning</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: 🎮 Worked Example: Minecraft Mob Spawning</h3>
               <p style="font-size:14px;margin-bottom:12px">In Minecraft, monsters only spawn in the dark. Here's the decision algorithm the game uses:</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:16px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
                 IF light_level &lt; 8:<br>
@@ -275,7 +275,7 @@ const TSAJunior = (() => {
                 ELSE:<br>
                 &nbsp;&nbsp;no mob spawns 😌
               </div>
-              <p style="font-size:13px;color:var(--muted)">🔍 Notice the nested IF — a decision inside a decision! This is how complex behaviour can be created from simple true/false checks.</p>
+              <p style="font-size:13px;color:var(--muted)">🔍 Notice the nested IF, a decision inside a decision! This is how complex behaviour can be created from simple true/false checks.</p>
               <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
                 <div style="background:rgba(0,201,177,.1);border-radius:8px;padding:12px">
                   <div style="font-weight:700;color:var(--navy);font-size:13px;margin-bottom:6px">✅ IF example</div>
@@ -289,25 +289,25 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3 — ✍️ Your Turn Activity</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:14px">Complete the IF/ELSE algorithm for each scenario. Write the condition and both outcomes:</p>
               ${[
-                { situation: 'A vending machine — the user has put in money', ifTrue: 'What happens if they press a button with enough money?', ifFalse: 'What happens if they do not have enough money?' },
-                { situation: 'A school gate system — a student scans their card', ifTrue: 'What happens if the card is recognised?', ifFalse: 'What happens if the card is not in the system?' },
+                { situation: 'A vending machine, the user has put in money', ifTrue: 'What happens if they press a button with enough money?', ifFalse: 'What happens if they do not have enough money?' },
+                { situation: 'A school gate system, a student scans their card', ifTrue: 'What happens if the card is recognised?', ifFalse: 'What happens if the card is not in the system?' },
                 { situation: 'A weather app notification', ifTrue: 'What does the app send if rain is forecast today?', ifFalse: 'What does it send if the weather is fine?' },
               ].map((s, i) => `
                 <div style="margin-bottom:16px;padding:14px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid var(--border)">
                   <p style="font-size:14px;font-weight:700;margin-bottom:8px;color:var(--navy)">${i+1}. ${s.situation}</p>
-                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">IF condition is true — ${s.ifTrue}</p>
+                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">IF condition is true, ${s.ifTrue}</p>
                   <textarea style="width:100%;padding:8px;border:1.5px solid var(--cyan);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;height:50px;outline:none;resize:none;box-sizing:border-box;margin-bottom:8px" placeholder="IF ..."></textarea>
-                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">ELSE — ${s.ifFalse}</p>
+                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">ELSE, ${s.ifFalse}</p>
                   <textarea style="width:100%;padding:8px;border:1.5px solid #6C63FF;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;height:50px;outline:none;resize:none;box-sizing:border-box" placeholder="ELSE ..."></textarea>
                 </div>
               `).join('')}
             </div>
 
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4 — Bug Hunt!</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
               <p style="font-size:14px;margin-bottom:12px">This login algorithm has a logic error. It lets people in even when the password is wrong!</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
                 IF username = "admin":<br>
@@ -322,10 +322,145 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5 — Think About It</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
               <p style="font-size:15px;font-weight:600;margin-bottom:10px">Think of a decision you made today. What were the two possible paths? What condition did you check before deciding?</p>
               <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Write it as an IF/ELSE algorithm in plain English. For example: "IF I wake up before 7am, have a slow breakfast. ELSE, grab something quick."</p>
               <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:100px;outline:none;resize:vertical;box-sizing:border-box" placeholder="IF ...&#10;  THEN ...&#10;ELSE&#10;  ..."></textarea>
+            </div>
+          </div>`,
+        },
+        {
+          id: 'j1-l5', title: 'Patterns, Spotting What Repeats',
+          desc: 'Find patterns the same way computers do',
+          activity: 'offline', xp: 15,
+          content: `<div style="padding:20px;max-width:720px">
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">Patterns: Spotting What Repeats</h2>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 5 of 7, Phase 1: Think Like a Builder</p>
+
+            <div style="margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: What is a Pattern?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A <strong>pattern</strong> is something that repeats in a predictable way. Stripes on a zebra, the days of the week, the way the alphabet is ordered, all patterns. Computers are obsessed with patterns because spotting them lets us solve big problems with very little code.</p>
+              <p style="line-height:1.8;font-size:15px">When you see a pattern, you can use a <em>loop</em> instead of writing every step out, the secret behind every game, app, and website you've ever used.</p>
+            </div>
+
+            <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: Pattern Spotter</h3>
+              <p style="font-size:14px;margin-bottom:12px">What comes next in each pattern below? Type your answer in the box.</p>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:15px;line-height:2;background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;margin-bottom:12px">
+                a) 2, 4, 6, 8, ___<br>
+                b) red, blue, red, blue, ___<br>
+                c) Monday, Tuesday, Wednesday, ___<br>
+                d) 1, 1, 2, 3, 5, 8, ___ <span style="color:#FFB347">(tricky one!)</span>
+              </div>
+              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="a) ...&#10;b) ...&#10;c) ...&#10;d) ..."></textarea>
+            </div>
+
+            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Find a Pattern Around You</h3>
+              <p style="font-size:14px;margin-bottom:12px">Look around your room or out the window. Find <strong>three things</strong> that show a pattern. Tiles on a floor, leaves on a tree, the rhythm of a song, anything counts.</p>
+              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+            </div>
+
+            <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
+              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">Section 4: Why Patterns Matter for Coders</h3>
+              <p style="font-size:14px;line-height:1.8">Imagine you had to draw a chessboard. Without spotting the pattern, you'd describe 64 squares one by one. WITH the pattern, you write: "8 rows of 8 squares, alternating black and white." Suddenly the problem is tiny. That's the superpower.</p>
+            </div>
+          </div>`,
+        },
+        {
+          id: 'j1-l6', title: 'Decomposition, Breaking Big Problems Down',
+          desc: 'Take a huge problem and split it into bite-sized pieces',
+          activity: 'offline', xp: 15,
+          content: `<div style="padding:20px;max-width:720px">
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">Decomposition: Big Problems, Small Pieces</h2>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 6 of 7, Phase 1: Think Like a Builder</p>
+
+            <div style="margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: What is Decomposition?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px"><strong>Decomposition</strong> means taking a big, scary problem and breaking it into small, easy pieces. It's the secret skill that lets coders build entire apps without their brains exploding.</p>
+              <p style="line-height:1.8;font-size:15px">Imagine someone said "build a video game". You'd freeze. But if you broke it down: 1) A character, 2) Something to dodge, 3) A score, 4) A way to lose, 5) A way to win, suddenly each piece is something you CAN do.</p>
+            </div>
+
+            <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: Worked Example: Plan a Birthday Party</h3>
+              <p style="font-size:14px;margin-bottom:12px">"Throw a birthday party" is one giant problem. Decomposed:</p>
+              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:8px">
+                1. Decide on a date<br>
+                2. Choose a theme<br>
+                3. Make a guest list<br>
+                4. Send invitations<br>
+                5. Plan food and drinks<br>
+                6. Buy a cake<br>
+                7. Decorate<br>
+                8. Plan games<br>
+                9. Take photos<br>
+                10. Send thank-you notes
+              </div>
+              <p style="font-size:13px;color:var(--muted)">Now each step is its own small problem you can tackle one at a time.</p>
+            </div>
+
+            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Your Turn</h3>
+              <p style="font-size:14px;margin-bottom:12px">Pick ONE of these big problems and break it into 6+ smaller steps:</p>
+              <ul style="font-size:14px;line-height:1.9;margin-bottom:12px;padding-left:20px">
+                <li>Build a treehouse</li>
+                <li>Make a YouTube video</li>
+                <li>Bake your favourite dessert</li>
+                <li>Build a paper aeroplane that flies far</li>
+              </ul>
+              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:160px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Big problem: ...&#10;1. ...&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. ...&#10;6. ..."></textarea>
+            </div>
+          </div>`,
+        },
+        {
+          id: 'j1-l7', title: 'Debugging, Fixing Broken Logic',
+          desc: 'Find what went wrong, then fix it like a real coder',
+          activity: 'offline', xp: 20,
+          content: `<div style="padding:20px;max-width:720px">
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:26px">Debugging: Finding the Bug</h2>
+            <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:20px">Lesson 7 of 7, Phase 1: Think Like a Builder</p>
+
+            <div style="margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 1: What is a Bug?</h3>
+              <p style="line-height:1.8;font-size:15px;margin-bottom:10px">A <strong>bug</strong> is a mistake in code that makes it behave wrong. The word goes back to 1947, when an actual moth got stuck inside an early computer at Harvard. They called it "the first bug", and the name stuck.</p>
+              <p style="line-height:1.8;font-size:15px">Every coder, even the best ones, write code with bugs in it. The skill that separates beginners from pros isn't writing perfect code, it's getting good at <em>finding and fixing</em> the bugs.</p>
+            </div>
+
+            <div style="background:#FFF5F5;border:1.5px solid var(--coral);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">Section 2: Bug Hunt Round 1</h3>
+              <p style="font-size:14px;margin-bottom:12px">This algorithm tells a robot how to make tea. There's ONE bug. Find it.</p>
+              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+                1. Pour the water into the cup<br>
+                2. Boil the kettle<br>
+                3. Drop the tea bag in<br>
+                4. Wait two minutes<br>
+                5. Drink
+              </div>
+              <textarea style="width:100%;padding:12px;border:1.5px solid var(--coral);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is: ... The fix is: ..."></textarea>
+            </div>
+
+            <div style="background:#FFF5F5;border:1.5px solid var(--coral);border-radius:12px;padding:20px;margin-bottom:22px">
+              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">Section 3: Bug Hunt Round 2 (harder)</h3>
+              <p style="font-size:14px;margin-bottom:12px">A robot is supposed to count from 1 to 10. Here's the algorithm. Two bugs. Find both.</p>
+              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+                1. Set count = 0<br>
+                2. While count is less than 11:<br>
+                &nbsp;&nbsp;&nbsp;3. Say count<br>
+                &nbsp;&nbsp;&nbsp;4. (no step here)<br>
+                5. End
+              </div>
+              <textarea style="width:100%;padding:12px;border:1.5px solid var(--coral);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:100px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Bug 1: ...&#10;Fix: ...&#10;&#10;Bug 2: ...&#10;Fix: ..."></textarea>
+            </div>
+
+            <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px">
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 4: The Debugger's Mindset</h3>
+              <p style="font-size:14px;line-height:1.8;margin-bottom:8px">When something goes wrong, real coders ask three questions:</p>
+              <ol style="font-size:14px;line-height:2;padding-left:20px">
+                <li>What did I <strong>expect</strong> to happen?</li>
+                <li>What <strong>actually</strong> happened?</li>
+                <li>What's the <strong>smallest difference</strong> between those two?</li>
+              </ol>
+              <p style="font-size:14px;color:var(--muted);margin-top:8px;line-height:1.7">Once you can answer those three, you've usually found the bug.</p>
             </div>
           </div>`,
         },
@@ -342,7 +477,7 @@ const TSAJunior = (() => {
       weeks: '6–8 weeks',
       description: 'Build real web pages with HTML and CSS. By the end, you\'ll have a personal portfolio page!',
       xpReward: 100,
-      lessonRef: 'code-editor',  // Lessons live in code-editor.js (p2-l1 to p2-l5)
+      lessonRef: 'code-editor',  // Lessons live in code-editor.js (p2-l1 to p2-l10)
     },
 
     j3: {
@@ -357,23 +492,23 @@ const TSAJunior = (() => {
       xpReward: 100,
       lessons: [
         {
-          id: 'j3-l1', title: 'JavaScript Basics — Variables', desc: 'Store information in variables', activity: 'code', xp: 20,
+          id: 'j3-l1', title: 'JavaScript Basics, Variables', desc: 'Store information in variables', activity: 'code', xp: 20,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">📦 JavaScript Basics — Variables</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 1 of 5 — Phase 3: Smart Builder</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">📦 JavaScript Basics: Variables</h2>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 1 of 5, Phase 3: Smart Builder</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">What is a Variable?</h3>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">A <strong>variable</strong> is like a labelled box in your computer's memory. You can put a value inside — a number, a word, or anything else — and then use that label to get it back later. Variables are the most fundamental concept in all of programming.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">A <strong>variable</strong> is like a labelled box in your computer's memory. You can put a value inside, a number, a word, or anything else, and then use that label to get it back later. Variables are the most fundamental concept in all of programming.</p>
             <p style="font-size:14px;line-height:1.8;margin-bottom:16px">Think of it like your school locker: it has a number (the variable name), and you put your stuff inside (the value). You can swap the stuff for something else later (unless it's a <strong>const</strong>!).</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 let, const, and var — When to Use Each</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 let, const, and var: When to Use Each</h3>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2">
-                <span style="color:#FFB347">// let — can be changed later</span><br>
+                <span style="color:#FFB347">// let, can be changed later</span><br>
                 let score = 0;<br>
                 score = 100; <span style="color:rgba(255,255,255,.5)">// ✅ allowed</span><br><br>
-                <span style="color:#FFB347">// const — fixed forever (use this most of the time)</span><br>
+                <span style="color:#FFB347">// const, fixed forever (use this most of the time)</span><br>
                 const playerName = "Alex";<br>
                 <span style="color:rgba(255,255,255,.5)">// playerName = "Sam"; ← ❌ error!</span><br><br>
-                <span style="color:#FFB347">// var — old style, avoid in new code</span><br>
+                <span style="color:#FFB347">// var, old style, avoid in new code</span><br>
                 var oldStyle = "don't use me";
               </div>
               <p style="font-size:13px;color:var(--muted);margin-top:10px">📌 Rule of thumb: use <strong>const</strong> unless you know the value will change, then use <strong>let</strong>. Never use <strong>var</strong>.</p>
@@ -410,22 +545,22 @@ const TSAJunior = (() => {
           </div>`,
         },
         {
-          id: 'j3-l2', title: 'JavaScript — Functions', desc: 'Reuse code with functions', activity: 'code', xp: 20,
+          id: 'j3-l2', title: 'JavaScript, Functions', desc: 'Reuse code with functions', activity: 'code', xp: 20,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🍳 JavaScript — Functions</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 2 of 5 — Phase 3: Smart Builder</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🍳 JavaScript: Functions</h2>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 2 of 5, Phase 3: Smart Builder</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">Functions Are Saved Recipes</h3>
             <p style="font-size:14px;line-height:1.8;margin-bottom:12px">A <strong>function</strong> is a named block of code you write once and can run (or "call") as many times as you want. Think of it like a recipe: you write the recipe once, then anyone can follow it any number of times without you rewriting it.</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">Without functions, you'd have to copy and paste the same code everywhere. If you needed to change it, you'd have to change every copy. Functions solve this — change the function once, and everywhere that uses it updates automatically.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">Without functions, you'd have to copy and paste the same code everywhere. If you needed to change it, you'd have to change every copy. Functions solve this, change the function once, and everywhere that uses it updates automatically.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 Functions: No Parameters → Parameters → Return</h3>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2">
-                <span style="color:#FFB347">// No parameters — does the same thing every time</span><br>
+                <span style="color:#FFB347">// No parameters, does the same thing every time</span><br>
                 function sayHello() &#123;<br>
                 &nbsp;&nbsp;console.log("Hello, TekkieStack!");<br>
                 &#125;<br>
                 sayHello(); <span style="color:rgba(255,255,255,.5)">// Call it!</span><br><br>
-                <span style="color:#FFB347">// With parameters — customise the input</span><br>
+                <span style="color:#FFB347">// With parameters, customise the input</span><br>
                 function greet(name) &#123;<br>
                 &nbsp;&nbsp;return "Hello, " + name + "! Welcome to TekkieStack.";<br>
                 &#125;<br>
@@ -454,19 +589,19 @@ const TSAJunior = (() => {
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
-              <p style="font-size:14px;margin-bottom:8px">Think of something you do every day that could be a function — something you do the same way each time but with different inputs. Write it as a function definition in plain English.</p>
+              <p style="font-size:14px;margin-bottom:8px">Think of something you do every day that could be a function, something you do the same way each time but with different inputs. Write it as a function definition in plain English.</p>
               <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="function [name]([input]) { ... }  // e.g. function makeToast(bread) { ... }"></textarea>
             </div>
           </div>`,
         },
         {
-          id: 'j3-l3', title: 'JavaScript — DOM Manipulation', desc: 'Change web pages with JS', activity: 'code', xp: 20,
+          id: 'j3-l3', title: 'JavaScript, DOM Manipulation', desc: 'Change web pages with JS', activity: 'code', xp: 20,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🌐 JavaScript — DOM Manipulation</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 3 of 5 — Phase 3: Smart Builder</p>
-            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">The DOM — The "Live" Version of Your HTML</h3>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">When a browser loads your HTML file, it creates a <strong>Document Object Model (DOM)</strong> — a live, interactive version of your HTML that JavaScript can read and change. Think of the DOM like a family tree of every element on your page.</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">When you change the DOM with JavaScript, the page updates instantly — no reload needed. This is how chat apps show new messages, how games update scores, and how forms give you live feedback as you type.</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🌐 JavaScript: DOM Manipulation</h2>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 3 of 5, Phase 3: Smart Builder</p>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">The DOM: The "Live" Version of Your HTML</h3>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">When a browser loads your HTML file, it creates a <strong>Document Object Model (DOM)</strong>: a live, interactive version of your HTML that JavaScript can read and change. Think of the DOM like a family tree of every element on your page.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">When you change the DOM with JavaScript, the page updates instantly, no reload needed. This is how chat apps show new messages, how games update scores, and how forms give you live feedback as you type.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 Key DOM Methods</h3>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2">
@@ -504,12 +639,12 @@ const TSAJunior = (() => {
           </div>`,
         },
         {
-          id: 'j3-l4', title: 'JavaScript — Events', desc: 'React to clicks and inputs', activity: 'code', xp: 20,
+          id: 'j3-l4', title: 'JavaScript, Events', desc: 'React to clicks and inputs', activity: 'code', xp: 20,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🖱️ JavaScript — Events</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 4 of 5 — Phase 3: Smart Builder</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🖱️ JavaScript: Events</h2>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 4 of 5, Phase 3: Smart Builder</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">Events: The Computer Listening for Things to Happen</h3>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">An <strong>event</strong> is something that happens in the browser — a click, a key press, a mouse hover, a form submission. JavaScript can "listen" for these events and respond by running code. This is what makes web pages interactive.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">An <strong>event</strong> is something that happens in the browser, a click, a key press, a mouse hover, a form submission. JavaScript can "listen" for these events and respond by running code. This is what makes web pages interactive.</p>
             <p style="font-size:14px;line-height:1.8;margin-bottom:16px">Without events, a webpage is just a static document. With events, it becomes an application. Every button you've ever clicked, every form you've filled in, every game you've played in a browser runs on events.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 addEventListener and the event object</h3>
@@ -523,7 +658,7 @@ const TSAJunior = (() => {
                 btn.addEventListener("mouseover", function() &#123;<br>
                 &nbsp;&nbsp;btn.style.background = "#FF6B6B";<br>
                 &#125;);<br><br>
-                <span style="color:#FFB347">// Using the event object — e.target is the element that was clicked</span><br>
+                <span style="color:#FFB347">// Using the event object, e.target is the element that was clicked</span><br>
                 document.addEventListener("click", function(e) &#123;<br>
                 &nbsp;&nbsp;console.log("You clicked:", e.target);<br>
                 &#125;);
@@ -555,12 +690,12 @@ const TSAJunior = (() => {
         {
           id: 'j3-l5', title: 'Build a Quiz Game', desc: 'Your first interactive project', activity: 'project', xp: 40,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
-            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🧠 Build a Quiz Game — Your First Project!</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 5 of 5 — Phase 3: Smart Builder</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">You're going to build a complete, interactive 5-question multiple choice quiz. When the player finishes, they'll see their score. This project uses variables, arrays, functions, DOM manipulation, and events — everything you've learned in Phase 3!</p>
+            <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🧠 Build a Quiz Game: Your First Project!</h2>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 5 of 5, Phase 3: Smart Builder</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">You're going to build a complete, interactive 5-question multiple choice quiz. When the player finishes, they'll see their score. This project uses variables, arrays, functions, DOM manipulation, and events, everything you've learned in Phase 3!</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">📐 Project Structure</h3>
-              <p style="font-size:14px;margin-bottom:10px">Your quiz will have: a question display area, 4 answer buttons, a score counter, and a "next question" button. Here's the scaffold — complete the TODOs:</p>
+              <p style="font-size:14px;margin-bottom:10px">Your quiz will have: a question display area, 4 answer buttons, a score counter, and a "next question" button. Here's the scaffold, complete the TODOs:</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;overflow-x:auto">
                 const questions = [<br>
                 &nbsp;&nbsp;&#123; q: "What does HTML stand for?", options: ["HyperText Markup Language","High Tech Modern Layout","HyperType Multipage Language","Hyper Transfer Media Links"], answer: 0 &#125;,<br>
@@ -587,7 +722,7 @@ const TSAJunior = (() => {
                 <li>Create the HTML structure (question div, 4 option buttons, score display)</li>
                 <li>Write showQuestion() to display the current question and options</li>
                 <li>Wire each button's onclick to call checkAnswer() with the option index</li>
-                <li>Write checkAnswer() — add to score if correct, then advance to next question</li>
+                <li>Write checkAnswer(), add to score if correct, then advance to next question</li>
                 <li>Show the final score (e.g. "You scored 4/5!") when all questions are done</li>
                 <li>Add a "Play Again" button that resets currentQ and score to 0</li>
               </ol>
@@ -606,7 +741,7 @@ const TSAJunior = (() => {
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:16px;margin-bottom:10px">🚀 Stretch Goals</h3>
               <ol style="font-size:14px;line-height:2.2;padding-left:18px">
-                <li>Add a timer — each question has 15 seconds before auto-advancing</li>
+                <li>Add a timer, each question has 15 seconds before auto-advancing</li>
                 <li>Randomise the order of questions using <code>questions.sort(() => Math.random() - 0.5)</code></li>
                 <li>Add a high score saved to localStorage that persists between sessions</li>
               </ol>
@@ -636,10 +771,10 @@ const TSAJunior = (() => {
           id: 'j4-l1', title: 'What is AI?', desc: 'Understanding artificial intelligence', activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🤖 What is AI?</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 1 of 4 — Phase 4: AI &amp; Applied Engineering</p>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 1 of 4, Phase 4: AI &amp; Applied Engineering</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">Teaching a Dog vs Programming a Robot</h3>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:12px"><strong>Artificial Intelligence (AI)</strong> is a type of computer system that performs tasks that usually require human intelligence — like recognising faces, understanding speech, or making recommendations.</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">Here's a great way to think about the difference between a normal program and AI: imagine training a dog vs programming a robot. When you program a robot, you write every single rule: "IF ball moves left, THEN move left." But when you train a dog, you show it examples over and over (fetch the ball, good dog!) and it learns the pattern itself. AI is like the dog — it learns from examples instead of following fixed rules.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:12px"><strong>Artificial Intelligence (AI)</strong> is a type of computer system that performs tasks that usually require human intelligence, like recognising faces, understanding speech, or making recommendations.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:12px">Here's a great way to think about the difference between a normal program and AI: imagine training a dog vs programming a robot. When you program a robot, you write every single rule: "IF ball moves left, THEN move left." But when you train a dog, you show it examples over and over (fetch the ball, good dog!) and it learns the pattern itself. AI is like the dog, it learns from examples instead of following fixed rules.</p>
             <p style="font-size:14px;line-height:1.8;margin-bottom:16px">This "learning from examples" approach is called <strong>machine learning</strong>. The AI looks at millions of examples, finds patterns, and builds a model it can use to handle new situations it has never seen before.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">🌍 5 AI Examples You Already Use</h3>
@@ -658,7 +793,7 @@ const TSAJunior = (() => {
             </div>
             <div style="background:#FFF8EC;border:1.5px solid #FFB347;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:16px;margin-bottom:8px">💬 Discussion</h3>
-              <p style="font-size:14px;margin-bottom:10px">AI gets things wrong — sometimes hilariously, sometimes dangerously. Have you ever seen AI make a funny mistake? (Think: autocorrect disasters, voice assistants mishearing you, weird Netflix recommendations.)</p>
+              <p style="font-size:14px;margin-bottom:10px">AI gets things wrong, sometimes hilariously, sometimes dangerously. Have you ever seen AI make a funny mistake? (Think: autocorrect disasters, voice assistants mishearing you, weird Netflix recommendations.)</p>
               <textarea style="width:100%;padding:10px;border:1.5px solid #FFB347;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="Yes! Once AI got it wrong when... It recommended / said / did..."></textarea>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
@@ -672,10 +807,10 @@ const TSAJunior = (() => {
           id: 'j4-l2', title: 'Prompt Engineering Basics', desc: 'How to talk to AI tools', activity: 'ai', xp: 20,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🗣️ Prompt Engineering Basics</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 2 of 4 — Phase 4: AI &amp; Applied Engineering</p>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 2 of 4, Phase 4: AI &amp; Applied Engineering</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:8px">AI Responds to Instructions Called "Prompts"</h3>
             <p style="font-size:14px;line-height:1.8;margin-bottom:12px">A <strong>prompt</strong> is the instruction you give to an AI model. Just like a computer program follows code exactly, an AI responds to your prompt as precisely as it can. The quality of your prompt determines the quality of the answer.</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">This skill — writing effective prompts — is called <strong>prompt engineering</strong>. It's one of the most valuable new skills in tech, because it lets non-programmers harness the power of AI just through writing well.</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">This skill, writing effective prompts, is called <strong>prompt engineering</strong>. It's one of the most valuable new skills in tech, because it lets non-programmers harness the power of AI just through writing well.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">💡 Vague vs Specific Prompt</h3>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
@@ -692,12 +827,12 @@ const TSAJunior = (() => {
               ${[
                 ['1. Be specific', 'Say exactly what you want, how long, what format, what level of detail'],
                 ['2. Give context', 'Tell the AI who you are and why you need this: "I\'m a 12-year-old writing a school report about..."'],
-                ['3. Set the format', 'Ask for bullet points, a table, a story, code — whatever format works best'],
+                ['3. Set the format', 'Ask for bullet points, a table, a story, code, whatever format works best'],
                 ['4. Give an example', 'Show the AI what a good answer looks like: "Write it like this example: [example]"'],
               ].map(([t, d]) => `<div style="padding:10px 14px;background:rgba(0,201,177,.07);border-radius:8px;margin-bottom:8px;font-size:14px"><strong style="color:var(--navy)">${t}:</strong> ${d}</div>`).join('')}
             </div>
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity — Improve These Bad Prompts</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity: Improve These Bad Prompts</h3>
               <p style="font-size:14px;margin-bottom:12px">Rewrite each bad prompt to make it specific, contextual, and formatted properly:</p>
               ${[
                 '"Explain history"',
@@ -721,7 +856,7 @@ const TSAJunior = (() => {
           id: 'j4-l3', title: 'AI in the Real World', desc: 'Where AI is used today', activity: 'offline', xp: 15,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🌍 AI in the Real World</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 3 of 4 — Phase 4: AI &amp; Applied Engineering</p>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 3 of 4, Phase 4: AI &amp; Applied Engineering</p>
             <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:17px;margin-bottom:12px">4 Industries Being Transformed by AI</h3>
             ${[
               { icon: '🏥', title: 'Healthcare', what: 'AI analyses medical scans (X-rays, MRIs) to detect diseases like cancer earlier than human doctors sometimes can.', example: 'DeepMind\'s AlphaFold solved a 50-year-old protein folding problem that helps researchers design new medicines.', benefit: 'Earlier diagnosis saves lives.', concern: 'Who is responsible if the AI gets it wrong?' },
@@ -741,7 +876,7 @@ const TSAJunior = (() => {
             `).join('')}
             <div style="background:#FFF8EC;border:1.5px solid #FFB347;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:16px;margin-bottom:10px">💬 Discussion</h3>
-              <p style="font-size:14px;margin-bottom:10px">Some people worry AI will take jobs. Others think it will create new ones. What do YOU think? Give a reason — there is no wrong answer.</p>
+              <p style="font-size:14px;margin-bottom:10px">Some people worry AI will take jobs. Others think it will create new ones. What do YOU think? Give a reason, there is no wrong answer.</p>
               <textarea style="width:100%;padding:10px;border:1.5px solid #FFB347;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="I think AI will... because..."></textarea>
             </div>
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
@@ -767,28 +902,28 @@ const TSAJunior = (() => {
           id: 'j4-l4', title: 'Build an AI-Powered Page', desc: 'Combine HTML, JS, and AI', activity: 'project', xp: 50,
           content: `<!-- Think About It --><div style="padding:20px;max-width:720px">
             <h2 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:6px;font-size:24px">🚀 Build an AI-Powered Page</h2>
-            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 4 of 4 — Phase 4: AI &amp; Applied Engineering</p>
-            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">You'll build a webpage that feels like it has an AI assistant. Since we're working offline, we'll use a <strong>mock AI function</strong> that responds intelligently to keywords — teaching you the interface without needing a live API key.</p>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:18px">Lesson 4 of 4, Phase 4: AI &amp; Applied Engineering</p>
+            <p style="font-size:14px;line-height:1.8;margin-bottom:16px">You'll build a webpage that feels like it has an AI assistant. Since we're working offline, we'll use a <strong>mock AI function</strong> that responds intelligently to keywords, teaching you the interface without needing a live API key.</p>
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:16px;margin-bottom:18px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">🤖 The Mock AI — How It Works</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">🤖 The Mock AI: How It Works</h3>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;margin-bottom:10px">
                 function mockAI(prompt) &#123;<br>
                 &nbsp;&nbsp;const p = prompt.toLowerCase();<br>
                 &nbsp;&nbsp;if (p.includes("joke")) &#123;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;return "Why do programmers prefer dark mode? Because light attracts bugs! 🐛";<br>
                 &nbsp;&nbsp;&#125; else if (p.includes("fact")) &#123;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return "Fact: Honey never spoils. Archaeologists found 3,000-year-old honey in Egyptian tombs — still edible!";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return "Fact: Honey never spoils. Archaeologists found 3,000-year-old honey in Egyptian tombs, still edible!";<br>
                 &nbsp;&nbsp;&#125; else if (p.includes("poem")) &#123;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;return "Roses are red,\\nViolets are blue,\\nYou just wrote your first AI app,\\nAnd that's pretty cool too! 🌟";<br>
                 &nbsp;&nbsp;&#125; else &#123;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return "I heard you say: \\"" + prompt + "\\" — try asking for a joke, fact, or poem!";<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return "I heard you say: \\"" + prompt + "\\", try asking for a joke, fact, or poem!";<br>
                 &nbsp;&nbsp;&#125;<br>
                 &#125;
               </div>
-              <p style="font-size:13px;color:var(--muted)">This teaches the same interface pattern as a real AI API — input goes in, output comes back. The only difference is where the intelligence lives.</p>
+              <p style="font-size:13px;color:var(--muted)">This teaches the same interface pattern as a real AI API, input goes in, output comes back. The only difference is where the intelligence lives.</p>
             </div>
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">📋 Build Scaffold — Complete the TODOs</h3>
+              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">📋 Build Scaffold: Complete the TODOs</h3>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;overflow-x:auto">
                 &lt;!-- HTML structure --&gt;<br>
                 &lt;input type="text" id="promptInput" placeholder="Ask for a joke, fact, or poem..."&gt;<br>

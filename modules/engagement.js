@@ -18,7 +18,7 @@ const TSAEngagement = (() => {
   const CHALLENGE_POOL = [
     {
       id: 'dc-001', title: 'Fix the Broken Button',
-      desc: 'There\'s a typo in the JavaScript — the button isn\'t responding. Find it and fix it!',
+      desc: 'There\'s a typo in the JavaScript, the button isn\'t responding. Find it and fix it!',
       tags: ['🐛 Debug', '⏱ 5 mins', '+15 XP'], xp: 15, type: 'debug',
       code: `<!DOCTYPE html>
 <html>
@@ -200,7 +200,7 @@ const TSAEngagement = (() => {
 </head>
 <body>
   <h2>🐛 Debug: Fix the Loop</h2>
-  <p>Click "Run" — the page will freeze. Find the bug and fix it!</p>
+  <p>Click "Run", the page will freeze. Find the bug and fix it!</p>
   <button onclick="runLoop()">Run Loop</button>
   <div id="output"></div>
   <script>
@@ -246,7 +246,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-009', title: 'Build a Tip Calculator',
-      desc: 'Complete the tip calculator — enter a bill amount and tip % to see the total.',
+      desc: 'Complete the tip calculator, enter a bill amount and tip % to see the total.',
       tags: ['⚡ JS', '⏱ 10 mins', '+15 XP'], xp: 15, type: 'build',
       code: `<!DOCTYPE html>
 <html>
@@ -282,7 +282,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-010', title: 'Fix the Broken Link',
-      desc: 'The navigation links don\'t highlight when active. There are two CSS bugs — find them!',
+      desc: 'The navigation links don\'t highlight when active. There are two CSS bugs, find them!',
       tags: ['🐛 Debug', '⏱ 6 mins', '+15 XP'], xp: 15, type: 'debug',
       code: `<!DOCTYPE html>
 <html>
@@ -312,7 +312,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-011', title: 'Glassmorphism Card',
-      desc: 'Style this card with the glassmorphism effect — frosted glass look with blur and transparency.',
+      desc: 'Style this card with the glassmorphism effect, frosted glass look with blur and transparency.',
       tags: ['🎨 CSS', '⏱ 8 mins', '+15 XP'], xp: 15, type: 'challenge',
       code: `<!DOCTYPE html>
 <html>
@@ -725,7 +725,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-022', title: 'Fix the Missing Semicolons',
-      desc: 'This script has 3 bugs that stop it working. Two are missing semicolons — what\'s the third?',
+      desc: 'This script has 3 bugs that stop it working. Two are missing semicolons, what\'s the third?',
       tags: ['🐛 Debug', '⏱ 5 mins', '+15 XP'], xp: 15, type: 'debug',
       code: `<!DOCTYPE html>
 <html>
@@ -848,7 +848,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-025', title: 'Fix the Fetch Error',
-      desc: 'This fetch call never shows data — it silently fails. Find and fix both bugs.',
+      desc: 'This fetch call never shows data, it silently fails. Find and fix both bugs.',
       tags: ['🐛 Debug', '⏱ 8 mins', '+15 XP'], xp: 15, type: 'debug',
       code: `<!DOCTYPE html>
 <html>
@@ -953,11 +953,11 @@ const TSAEngagement = (() => {
   </div>
   <div class="item">
     <div class="question" onclick="toggle(this)">What is CSS? <span class="arrow">▼</span></div>
-    <div class="answer">CSS stands for Cascading Style Sheets. It controls the visual presentation of your HTML — colours, fonts, layouts, and animations.</div>
+    <div class="answer">CSS stands for Cascading Style Sheets. It controls the visual presentation of your HTML, colours, fonts, layouts, and animations.</div>
   </div>
   <div class="item">
     <div class="question" onclick="toggle(this)">What is JavaScript? <span class="arrow">▼</span></div>
-    <div class="answer">JavaScript is a programming language that runs in the browser. It makes web pages interactive — responding to clicks, loading data, and updating content without refreshing the page.</div>
+    <div class="answer">JavaScript is a programming language that runs in the browser. It makes web pages interactive, responding to clicks, loading data, and updating content without refreshing the page.</div>
   </div>
   <script>
     function toggle(questionEl) {
@@ -971,7 +971,7 @@ const TSAEngagement = (() => {
     },
     {
       id: 'dc-028', title: 'Fix the Undefined Variable',
-      desc: 'The shopping cart crashes with "ReferenceError". There are 2 scoping bugs — can you find them?',
+      desc: 'The shopping cart crashes with "ReferenceError". There are 2 scoping bugs, can you find them?',
       tags: ['🐛 Debug', '⏱ 6 mins', '+15 XP'], xp: 15, type: 'debug',
       code: `<!DOCTYPE html>
 <html>
@@ -985,9 +985,9 @@ const TSAEngagement = (() => {
 </head>
 <body>
   <h2>🐛 Fix the Cart</h2>
-  <div class="product">HTML Course — £15 <button onclick="addToCart(15)">Add</button></div>
-  <div class="product">CSS Masterclass — £12 <button onclick="addToCart(12)">Add</button></div>
-  <div class="product">JS Complete — £25 <button onclick="addToCart(25)">Add</button></div>
+  <div class="product">HTML Course, £15 <button onclick="addToCart(15)">Add</button></div>
+  <div class="product">CSS Masterclass, £12 <button onclick="addToCart(12)">Add</button></div>
+  <div class="product">JS Complete, £25 <button onclick="addToCart(25)">Add</button></div>
   <div id="total">Total: £0</div>
   <script>
     // BUG 1: total is declared with let inside the if block below —
@@ -1097,7 +1097,7 @@ const TSAEngagement = (() => {
 
   // ── Return engine messages ─────────────────────────────────────────────────
   const RETURN_MESSAGES = {
-    1: { title: 'Welcome back!',       msg: 'Good to see you again. Your streak is safe — let\'s keep it going!', emoji: '👋' },
+    1: { title: 'Welcome back!',       msg: 'Good to see you again. Your streak is safe, let\'s keep it going!', emoji: '👋' },
     2: { title: 'Quick recap?',        msg: 'It\'s been 2 days. Want a quick recap of what you were working on?',  emoji: '📖' },
     3: { title: 'Pick up where you left off', msg: 'Your last lesson is waiting. It won\'t take long to get back in the flow.', emoji: '🔖' },
     7: { title: 'Full refresher mode', msg: 'It\'s been a week! Let\'s do a quick refresher before picking up where you were.', emoji: '🔄' },
@@ -1117,7 +1117,7 @@ const TSAEngagement = (() => {
 
     const today = new Date().toISOString().slice(0, 10);
     const last  = profile.streakLastDate;
-    if (last === today) return null; // active today — no return message
+    if (last === today) return null; // active today, no return message
 
     const diff = Math.round((new Date(today) - new Date(last)) / 86400000);
     if (diff <= 0) return null;
@@ -1193,7 +1193,7 @@ const TSAEngagement = (() => {
     if (codeInput) codeInput.value = ch.code;
     const lessonTitle = document.getElementById('lessonTitle');
     const lessonDesc  = document.getElementById('lessonDesc');
-    if (lessonTitle) lessonTitle.textContent = `Daily Challenge — ${ch.title}`;
+    if (lessonTitle) lessonTitle.textContent = `Daily Challenge: ${ch.title}`;
     if (lessonDesc)  lessonDesc.textContent  = ch.desc;
     go('editor');
     setTimeout(() => {
