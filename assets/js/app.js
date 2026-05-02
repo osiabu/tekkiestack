@@ -633,7 +633,11 @@ function _registerSW() {
   // _hadController guards against reloading on the very first SW install.
   let _hadController = !!navigator.serviceWorker.controller;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (_hadController) window.location.reload();
+    if (_hadController) {
+      _showUpdateToast();
+      // Brief delay so the user sees the toast before the page reloads
+      setTimeout(() => window.location.reload(), 1100);
+    }
     _hadController = true;
   });
 
@@ -642,6 +646,32 @@ function _registerSW() {
   }).catch(err => {
     console.warn('[SW] Registration failed:', err);
   });
+}
+
+// Briefly show a toast so the auto-refresh feels intentional, not glitchy.
+function _showUpdateToast() {
+  // Don't double-render if it's already there
+  if (document.getElementById('swUpdateToast')) return;
+  const toast = document.createElement('div');
+  toast.id = 'swUpdateToast';
+  toast.className = 'sw-update-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  // Inline SVG (icons.js may not have hydrated by reload time)
+  toast.innerHTML = `
+    <span class="sw-update-spinner" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 0 1-9 9c-2.5 0-4.7-1-6.4-2.6"/>
+        <path d="M3 12a9 9 0 0 1 9-9c2.5 0 4.7 1 6.4 2.6"/>
+      </svg>
+    </span>
+    <span class="sw-update-text">Updating to the latest version&hellip;</span>
+  `;
+  document.body.appendChild(toast);
+  // Force a reflow so the slide-in animation runs
+  // eslint-disable-next-line no-unused-expressions
+  toast.offsetHeight;
+  toast.classList.add('show');
 }
 
 // ── Bootstrap ────────────────────────────────────────────────────────────
