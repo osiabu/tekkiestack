@@ -109,6 +109,13 @@ const TSAGames = (() => {
   // ── Dispatch ─────────────────────────────────────────────────────────────
   function startGame(id) {
     _exitCleanup();
+    // Replace the hub view with a clean game stage so the game fills the
+    // screen instead of appearing below the grid of cards.
+    const screen = document.getElementById('s-games');
+    if (screen) {
+      screen.innerHTML = `<div class="games-screen"><div id="gameStage"></div></div>`;
+      window.scrollTo(0, 0);
+    }
     switch (id) {
       case 'tower_stacker': return _startTowerStacker();
       case 'code_snake':    return _startCodeSnake();
