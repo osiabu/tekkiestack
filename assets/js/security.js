@@ -195,7 +195,8 @@ const TSASecurity = (() => {
   // Whitelist of known screen IDs — prevents go() being called with injected values
   const KNOWN_SCREENS = new Set([
     'picker','dashboard','editor','typing','ai','tipjar','support',
-    'onboard','privacy','terms','cookies','junior','senior'
+    'onboard','privacy','terms','cookies','junior','senior',
+    'games','builder'
   ]);
 
   /**

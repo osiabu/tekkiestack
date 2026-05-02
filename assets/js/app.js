@@ -38,46 +38,64 @@ function _getOrCreateDeviceId() {
 }
 
 // ── Router ────────────────────────────────────────────────────────────────
+// Module-global render fallbacks. Used both when a route isn't registered
+// AND as a watchdog when the route ran but didn't actually fill the screen.
+const _ROUTE_FALLBACKS = {
+  games:   () => window.TSAGames?.renderHub?.(),
+  builder: () => window.TSAGameBuilder?.renderHub?.(),
+  ai:      () => window.TSAAILab?.renderAILab?.(),
+  junior:  () => window.TSAJunior?.renderJuniorJourney?.(),
+  senior:  () => window.TSASenior?.renderSeniorJourney?.(),
+  typing:  () => window.TSATyping?.init?.(),
+};
+
 /**
  * Navigate to a named screen.
  * Screens are <div id="s-{name}" class="screen"> elements.
  * @param {string} name — screen name
  */
 function go(name) {
+  console.log('[Router] go(' + name + ')');
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
   const target = document.getElementById(`s-${name}`);
-  if (target) {
-    target.classList.add('on');
-    // Update nav active state
-    document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
-    const nb = document.getElementById(`nb-${name}`);
-    if (nb) nb.classList.add('on');
-
-    // Call screen's render function if registered. Fall back to module
-    // globals so a missed route registration (e.g. cached older module)
-    // still renders the screen.
-    let rendered = false;
-    if (TSA.routes[name]) {
-      try { TSA.routes[name](); rendered = true; }
-      catch(e) { console.error(`[Router] Error rendering ${name}:`, e); }
-    }
-    if (!rendered) {
-      // Module-global fallbacks
-      const fallbacks = {
-        games:   () => window.TSAGames?.renderHub?.(),
-        builder: () => window.TSAGameBuilder?.renderHub?.(),
-        ai:      () => window.TSAAILab?.renderAILab?.(),
-        junior:  () => window.TSAJunior?.renderJuniorJourney?.(),
-        senior:  () => window.TSASenior?.renderSeniorJourney?.(),
-        typing:  () => window.TSATyping?.init?.(),
-      };
-      if (fallbacks[name]) {
-        try { fallbacks[name](); }
-        catch(e) { console.error(`[Router] Fallback failed for ${name}:`, e); }
-      }
-    }
-  } else {
+  if (!target) {
     console.warn('[Router] Unknown screen:', name);
+    return;
+  }
+  target.classList.add('on');
+  document.querySelectorAll('.nb').forEach(b => b.classList.remove('on'));
+  const nb = document.getElementById(`nb-${name}`);
+  if (nb) nb.classList.add('on');
+
+  // Try registered route first.
+  let routeRan = false;
+  if (TSA.routes[name]) {
+    try { TSA.routes[name](); routeRan = true; }
+    catch(e) { console.error(`[Router] Error rendering ${name}:`, e); }
+  }
+  // If no registered route, run the module-global fallback.
+  if (!routeRan && _ROUTE_FALLBACKS[name]) {
+    try { _ROUTE_FALLBACKS[name](); routeRan = true; }
+    catch(e) { console.error(`[Router] Fallback failed for ${name}:`, e); }
+  }
+
+  // Watchdog: if the screen still has no rendered content after a tick,
+  // try the fallback again, then show a recovery card so the user is
+  // never stuck on a blank page.
+  if (_ROUTE_FALLBACKS[name]) {
+    setTimeout(() => {
+      if (!target.classList.contains('on') || target.children.length > 0) return;
+      console.warn(`[Router] Screen #s-${name} is empty after render — retrying fallback`);
+      try { _ROUTE_FALLBACKS[name](); } catch(e) { console.error('[Router] Retry failed:', e); }
+      if (target.children.length === 0) {
+        target.innerHTML = `
+          <div style="max-width:420px;margin:80px auto;padding:28px;text-align:center;background:var(--card);border-radius:14px;box-shadow:var(--sh-sm);border:1px solid var(--border)">
+            <div style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:8px">Could not load this screen</div>
+            <div style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.5">Module didn't load. Try a hard refresh (Ctrl+Shift+R).</div>
+            <button class="btn btn-cy" type="button" onclick="location.reload()">Refresh page</button>
+          </div>`;
+      }
+    }, 60);
   }
 }
 
@@ -87,7 +105,16 @@ function go(name) {
  * @param {string} name
  */
 function need(name) {
-  TSA.services.sessionManager.getActiveSession().then(sess => {
+  console.log('[Router] need(' + name + ')');
+  let p;
+  try {
+    p = TSA.services.sessionManager.getActiveSession();
+  } catch (e) {
+    console.error('[Router] need() threw before promise:', e);
+    return;
+  }
+  Promise.resolve(p).then(sess => {
+    console.log('[Router] need(' + name + ') session=', sess ? 'yes' : 'no');
     if (sess) {
       go(name);
     } else {
@@ -102,6 +129,8 @@ function need(name) {
         }, 2500);
       }
     }
+  }).catch(err => {
+    console.error('[Router] need() promise rejected:', err);
   });
 }
 
@@ -869,6 +898,26 @@ async function _init() {
 
     // 3. Attach UI helpers to namespace
     TSA.ui = { celebrate, closeC, go, need, promptEnd, goToProfiles };
+
+    // 3b. Module load diagnostic — surfaces any IIFE that failed silently.
+    const _expectedModules = {
+      TSAGames:        'modules/games.js',
+      TSAGameBuilder:  'modules/game-builder.js',
+      TSAAILab:        'modules/ai-lab.js',
+      TSAJunior:       'modules/junior-phases.js',
+      TSASenior:       'modules/senior-phases.js',
+      TSATyping:       'modules/typing-trainer.js',
+      TSAActivities:   'modules/activities.js',
+    };
+    const _missing = [];
+    for (const [g, file] of Object.entries(_expectedModules)) {
+      if (!window[g]) _missing.push(g + ' (' + file + ')');
+    }
+    if (_missing.length) {
+      console.error('[TSA] Modules failed to load:', _missing);
+    } else {
+      console.log('[TSA] All modules loaded. Routes registered:', Object.keys(TSA.routes));
+    }
 
     // 4. Offline & cookie banner
     _setupOfflineIndicator();
