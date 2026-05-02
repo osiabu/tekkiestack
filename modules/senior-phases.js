@@ -59,7 +59,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:10px">Activity: Refactor This to Semantic HTML</h3>
               <div style="background:#0D1B2E;color:#FF6B6B;padding:12px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;margin-bottom:10px">&lt;div class="wrapper"&gt;<br>&nbsp;&nbsp;&lt;div class="top-bar"&gt;&lt;div class="logo"&gt;Site&lt;/div&gt;&lt;div class="links"&gt;...&lt;/div&gt;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div class="content"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="post"&gt;&lt;div class="post-title"&gt;Article&lt;/div&gt;&lt;div class="post-body"&gt;...&lt;/div&gt;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="sidebar"&gt;...&lt;/div&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div class="bottom"&gt;© 2025&lt;/div&gt;<br>&lt;/div&gt;</div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:130px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Rewrite using: header, nav, main, article, aside, footer..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:15px;margin-bottom:8px">⚠️ Common Mistakes</h3>
@@ -105,7 +105,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Card Grid + Nav Bar</h3>
               <p style="font-size:13px;margin-bottom:10px">Task 1, Build a responsive card grid using CSS Grid (3 columns desktop, 1 column mobile). Task 2, Build a nav bar using Flexbox (logo left, links right). Write both in the area below:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:150px;outline:none;resize:vertical;box-sizing:border-box" placeholder="/* Card Grid */&#10;.grid { display:grid; grid-template-columns:... }&#10;@media (max-width:600px) { .grid { grid-template-columns:1fr; } }&#10;&#10;/* Nav Bar */&#10;.nav { display:flex; justify-content:... }"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:15px;margin-bottom:8px">⚠️ Common Mistakes</h3>
@@ -146,7 +146,7 @@ const TSASenior = (() => {
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: 5 Array Method Chains</h3>
               <p style="font-size:13px;margin-bottom:8px">Given this data, write 5 array method expressions to answer the questions:</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:10px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.8;margin-bottom:10px">const students = [<br>&nbsp;&nbsp;&#123;name:'Ada',score:92,year:8&#125;,&#123;name:'Ben',score:67,year:7&#125;,&#123;name:'Cam',score:88,year:9&#125;,<br>&nbsp;&nbsp;&#123;name:'Dev',score:54,year:8&#125;,&#123;name:'Eve',score:95,year:9&#125;,&#123;name:'Fay',score:71,year:7&#125;,<br>];</div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="// 1. Names of students scoring > 80&#10;// 2. Average score across all students&#10;// 3. All Year 8 students&#10;// 4. Scores doubled (map)&#10;// 5. Find first student with score < 60"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:15px;margin-bottom:8px">⚠️ Common Mistakes</h3>
@@ -194,7 +194,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Dynamic List</h3>
               <p style="font-size:13px;margin-bottom:8px">Build a dynamic to-do style list where you can: add items (input + button), mark complete (click to toggle .done class), delete (×button). No page reload. All from JavaScript.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:120px;outline:none;resize:vertical;box-sizing:border-box" placeholder="function addItem() { const li = document.createElement('li'); ... }"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:15px;margin-bottom:8px">⚠️ Common Mistakes</h3>
@@ -236,7 +236,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Make a Desktop Design Responsive</h3>
               <p style="font-size:13px;margin-bottom:8px">Take this desktop-only layout and add 3 breakpoints: mobile 320px (1 column, stacked), tablet 768px (2 columns), desktop 1200px (3 columns, sidebar).</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:130px;outline:none;resize:vertical;box-sizing:border-box" placeholder="/* Mobile base */&#10;.layout { display:grid; grid-template-columns:1fr; }&#10;&#10;@media (min-width:768px) { .layout { ... } }&#10;@media (min-width:1200px) { .layout { ... } }"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:15px;margin-bottom:8px">⚠️ Common Mistakes</h3>
@@ -334,7 +334,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Git Workflow Table</h3>
               <p style="font-size:13px;margin-bottom:8px">For each scenario, write the git command(s) you'd run:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:150px;outline:none;resize:vertical;box-sizing:border-box" placeholder="1. Start tracking a new project: ...&#10;2. Save all current changes with message 'fix: button colour': ...&#10;3. Create and switch to a new branch called 'feature/dark-mode': ...&#10;4. Merge dark-mode branch into main: ...&#10;5. Undo last commit but keep changes: git reset HEAD~1"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:15px;margin-bottom:8px">💼 Pro Tips from Real Developers</h3>
@@ -371,7 +371,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Fix and Extend the Fetch</h3>
               <p style="font-size:13px;margin-bottom:8px">The code above has a deliberate bug, find it. Then extend it to display the 5 question texts in a list on the page:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:120px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is: ...&#10;&#10;function displayQuestions(questions) {&#10;  // write the display logic here&#10;}"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:15px;margin-bottom:8px">💼 Pro Tips from Real Developers</h3>
@@ -401,7 +401,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Choose Your Data Structure</h3>
               <p style="font-size:13px;margin-bottom:8px"><strong>Problem:</strong> You need to store 10,000 user records and look them up by username instantly. Which data structure, and why?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="I would use a [Map/Object] because lookup is O(1) by key, meaning even with 10,000 records, finding a user by username is instant regardless of the total count..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:15px;margin-bottom:8px">💼 Pro Tips from Real Developers</h3>
@@ -443,7 +443,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Fix 5 Broken Functions</h3>
               <p style="font-size:13px;margin-bottom:8px">Each function below has an error handling problem. Describe the issue and fix it:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="// 1. async function getData() { const r = await fetch(url); return r.json(); }&#10;//   Issue: no res.ok check, no catch block. Fix: ...&#10;&#10;// 2. function divide(a,b) { return a/b; }&#10;//   Issue: b could be 0. Fix: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:15px;margin-bottom:8px">💼 Pro Tips from Real Developers</h3>
@@ -482,7 +482,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Write Tests for 3 Functions</h3>
               <p style="font-size:13px;margin-bottom:8px">Write Jest tests for <code>add</code>: <code>isEven</code>: and <code>reverseString</code>. At least 2 test cases per function:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:160px;outline:none;resize:vertical;box-sizing:border-box" placeholder="describe('isEven', () => {&#10;  it('returns true for 4', () => { expect(isEven(4)).toBe(true); });&#10;  it('returns false for 3', () => { ... });&#10;});&#10;&#10;describe('reverseString', () => { ... });"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF9EC;border:1.5px solid #FFB347;border-radius:11px;padding:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:15px;margin-bottom:8px">💼 Pro Tips from Real Developers</h3>
@@ -621,7 +621,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Flashcard Component</h3>
               <p style="font-size:13px;margin-bottom:8px">Build a Flashcard component. Shows a question, hides the answer, reveals on click, tracks how many cards reviewed:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="function Flashcard({ question, answer }) {&#10;  const [revealed, setRevealed] = React.useState(false);&#10;  return (&#10;    // TODO: show question, toggle answer on click&#10;  );&#10;}"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -651,7 +651,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Word Frequency CLI Tool</h3>
               <p style="font-size:13px;margin-bottom:8px">Write a Node.js script that reads a text file, counts word frequency, and prints the 5 most common words. Use the pattern above as a starter:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="const fs = require('fs');&#10;const filename = process.argv[2]; // node script.js myfile.txt&#10;// your code here"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -682,8 +682,8 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: 8 Queries on a School Database</h3>
               <p style="font-size:13px;margin-bottom:8px">Schema: <code>students(id,name,age,year)</code>: <code>courses(id,title,teacher)</code>: <code>enrollments(student_id,course_id,grade)</code>. Write these queries:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:160px;outline:none;resize:vertical;box-sizing:border-box" placeholder="-- 1. All students in Year 11&#10;-- 2. All course titles taught by 'Mr Smith'&#10;-- 3. All students enrolled in course_id 3&#10;-- 4. Average grade per course&#10;-- 5. Students with grade > 80&#10;-- 6. All students + their courses (LEFT JOIN)&#10;-- 7. Count of students per year group&#10;-- 8. Top 3 highest graded students"></textarea>
-              <details style="margin-top:10px"><summary style="font-size:12px;color:var(--cyan);cursor:pointer">▶ Show answers</summary><div style="background:#0D1B2E;color:rgba(255,255,255,.6);padding:10px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:8px;line-height:1.9">1. SELECT * FROM students WHERE year=11;<br>2. SELECT title FROM courses WHERE teacher='Mr Smith';<br>3. SELECT s.* FROM students s JOIN enrollments e ON s.id=e.student_id WHERE e.course_id=3;<br>4. SELECT course_id,AVG(grade) FROM enrollments GROUP BY course_id;<br>5. SELECT * FROM enrollments WHERE grade>80;<br>6. SELECT s.name,c.title FROM students s LEFT JOIN enrollments e ON s.id=e.student_id LEFT JOIN courses c ON e.course_id=c.id;<br>7. SELECT year,COUNT(*) FROM students GROUP BY year;<br>8. SELECT s.name,e.grade FROM students s JOIN enrollments e ON s.id=e.student_id ORDER BY e.grade DESC LIMIT 3;</div></details>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
+              <details style="margin-top:10px"><summary style="font-size:12px;color:var(--cyan);cursor:pointer">Show answers</summary><div style="background:#0D1B2E;color:rgba(255,255,255,.6);padding:10px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:8px;line-height:1.9">1. SELECT * FROM students WHERE year=11;<br>2. SELECT title FROM courses WHERE teacher='Mr Smith';<br>3. SELECT s.* FROM students s JOIN enrollments e ON s.id=e.student_id WHERE e.course_id=3;<br>4. SELECT course_id,AVG(grade) FROM enrollments GROUP BY course_id;<br>5. SELECT * FROM enrollments WHERE grade>80;<br>6. SELECT s.name,c.title FROM students s LEFT JOIN enrollments e ON s.id=e.student_id LEFT JOIN courses c ON e.course_id=c.id;<br>7. SELECT year,COUNT(*) FROM students GROUP BY year;<br>8. SELECT s.name,e.grade FROM students s JOIN enrollments e ON s.id=e.student_id ORDER BY e.grade DESC LIMIT 3;</div></details>
             </div>
           </div>`,
         },
@@ -786,7 +786,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Deploy to Two Platforms</h3>
               <p style="font-size:13px;margin-bottom:8px">Deploy your portfolio site (from s1-l6) to both GitHub Pages and Netlify. Compare the experience, how long did each take? What was confusing? Record your live URLs here:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="GitHub Pages URL: https://username.github.io/portfolio&#10;Netlify URL: https://...netlify.app&#10;Observations: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -861,7 +861,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Predict the Right Temperature</h3>
               <p style="font-size:13px;margin-bottom:8px">For each prompt, choose temperature 0, 0.5, or 1.0 and justify your choice:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:130px;outline:none;resize:vertical;box-sizing:border-box" placeholder="1. 'What is the capital of France?' → temp: 0 because...&#10;2. 'Write a haiku about autumn' → temp: 1.0 because...&#10;3. 'Summarise this legal document' → temp: ... because...&#10;4. 'Generate 5 creative product names' → temp: ... because...&#10;5. 'Convert this JSON to TypeScript types' → temp: ... because..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -890,7 +890,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Improve 5 Poorly Performing Prompts</h3>
               <p style="font-size:13px;margin-bottom:8px">Show the bad prompt, the expected output type, then write your improved version:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:150px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Bad: 'Explain recursion'&#10;Better: 'Explain recursion to a Year 9 student using a real-world analogy. Include one code example in JavaScript. Keep it under 150 words.'&#10;&#10;Bad: 'Write code for a login form'&#10;Better: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -923,7 +923,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Complete the API Call</h3>
               <p style="font-size:13px;margin-bottom:8px">Write a complete fetch call to POST /api/ai with a system prompt, user message, and full error handling. Then write a UI function that calls it and displays the result:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:12px;height:120px;outline:none;resize:vertical;box-sizing:border-box" placeholder="async function sendToAI() {&#10;  const prompt = document.getElementById('input').value;&#10;  try {&#10;    const reply = await askClaude(prompt, 'You are a helpful tutor');&#10;    document.getElementById('response').textContent = reply;&#10;  } catch (err) { ... }&#10;}"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -942,7 +942,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: Design a RAG System for a School Library</h3>
               <p style="font-size:13px;margin-bottom:8px">Written design (no code). Answer: What documents would you chunk? How would you chunk them? What questions should it answer? What would make a bad retrieval result?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Documents to chunk: all book summaries, catalogue descriptions, student reviews...&#10;Chunk strategy: by paragraph (each book gets 3-5 chunks)...&#10;Questions it should answer: 'Find me a mystery novel for Year 8'...&#10;Bad retrieval: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -967,7 +967,7 @@ const TSASenior = (() => {
             <div style="background:var(--slate);border-radius:11px;padding:16px;margin-bottom:14px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:15px;margin-bottom:8px">Activity: 5 AI Ethics Case Studies</h3>
               <p style="font-size:13px;margin-bottom:8px">For each case, analyse what went wrong and what safeguards should have been in place:</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;height:150px;outline:none;resize:vertical;box-sizing:border-box" placeholder="1. Amazon's AI hiring tool downranked CVs with the word 'women's' (e.g. 'women's chess club'). What went wrong? ...&#10;2. A chatbot trained on Twitter learned to produce racist output within 24 hours. Safeguard: ...&#10;3. AI bail prediction tools in the US showed racial disparities. Root cause: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -1464,7 +1464,7 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
 
     screen.innerHTML = `
       <div style="max-width:860px;margin:0 auto;padding:28px 18px">
-        <button class="btn btn-gh" onclick="TSASenior.renderSeniorJourney()" style="margin-bottom:20px">← Back to Journey</button>
+        <button class="btn btn-gh" onclick="TSASenior.renderSeniorJourney()" style="margin-bottom:20px">Back to Journey</button>
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
           <div style="width:58px;height:58px;border-radius:13px;background:${phase.bgColor};display:flex;align-items:center;justify-content:center;font-size:26px">${phase.emoji}</div>
           <div>
@@ -1521,7 +1521,7 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
     if (!screen) return;
     screen.innerHTML = `
       <div style="max-width:800px;margin:0 auto;padding:28px 18px">
-        <button class="btn btn-gh" onclick="TSASenior.openPhase('${phaseId}')" style="margin-bottom:16px">← Back to Phase</button>
+        <button class="btn btn-gh" onclick="TSASenior.openPhase('${phaseId}')" style="margin-bottom:16px">Back to Phase</button>
         <div class="card">
           <div style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:8px">${lesson.title}</div>
           <div style="font-size:14px;color:var(--muted);font-weight:500;margin-bottom:16px">${lesson.desc}</div>
@@ -1541,7 +1541,16 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
   }
 
   // ── Quiz-gated mark done ─────────────────────────────────────────────────
+  // Same gating as junior: activities must be all correct, then quiz fires.
   function markLessonDoneWithQuiz(phaseId, lessonId) {
+    const screen = document.getElementById('s-senior');
+    if (window.TSAActivities && screen && !TSAActivities.allCorrect(screen)) {
+      const left = TSAActivities.pending(screen);
+      _showActivityNudge(`You still have ${left.length} activit${left.length === 1 ? 'y' : 'ies'} to answer correctly. Scroll up and finish them, then try again.`);
+      const firstPending = screen.querySelector('.ts-activity:not(.ts-act-done)');
+      if (firstPending) firstPending.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     if (window.TSAQuizGate && TSAQuizGate.hasQuizFor(lessonId)) {
       TSAQuizGate.showQuiz(lessonId, () => {
         markLessonComplete(phaseId, lessonId).then(() => openPhase(phaseId));
@@ -1549,6 +1558,20 @@ Tech Stack: React, Node.js, PostgreSQL, Vercel</code></pre>
     } else {
       markLessonComplete(phaseId, lessonId).then(() => openPhase(phaseId));
     }
+  }
+
+  function _showActivityNudge(msg) {
+    let nudge = document.getElementById('tsActivityNudge');
+    if (!nudge) {
+      nudge = document.createElement('div');
+      nudge.id = 'tsActivityNudge';
+      nudge.className = 'ts-act-nudge';
+      document.body.appendChild(nudge);
+    }
+    nudge.innerHTML = `<span class="ts-i ts-i-warning" aria-hidden="true"></span> ${msg}`;
+    nudge.classList.add('show');
+    clearTimeout(_showActivityNudge._timer);
+    _showActivityNudge._timer = setTimeout(() => nudge.classList.remove('show'), 4200);
   }
 
   // ── Guardian View ──────────────────────────────────────────────────────────

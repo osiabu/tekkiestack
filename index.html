@@ -146,7 +146,7 @@
     <div class="picker-ft">Each profile is protected by a personal 4-digit PIN</div>
     <div class="picker-tip-nudge" onclick="go('tipjar')">
       <span>☕</span>
-      <span>TekkieStack is <strong>free for every child</strong>. If you find it useful, <strong>buy us a coffee →</strong></span>
+      <span>TekkieStack is <strong>free for every child</strong>. If you find it useful, <strong>buy us a coffee</strong></span>
     </div>
   </div>
 </div>
@@ -161,7 +161,7 @@
       <h2 id="welH">Hello! 👋</h2>
       <p>Keep the streak alive! You're making great progress.</p>
       <div class="brow">
-        <button class="btn btn-cy" onclick="go('editor')">Continue Learning →</button>
+        <button class="btn btn-cy" onclick="go('editor')">Continue Learning</button>
         <button class="btn" style="background:rgba(255,255,255,.12);color:#fff" onclick="go('ai')">AI Lab</button>
         <button class="btn" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)" onclick="go('typing')">Typing Trainer</button>
       </div>
@@ -273,7 +273,7 @@
         <div class="preview-bar">
           <span class="ts-i ts-i-globe" aria-hidden="true"></span>
           <div class="url-pill">preview · my-page.html</div>
-          <span class="live-badge" id="previewStatusBadge">▶ Press Run</span>
+          <span class="live-badge" id="previewStatusBadge">Press Run</span>
         </div>
         <iframe class="preview-frame" id="previewFrame" sandbox="allow-scripts" title="Live preview of your code"></iframe>
         <!-- Console pane: collapsed by default, expands when there's output -->
@@ -561,7 +561,7 @@
         <button class="av-btn" onclick="selectAvatar(this,'🔥')">🔥</button>
         <button class="av-btn" onclick="selectAvatar(this,'🧠')">🧠</button>
       </div>
-      <button class="btn btn-cy btn-full" onclick="obStep(2)">Continue →</button>
+      <button class="btn btn-cy btn-full" onclick="obStep(2)">Continue</button>
     </div>
 
     <!-- STEP 2: Set PIN -->
@@ -585,7 +585,7 @@
         <input class="pin-box" maxlength="1" type="password" inputmode="numeric" id="pin7" oninput="onPinInput(7)">
       </div>
       <div id="pinSetErr" style="font-size:13px;color:var(--coral);font-weight:600;min-height:17px;margin-bottom:11px"></div>
-      <button class="btn btn-cy btn-full" id="ob2Btn" disabled onclick="obStep(3)">Set PIN &amp; Continue →</button>
+      <button class="btn btn-cy btn-full" id="ob2Btn" disabled onclick="obStep(3)">Set PIN &amp; Continue</button>
     </div>
 
     <!-- STEP 3: Year Group -->
@@ -606,7 +606,7 @@
         <button class="yr-btn" onclick="selectYear(this,11)">Y11</button>
         <button class="yr-btn" onclick="selectYear(this,12)">Y12+</button>
       </div>
-      <button class="btn btn-cy btn-full" id="ob3Btn" disabled onclick="obStep(4)">Continue →</button>
+      <button class="btn btn-cy btn-full" id="ob3Btn" disabled onclick="obStep(4)">Continue</button>
     </div>
 
     <!-- STEP 4: HTML Starter Activity -->
@@ -625,7 +625,7 @@
         <input class="starter-input" id="starterInput" value="<h1>My name is ___</h1>" oninput="starterPreview()">
       </div>
       <div class="starter-preview" id="starterPreview"><span style="color:var(--muted);font-size:14px;font-family:'DM Sans',sans-serif">Replace ___ above to see it appear...</span></div>
-      <button class="btn btn-cy btn-full" id="ob4Btn" disabled onclick="obStep(5)">I did it! →</button>
+      <button class="btn btn-cy btn-full" id="ob4Btn" disabled onclick="obStep(5)">I did it!</button>
     </div>
 
     <!-- STEP 5: Celebration -->
@@ -634,7 +634,7 @@
       <div class="ob-title">You're a builder!</div>
       <div style="font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.55;font-weight:500">You just wrote your first real web page. That's HTML, the language every website in the world is built with.</div>
       <div style="font-family:'Fredoka One',cursive;font-size:26px;color:var(--cyan);margin-bottom:20px">+25 XP earned!</div>
-      <button class="btn btn-cy btn-full" onclick="finishOnboarding()">Go to my Dashboard →</button>
+      <button class="btn btn-cy btn-full" onclick="finishOnboarding()">Go to my Dashboard</button>
     </div>
 
   </div>
@@ -951,6 +951,7 @@
 <script src="assets/js/session.js"></script>
 <script src="assets/js/xp.js"></script>
 <script src="assets/js/app.js"></script>
+<script src="modules/activities.js"></script>
 <script src="modules/code-editor.js"></script>
 <script src="modules/typing-trainer.js"></script>
 <script src="modules/ai-lab.js"></script>

@@ -1908,3 +1908,302 @@ pre, code {
     max-width: calc(100vw - 16px);
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   INTERACTIVE ACTIVITY WIDGETS — drag-order, choice, classify, tap-fill.
+   These replace every textarea-style activity in lessons so the system
+   can deterministically grade right vs wrong with no AI dependency.
+════════════════════════════════════════════════════════════════════════ */
+.ts-activity {
+  margin: 18px 0;
+  scroll-margin-top: 80px;
+  transition: outline-color .25s;
+  border-radius: 14px;
+}
+.ts-activity.ts-act-needs-answer {
+  outline: 3px solid var(--amber);
+  outline-offset: 6px;
+}
+.ts-act-card {
+  background: linear-gradient(135deg, #fff 0%, var(--green-l) 100%);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 18px 14px;
+  position: relative;
+}
+.ts-act-card.ts-act-shake { animation: tsActShake .35s; }
+@keyframes tsActShake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  60% { transform: translateX(6px); }
+  80% { transform: translateX(-3px); }
+}
+.ts-activity.ts-act-done .ts-act-card {
+  background: linear-gradient(135deg, #fff 0%, rgba(46,196,182,0.10) 100%);
+  border-color: var(--green);
+  box-shadow: 0 4px 14px rgba(46,196,182,0.16);
+}
+.ts-act-prompt {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.ts-act-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.ts-act-check {
+  background: var(--cyan);
+  color: var(--navy);
+  border: none;
+  padding: 9px 18px;
+  border-radius: 9px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+  box-shadow: 0 4px 12px rgba(0,201,177,0.22);
+}
+.ts-act-check:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,201,177,0.30); }
+.ts-activity.ts-act-done .ts-act-check {
+  background: var(--green);
+  color: #fff;
+  cursor: default;
+  box-shadow: none;
+  pointer-events: none;
+  opacity: 0.7;
+}
+.ts-act-feedback {
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ts-act-feedback-good { color: var(--green); }
+.ts-act-feedback-bad  { color: var(--coral); }
+.ts-act-explain {
+  display: block;
+  margin-top: 4px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* Drag-order widget */
+.ts-act-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ts-act-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  cursor: grab;
+  transition: all .15s;
+  user-select: none;
+}
+.ts-act-item:hover { border-color: var(--cyan); }
+.ts-act-item.ts-act-dragging { opacity: 0.45; cursor: grabbing; }
+.ts-act-item.ts-act-misplaced {
+  border-color: var(--coral);
+  background: rgba(255,107,107,0.06);
+}
+.ts-activity.ts-act-done .ts-act-item {
+  border-color: var(--green);
+  background: rgba(46,196,182,0.06);
+  cursor: default;
+}
+.ts-act-grip {
+  font-family: monospace;
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: -2px;
+  flex-shrink: 0;
+}
+.ts-act-text { flex: 1; font-size: 14px; color: var(--navy); }
+.ts-act-arrows { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+.ts-act-arrows button {
+  width: 24px; height: 18px;
+  background: var(--slate);
+  border: none;
+  border-radius: 4px;
+  font-size: 9px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.ts-act-arrows button:hover { background: var(--cyan); color: var(--navy); }
+
+/* Choice widget */
+.ts-act-options { display: flex; flex-direction: column; gap: 8px; }
+.ts-act-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: all .15s;
+  font-size: 14px;
+  color: var(--navy);
+}
+.ts-act-opt:hover { border-color: var(--cyan); }
+.ts-act-opt input { accent-color: var(--cyan); margin: 0; flex-shrink: 0; }
+.ts-act-opt-correct { border-color: var(--green); background: rgba(46,196,182,0.10); color: var(--navy); font-weight: 700; }
+.ts-act-opt-wrong   { border-color: var(--coral); background: rgba(255,107,107,0.08); color: var(--coral); }
+
+/* Classify widget */
+.ts-act-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #fff;
+  border: 1.5px dashed var(--border);
+  border-radius: 10px;
+  min-height: 52px;
+  margin-bottom: 14px;
+  transition: border-color .15s, background .15s;
+}
+.ts-act-pool.ts-act-drop-hover { border-color: var(--cyan); background: var(--green-l); }
+.ts-act-buckets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.ts-act-bucket {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ts-act-bucket-label {
+  background: var(--navy);
+  color: var(--cyan);
+  font-family: 'Fredoka One', cursive;
+  font-size: 14px;
+  padding: 8px 14px;
+  text-align: center;
+}
+.ts-act-bucket-drop {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 60px;
+  transition: background .15s;
+}
+.ts-act-bucket-drop.ts-act-drop-hover { background: var(--green-l); }
+.ts-act-chip {
+  background: var(--navy);
+  color: #fff;
+  border: 1.5px solid var(--navy2);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: grab;
+  user-select: none;
+  transition: all .15s;
+}
+.ts-act-chip:hover { background: var(--navy2); border-color: var(--cyan); }
+.ts-act-chip.ts-act-dragging { opacity: 0.45; cursor: grabbing; }
+.ts-act-chip.ts-act-tap-selected { outline: 3px solid var(--amber); outline-offset: 2px; }
+.ts-act-chip-correct { background: var(--green); border-color: var(--green); }
+.ts-act-chip-wrong   { background: var(--coral); border-color: var(--coral); }
+
+/* Tap-fill widget */
+.ts-act-tf-template {
+  background: #0D1B2E;
+  color: #CDD9F0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 2.2;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+}
+.ts-act-tf-blank {
+  background: rgba(0,201,177,0.18);
+  color: var(--cyan);
+  border: 1px dashed var(--cyan);
+  border-radius: 5px;
+  padding: 1px 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.ts-act-tf-blank:hover { background: rgba(0,201,177,0.32); }
+.ts-act-tf-blank.ts-act-tf-active { outline: 2px solid var(--amber); }
+.ts-act-tf-blank[data-filled] { background: var(--cyan); color: var(--navy); border-style: solid; }
+.ts-act-tf-blank.ts-act-tf-correct { background: var(--green); color: #fff; border-color: var(--green); }
+.ts-act-tf-blank.ts-act-tf-wrong   { background: var(--coral); color: #fff; border-color: var(--coral); }
+.ts-act-tf-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ts-act-tf-chip {
+  background: #fff;
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+}
+.ts-act-tf-chip:hover { background: var(--green-l); border-color: var(--cyan); }
+
+@media (max-width: 480px) {
+  .ts-act-card { padding: 14px 14px 12px; }
+  .ts-act-prompt { font-size: 13.5px; }
+  .ts-act-buckets { grid-template-columns: 1fr; }
+  .ts-act-item { padding: 10px 12px; }
+}
+
+/* Toast shown when user clicks Mark Complete with unfinished activities */
+.ts-act-nudge {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: var(--amber);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(255,179,71,0.40);
+  z-index: 9999;
+  max-width: calc(100vw - 24px);
+  opacity: 0;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .25s;
+  pointer-events: none;
+}
+.ts-act-nudge.show { transform: translate(-50%, 0); opacity: 1; }

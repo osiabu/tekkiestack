@@ -62,32 +62,24 @@ const TSAJunior = (() => {
               <p style="font-size:13px;color:var(--muted);margin-top:10px">🔍 Notice: if we skipped step 3 (picking up the knife), the whole algorithm breaks. Computers need every tiny step written out.</p>
             </div>
 
-            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
-              <p style="font-size:14px;margin-bottom:12px">Write your own algorithm for brushing your teeth. Be as specific as a robot that has never brushed teeth before needs to be, assume it knows nothing! Include at least 6 steps.</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Step 1: Pick up the toothbrush&#10;Step 2: Turn on the tap&#10;Step 3: ...&#10;Step 4: ...&#10;Step 5: ...&#10;Step 6: ..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Brushing-Teeth Algorithm</h3>
+            <p style="font-size:14px;margin-bottom:12px">Drag the steps for "brush your teeth" into the right order. The robot has never brushed teeth before, so the order matters!</p>
+            <div class="ts-activity" data-type="drag-order" data-id="j1-l1-a1" data-config='{"prompt":"Put the steps in order:","items":["Pick up the toothbrush","Turn on the tap","Wet the toothbrush","Put toothpaste on the brush","Brush your teeth in circles","Spit out the toothpaste","Rinse your mouth with water"],"correctOrder":[0,1,2,3,4,5,6]}'></div>
 
-            <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
-              <p style="font-size:14px;margin-bottom:12px">This algorithm for getting dressed in the morning has a problem. Can you find what's wrong?</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                1. Put on your shoes<br>
-                2. Put on your socks<br>
-                3. Put on your trousers<br>
-                4. Put on your shirt<br>
-                5. Put on your jumper
-              </div>
-              <p style="font-size:14px;margin-bottom:10px">What is the bug, and what order should steps 1 and 2 be in?</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is... because... The correct order should be..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px;margin-top:22px">Section 4: Bug Hunt</h3>
+            <p style="font-size:14px;margin-bottom:12px">This algorithm for getting dressed has a problem. Can you find the bug?</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              1. Put on your shoes<br>
+              2. Put on your socks<br>
+              3. Put on your trousers<br>
+              4. Put on your shirt<br>
+              5. Put on your jumper
             </div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l1-a2" data-config='{"prompt":"What is the bug?","options":["Steps 1 and 2 are in the wrong order, socks should go on before shoes","Step 5 should come before step 4","All the steps are wrong","There is no bug"],"correctIndex":0,"explainCorrect":"Yes! You put socks on first, then shoes, otherwise the shoes block the socks.","explainWrong":"Try again. Look at steps 1 and 2 carefully."}'></div>
 
-            <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
-              <p style="font-size:15px;font-weight:600;margin-bottom:10px">When did YOU follow an algorithm today without realising it?</p>
-              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Think about your morning routine, how you play a video game, or how you make a meal. Write 2–3 sentences about an algorithm you used today, even if you didn't know it was one at the time.</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Today I followed an algorithm when I..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px;margin-top:22px">Section 5: Algorithms Around You</h3>
+            <p style="font-size:14px;margin-bottom:12px">Tick every example below that is actually an algorithm.</p>
+            <div class="ts-activity" data-type="multi-choice" data-id="j1-l1-a3" data-config='{"prompt":"Which of these are algorithms? Tick all that apply.","options":["A recipe for baking a cake","A random list of words","Instructions for making a paper aeroplane","A poem with no order","Steps for tying your shoelaces","A pile of jumbled puzzle pieces"],"correctIndices":[0,2,4],"wrongMsg":"Algorithms have a clear order and lead to a result. Pick again."}'></div>
           </div>`,
         },
         {
@@ -134,39 +126,24 @@ const TSAJunior = (() => {
               <p style="font-size:13px;color:var(--muted);margin-top:10px">🔍 In the wrong sequence, we try to butter the bread before it even exists in our hand, and before it's toasted!</p>
             </div>
 
-            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
-              <p style="font-size:14px;margin-bottom:12px">Below are the steps for washing your hands, but they are in the WRONG order. Number them 1–6 in the correct sequence:</p>
-              ${[
-                'Dry hands with a towel',
-                'Turn on the tap',
-                'Rub hands together with soap for 20 seconds',
-                'Apply soap to hands',
-                'Rinse the soap off under the water',
-                'Turn off the tap',
-              ].map((s, i) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;padding:10px;background:rgba(255,255,255,.6);border-radius:8px;border:1px solid var(--border)"><input type="number" min="1" max="6" style="width:48px;padding:8px;border:1.5px solid var(--cyan);border-radius:6px;text-align:center;font-size:16px;font-family:'Fredoka One',cursive;outline:none"><span style="font-size:14px;font-weight:500">${s}</span></div>`).join('')}
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Hand-Washing Sequence</h3>
+            <p style="font-size:14px;margin-bottom:12px">Drag the steps for washing your hands into the right order.</p>
+            <div class="ts-activity" data-type="drag-order" data-id="j1-l2-a1" data-config='{"prompt":"Put the hand-washing steps in order:","items":["Turn on the tap","Apply soap to hands","Rub hands together with soap for 20 seconds","Rinse the soap off under the water","Turn off the tap","Dry hands with a towel"],"correctOrder":[0,1,2,3,4,5]}'></div>
 
-            <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
-              <p style="font-size:14px;margin-bottom:12px">This algorithm for logging into a website has a sequencing error. Find it!</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                1. Click the "Log In" button<br>
-                2. Open the website<br>
-                3. Type your username<br>
-                4. Type your password<br>
-                5. Press Enter
-              </div>
-              <p style="font-size:14px;margin-bottom:10px">Which step is in the wrong place? Where should it go?</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is step... because... It should come before/after step..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px;margin-top:22px">Section 4: Bug Hunt</h3>
+            <p style="font-size:14px;margin-bottom:12px">This login sequence has a bug. Spot it!</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              1. Click the "Log In" button<br>
+              2. Open the website<br>
+              3. Type your username<br>
+              4. Type your password<br>
+              5. Press Enter
             </div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l2-a2" data-config='{"prompt":"Which step is in the wrong place?","options":["Step 2 (Open the website) should come BEFORE step 1","Step 1 should come last","Step 5 should come before step 4","All steps are correct"],"correctIndex":0,"explainCorrect":"Right! You have to open the website BEFORE you can click Log In on it.","explainWrong":"Think about what you do first when you sign in to a website."}'></div>
 
-            <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
-              <p style="font-size:15px;font-weight:600;margin-bottom:10px">Can you think of a time when doing steps in the wrong order caused a problem for you or someone you know?</p>
-              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Maybe in cooking, sport, getting ready for school, or in a game. Write 2–3 sentences describing what happened and what the correct order should have been.</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Once, I did steps in the wrong order when..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px;margin-top:22px">Section 5: Quick Check</h3>
+            <p style="font-size:14px;margin-bottom:12px">If you put on your trousers BEFORE your underwear, what happens?</p>
+            <div class="ts-activity" data-type="choice" data-id="j1-l2-a3" data-config='{"prompt":"Pick the right answer:","options":["Nothing changes, both work","The result is wrong, underwear should go on first","Trousers magically fix the order","Computers will crash"],"correctIndex":1,"explainCorrect":"Yes! Order matters. The result depends on the sequence."}'></div>
           </div>`,
         },
         {
@@ -211,40 +188,23 @@ const TSAJunior = (() => {
               </div>
             </div>
 
-            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
-              <p style="font-size:14px;margin-bottom:14px">For each scenario below, write the loop instruction in plain English. Say whether it's a COUNT loop or a CONDITION loop, and write the repeat instruction.</p>
-              ${[
-                'A robot hoovering a room back and forth until the whole floor is clean',
-                'Showing 5 adverts before a YouTube video plays',
-                'A traffic light cycling through green → amber → red forever',
-                'Counting down from 10 to 0 before a rocket launches',
-              ].map((q, i) => `
-                <div style="margin-bottom:14px;padding:14px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid var(--border)">
-                  <p style="font-size:14px;font-weight:600;margin-bottom:8px">${i+1}. ${q}</p>
-                  <textarea style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="Type: COUNT or CONDITION, then write the loop instruction..."></textarea>
-                </div>
-              `).join('')}
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Loop Type Sort</h3>
+            <p style="font-size:14px;margin-bottom:12px">Drag each example into the right group. Is it a COUNT loop (repeat a fixed number of times) or a CONDITION loop (repeat until something happens)?</p>
+            <div class="ts-activity" data-type="classify" data-id="j1-l3-a1" data-config='{"prompt":"Sort each loop:","items":[{"text":"Show 5 adverts before a YouTube video","bucket":"COUNT"},{"text":"Robot hoovers until the floor is clean","bucket":"CONDITION"},{"text":"Traffic light cycles green-amber-red forever","bucket":"CONDITION"},{"text":"Countdown from 10 to 0 before launch","bucket":"COUNT"},{"text":"Print every name in a class of 30","bucket":"COUNT"},{"text":"Keep playing until lives reach 0","bucket":"CONDITION"}],"buckets":["COUNT","CONDITION"]}'></div>
 
-            <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
-              <p style="font-size:14px;margin-bottom:12px">This loop is supposed to print the numbers 1 through 5. But something is wrong, it will run forever! Can you see why?</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                count = 1<br>
-                REPEAT WHILE count &lt; 6:<br>
-                &nbsp;&nbsp;print count<br>
-                &nbsp;&nbsp;<span style="color:#FF6B6B">// Something is missing here!</span>
-              </div>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is: ... To fix it, add the line: ..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px;margin-top:22px">Section 4: Infinite Loop Bug</h3>
+            <p style="font-size:14px;margin-bottom:12px">This loop is supposed to print 1 to 5, but it runs forever. What is missing?</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              count = 1<br>
+              REPEAT WHILE count &lt; 6:<br>
+              &nbsp;&nbsp;print count<br>
+              &nbsp;&nbsp;<span style="color:#FF6B6B">// Something is missing here!</span>
             </div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l3-a2" data-config='{"prompt":"What needs to be added?","options":["count = count + 1 (so the loop eventually stops)","print again","Nothing, it should run forever","Remove the print line"],"correctIndex":0,"explainCorrect":"Right! Without changing count, the condition stays true and the loop never ends. Always change something inside a condition loop."}'></div>
 
-            <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
-              <p style="font-size:15px;font-weight:600;margin-bottom:10px">What is one thing you do every single day that works like a loop? How many times does it repeat, and what makes it stop?</p>
-              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Hint: think about breathing, chewing food, watching a TV episode, or scrolling through a social media feed. Write 2–3 sentences.</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="A loop in my daily life is..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px;margin-top:22px">Section 5: Quick Check</h3>
+            <p style="font-size:14px;margin-bottom:12px">An infinite loop is...</p>
+            <div class="ts-activity" data-type="choice" data-id="j1-l3-a3" data-config='{"prompt":"Pick the best definition:","options":["A loop with a condition that never becomes false, so it never stops","A loop that runs exactly 100 times","A loop that goes backwards","A loop inside another loop"],"correctIndex":0}'></div>
           </div>`,
         },
         {
@@ -289,44 +249,25 @@ const TSAJunior = (() => {
             </div>
 
             <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: ✍️ Your Turn Activity</h3>
-              <p style="font-size:14px;margin-bottom:14px">Complete the IF/ELSE algorithm for each scenario. Write the condition and both outcomes:</p>
-              ${[
-                { situation: 'A vending machine, the user has put in money', ifTrue: 'What happens if they press a button with enough money?', ifFalse: 'What happens if they do not have enough money?' },
-                { situation: 'A school gate system, a student scans their card', ifTrue: 'What happens if the card is recognised?', ifFalse: 'What happens if the card is not in the system?' },
-                { situation: 'A weather app notification', ifTrue: 'What does the app send if rain is forecast today?', ifFalse: 'What does it send if the weather is fine?' },
-              ].map((s, i) => `
-                <div style="margin-bottom:16px;padding:14px;background:rgba(255,255,255,.7);border-radius:10px;border:1px solid var(--border)">
-                  <p style="font-size:14px;font-weight:700;margin-bottom:8px;color:var(--navy)">${i+1}. ${s.situation}</p>
-                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">IF condition is true, ${s.ifTrue}</p>
-                  <textarea style="width:100%;padding:8px;border:1.5px solid var(--cyan);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;height:50px;outline:none;resize:none;box-sizing:border-box;margin-bottom:8px" placeholder="IF ..."></textarea>
-                  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">ELSE, ${s.ifFalse}</p>
-                  <textarea style="width:100%;padding:8px;border:1.5px solid #6C63FF;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;height:50px;outline:none;resize:none;box-sizing:border-box" placeholder="ELSE ..."></textarea>
-                </div>
-              `).join('')}
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Match the IF Outcome</h3>
+            <p style="font-size:14px;margin-bottom:12px">Drag each scenario to the correct outcome.</p>
+            <div class="ts-activity" data-type="classify" data-id="j1-l4-a1" data-config='{"prompt":"Sort each IF/ELSE result:","items":[{"text":"Vending machine, enough money in slot","bucket":"Item drops out"},{"text":"Vending machine, not enough money","bucket":"Returns coins"},{"text":"School gate, valid card","bucket":"Gate opens"},{"text":"School gate, unknown card","bucket":"Beep + denied"},{"text":"Weather app, rain forecast","bucket":"Sends umbrella alert"},{"text":"Weather app, sunny","bucket":"Stays quiet"}],"buckets":["Item drops out","Returns coins","Gate opens","Beep + denied","Sends umbrella alert","Stays quiet"]}'></div>
 
-            <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">🐛 Section 4: Bug Hunt!</h3>
-              <p style="font-size:14px;margin-bottom:12px">This login algorithm has a logic error. It lets people in even when the password is wrong!</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                IF username = "admin":<br>
-                &nbsp;&nbsp;allow access<br>
-                IF password = "secret123":<br>
-                &nbsp;&nbsp;allow access<br>
-                ELSE:<br>
-                &nbsp;&nbsp;deny access
-              </div>
-              <p style="font-size:14px;margin-bottom:8px">Can you see why this is dangerous? What should the condition check instead?</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is: ... The fix is: ..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px;margin-top:22px">Section 4: Login Logic Bug</h3>
+            <p style="font-size:14px;margin-bottom:12px">This algorithm lets people in even with the wrong password. Why?</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              IF username = "admin":<br>
+              &nbsp;&nbsp;allow access<br>
+              IF password = "secret123":<br>
+              &nbsp;&nbsp;allow access<br>
+              ELSE:<br>
+              &nbsp;&nbsp;deny access
             </div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l4-a2" data-config='{"prompt":"What is the bug?","options":["The two checks are separate, so the username alone unlocks access. They should be combined with AND.","Passwords are not allowed in algorithms","The ELSE is missing","There is no bug"],"correctIndex":0,"explainCorrect":"Yes! Two separate IFs let either condition unlock the door. You need IF username = admin AND password = secret123."}'></div>
 
-            <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">💭 Section 5: Think About It</h3>
-              <p style="font-size:15px;font-weight:600;margin-bottom:10px">Think of a decision you made today. What were the two possible paths? What condition did you check before deciding?</p>
-              <p style="font-size:14px;color:var(--muted);margin-bottom:10px">Write it as an IF/ELSE algorithm in plain English. For example: "IF I wake up before 7am, have a slow breakfast. ELSE, grab something quick."</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:100px;outline:none;resize:vertical;box-sizing:border-box" placeholder="IF ...&#10;  THEN ...&#10;ELSE&#10;  ..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px;margin-top:22px">Section 5: Quick Check</h3>
+            <p style="font-size:14px;margin-bottom:12px">An IF/ELSE statement is checking...</p>
+            <div class="ts-activity" data-type="choice" data-id="j1-l4-a3" data-config='{"prompt":"Pick the right answer:","options":["Whether a condition is true or false, then running different code for each","How many times to repeat something","The order of steps","The name of a variable"],"correctIndex":0}'></div>
           </div>`,
         },
         {
@@ -343,23 +284,16 @@ const TSAJunior = (() => {
               <p style="line-height:1.8;font-size:15px">When you see a pattern, you can use a <em>loop</em> instead of writing every step out, the secret behind every game, app, and website you've ever used.</p>
             </div>
 
-            <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: Pattern Spotter</h3>
-              <p style="font-size:14px;margin-bottom:12px">What comes next in each pattern below? Type your answer in the box.</p>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:15px;line-height:2;background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;margin-bottom:12px">
-                a) 2, 4, 6, 8, ___<br>
-                b) red, blue, red, blue, ___<br>
-                c) Monday, Tuesday, Wednesday, ___<br>
-                d) 1, 1, 2, 3, 5, 8, ___ <span style="color:#FFB347">(tricky one!)</span>
-              </div>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="a) ...&#10;b) ...&#10;c) ...&#10;d) ..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:12px;font-size:18px">Section 2: Pattern Spotter</h3>
+            <p style="font-size:14px;margin-bottom:12px">For each pattern, pick what comes next.</p>
+            <div class="ts-activity" data-type="choice" data-id="j1-l5-a1" data-config='{"prompt":"2, 4, 6, 8, ___","options":["9","10","11","12"],"correctIndex":1,"explainCorrect":"Each number goes up by 2."}'></div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l5-a2" data-config='{"prompt":"red, blue, red, blue, ___","options":["green","red","blue","yellow"],"correctIndex":1,"explainCorrect":"Red and blue alternate, so red is next."}'></div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l5-a3" data-config='{"prompt":"Monday, Tuesday, Wednesday, ___","options":["Friday","Sunday","Thursday","Saturday"],"correctIndex":2}'></div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l5-a4" data-config='{"prompt":"1, 1, 2, 3, 5, 8, ___ (tricky!)","options":["10","11","13","16"],"correctIndex":2,"explainCorrect":"Each number is the sum of the two before it. 5 + 8 = 13. This is the Fibonacci sequence!"}'></div>
 
-            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Find a Pattern Around You</h3>
-              <p style="font-size:14px;margin-bottom:12px">Look around your room or out the window. Find <strong>three things</strong> that show a pattern. Tiles on a floor, leaves on a tree, the rhythm of a song, anything counts.</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:110px;outline:none;resize:vertical;box-sizing:border-box" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px;margin-top:22px">Section 3: Spot the Pattern</h3>
+            <p style="font-size:14px;margin-bottom:12px">Which of these are real patterns?</p>
+            <div class="ts-activity" data-type="multi-choice" data-id="j1-l5-a5" data-config='{"prompt":"Tick everything that is a pattern:","options":["Stripes on a zebra","A pile of random rocks","The chimes of a clock every hour","A page of crossed-out words","Tiles on a chess board","A puddle of spilled milk"],"correctIndices":[0,2,4]}'></div>
 
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:20px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;margin-bottom:10px;font-size:18px">Section 4: Why Patterns Matter for Coders</h3>
@@ -399,17 +333,13 @@ const TSAJunior = (() => {
               <p style="font-size:13px;color:var(--muted)">Now each step is its own small problem you can tackle one at a time.</p>
             </div>
 
-            <div style="background:var(--slate);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Your Turn</h3>
-              <p style="font-size:14px;margin-bottom:12px">Pick ONE of these big problems and break it into 6+ smaller steps:</p>
-              <ul style="font-size:14px;line-height:1.9;margin-bottom:12px;padding-left:20px">
-                <li>Build a treehouse</li>
-                <li>Make a YouTube video</li>
-                <li>Bake your favourite dessert</li>
-                <li>Build a paper aeroplane that flies far</li>
-              </ul>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:160px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Big problem: ...&#10;1. ...&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. ...&#10;6. ..."></textarea>
-            </div>
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 3: Decompose This</h3>
+            <p style="font-size:14px;margin-bottom:12px">"Make a YouTube video" is a big problem. Drag the steps into a sensible order.</p>
+            <div class="ts-activity" data-type="drag-order" data-id="j1-l6-a1" data-config='{"prompt":"Order the steps:","items":["Pick a topic and write a script","Plan what shots you need","Record the video","Edit the footage","Add titles and music","Upload to YouTube","Share the link with friends"],"correctOrder":[0,1,2,3,4,5,6]}'></div>
+
+            <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px;margin-top:22px">Section 4: Why Decompose?</h3>
+            <p style="font-size:14px;margin-bottom:12px">Why do coders break big problems into small ones?</p>
+            <div class="ts-activity" data-type="multi-choice" data-id="j1-l6-a2" data-config='{"prompt":"Tick all true reasons:","options":["Each small piece is easier to solve on its own","It looks more impressive","You can test each piece separately","Different people can work on different pieces","It makes the program slower","Mistakes are easier to find"],"correctIndices":[0,2,3,5]}'></div>
           </div>`,
         },
         {
@@ -426,31 +356,27 @@ const TSAJunior = (() => {
               <p style="line-height:1.8;font-size:15px">Every coder, even the best ones, write code with bugs in it. The skill that separates beginners from pros isn't writing perfect code, it's getting good at <em>finding and fixing</em> the bugs.</p>
             </div>
 
-            <div style="background:#FFF5F5;border:1.5px solid var(--coral);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">Section 2: Bug Hunt Round 1</h3>
-              <p style="font-size:14px;margin-bottom:12px">This algorithm tells a robot how to make tea. There's ONE bug. Find it.</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                1. Pour the water into the cup<br>
-                2. Boil the kettle<br>
-                3. Drop the tea bag in<br>
-                4. Wait two minutes<br>
-                5. Drink
-              </div>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--coral);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:vertical;box-sizing:border-box" placeholder="The bug is: ... The fix is: ..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">Section 2: Bug Hunt Round 1</h3>
+            <p style="font-size:14px;margin-bottom:12px">A robot is making tea. The order has a bug.</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              1. Pour the water into the cup<br>
+              2. Boil the kettle<br>
+              3. Drop the tea bag in<br>
+              4. Wait two minutes<br>
+              5. Drink
             </div>
+            <div class="ts-activity" data-type="choice" data-id="j1-l7-a1" data-config='{"prompt":"What is the bug?","options":["Steps 1 and 2 are swapped, you must boil the kettle BEFORE pouring water","The tea bag should go in last","Step 4 is too short","No bug, this works fine"],"correctIndex":0,"explainCorrect":"Right! You can\\u0027t pour boiling water before the kettle has boiled."}'></div>
 
-            <div style="background:#FFF5F5;border:1.5px solid var(--coral);border-radius:12px;padding:20px;margin-bottom:22px">
-              <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px">Section 3: Bug Hunt Round 2 (harder)</h3>
-              <p style="font-size:14px;margin-bottom:12px">A robot is supposed to count from 1 to 10. Here's the algorithm. Two bugs. Find both.</p>
-              <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
-                1. Set count = 0<br>
-                2. While count is less than 11:<br>
-                &nbsp;&nbsp;&nbsp;3. Say count<br>
-                &nbsp;&nbsp;&nbsp;4. (no step here)<br>
-                5. End
-              </div>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--coral);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:100px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Bug 1: ...&#10;Fix: ...&#10;&#10;Bug 2: ...&#10;Fix: ..."></textarea>
+            <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;margin-bottom:10px;font-size:18px;margin-top:22px">Section 3: Bug Hunt Round 2 (harder)</h3>
+            <p style="font-size:14px;margin-bottom:12px">A robot is supposed to count 1 to 10. Two bugs. Tick both.</p>
+            <div style="background:#0D1B2E;color:#A5F3FC;padding:14px;border-radius:9px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:2;margin-bottom:12px">
+              1. Set count = 0<br>
+              2. While count is less than 11:<br>
+              &nbsp;&nbsp;&nbsp;3. Say count<br>
+              &nbsp;&nbsp;&nbsp;4. (no step here)<br>
+              5. End
             </div>
+            <div class="ts-activity" data-type="multi-choice" data-id="j1-l7-a2" data-config='{"prompt":"Tick BOTH bugs:","options":["count starts at 0 instead of 1","Condition is less-than-11 instead of less-than-or-equal-to-10","Nothing increases count, so it loops forever","The print statement uses the wrong word","Step 5 should come first"],"correctIndices":[0,2],"wrongMsg":"Look at where count starts AND what step 4 should be doing."}'></div>
 
             <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:12px;padding:20px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);margin-bottom:10px;font-size:18px">Section 4: The Debugger's Mindset</h3>
@@ -525,7 +451,7 @@ const TSAJunior = (() => {
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:12px">Declare 5 variables about yourself. Use <strong>const</strong> for things that won't change, <strong>let</strong> for things that might. Write them in the textarea:</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:13px;height:130px;outline:none;resize:vertical;box-sizing:border-box" placeholder="const myName = &quot;...&quot;;&#10;const myAge = ...;&#10;let myFavouriteGame = &quot;...&quot;;&#10;let currentScore = ...;&#10;const mySchool = &quot;...&quot;;"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:16px;margin-bottom:10px">🐛 Spot the Bug!</h3>
@@ -535,12 +461,12 @@ const TSAJunior = (() => {
                 let lives = 5;<br>
                 console.log("Hello, " + playerName + "! You have " + lives + " lives.");
               </div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="The bug is on line... The fix is..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">What three things about yourself would you store as variables if you were building a game where you're the main character?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="I would store: 1)... 2)... 3)..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -573,7 +499,7 @@ const TSAJunior = (() => {
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:10px">Write the <strong>greet(name)</strong> function that returns the exact message: <code style="background:#0D1B2E;color:#A5F3FC;padding:2px 6px;border-radius:4px">"Hello, [name]! Welcome to TekkieStack."</code></p>
               <p style="font-size:14px;margin-bottom:10px">Then call it 3 times with different names and console.log each result:</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:13px;height:130px;outline:none;resize:vertical;box-sizing:border-box" placeholder="function greet(name) &#123;&#10;  // your code here&#10;&#125;&#10;&#10;console.log(greet(&quot;Alex&quot;));&#10;console.log(greet(&quot;...&quot;));&#10;console.log(greet(&quot;...&quot;));"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:16px;margin-bottom:10px">🐛 Spot the Bug!</h3>
@@ -585,12 +511,12 @@ const TSAJunior = (() => {
                 &#125;<br>
                 console.log(area(5, 3)); <span style="color:rgba(255,255,255,.4)">// prints: undefined</span>
               </div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="The bug is: the missing keyword is..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">Think of something you do every day that could be a function, something you do the same way each time but with different inputs. Write it as a function definition in plain English.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="function [name]([input]) { ... }  // e.g. function makeToast(bread) { ... }"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -620,7 +546,7 @@ const TSAJunior = (() => {
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:10px">Given this HTML snippet, write JS to: (1) change the heading text, (2) change the background colour to purple, (3) add a new paragraph.</p>
               <div style="background:#0D1B2E;color:#A5F3FC;padding:12px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;margin-bottom:10px">&lt;h1 id="title"&gt;Hello&lt;/h1&gt;<br>&lt;div id="box" style="background:#eee;padding:20px"&gt;<br>&nbsp;&nbsp;&lt;p id="msg"&gt;Original text&lt;/p&gt;<br>&lt;/div&gt;</div>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:13px;height:120px;outline:none;resize:vertical;box-sizing:border-box" placeholder="// 1. Change heading text&#10;document.getElementById('title').textContent = '...';&#10;&#10;// 2. Change background colour&#10;// 3. Add a new paragraph"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:16px;margin-bottom:10px">🐛 Spot the Bug!</h3>
@@ -629,12 +555,12 @@ const TSAJunior = (() => {
                 const btn = document.getElementByID("myButton");<br>
                 btn.textContent = "Clicked!";
               </div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="The bug is... The correct spelling is..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">Which element on your favourite website would you most want to control with JavaScript? What would you change about it?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="On [website], I would change the [element] to..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -667,7 +593,7 @@ const TSAJunior = (() => {
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:10px">Write JavaScript that makes a div cycle through 3 background colours every time it's clicked: <strong>#00C9B1 → #FF6B6B → #6C63FF → #00C9B1 → ...</strong></p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--cyan);border-radius:8px;background:#0D1B2E;color:#A5F3FC;font-family:'JetBrains Mono',monospace;font-size:13px;height:140px;outline:none;resize:vertical;box-sizing:border-box" placeholder="const colours = ['#00C9B1', '#FF6B6B', '#6C63FF'];&#10;let currentIndex = 0;&#10;const box = document.getElementById('colourBox');&#10;&#10;box.addEventListener('click', function() &#123;&#10;  // your code here&#10;&#125;);"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF5F5;border:1.5px solid #FF6B6B;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#C0392B;font-size:16px;margin-bottom:10px">🐛 Spot the Bug!</h3>
@@ -678,12 +604,12 @@ const TSAJunior = (() => {
                 &nbsp;&nbsp;console.log("Submitted!");<br>
                 &#125;);
               </div>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FF6B6B;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:60px;outline:none;resize:none;box-sizing:border-box" placeholder="The bug is: the correct spelling is addEventListener (missing the 'e' in Listener)"></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">If you could build your dream website, what would happen when a user clicks the main button? Describe the event and the result in 2–3 sentences.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="On my dream website, when the user clicks... it would..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -749,7 +675,7 @@ const TSAJunior = (() => {
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">What topic would YOU make a quiz about? What are 3 questions you'd add to the quiz about that topic?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:90px;outline:none;resize:none;box-sizing:border-box" placeholder="My quiz topic would be: ...&#10;Q1: ...&#10;Q2: ...&#10;Q3: ..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -789,17 +715,17 @@ const TSAJunior = (() => {
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Your Turn Activity</h3>
               <p style="font-size:14px;margin-bottom:12px">For each of the 5 AI examples above, answer: (a) what is the AI learning from? (b) what is it trying to predict or do?</p>
-              <textarea style="width:100%;padding:12px;border:1.5px solid var(--cyan);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;height:150px;outline:none;resize:vertical;box-sizing:border-box" placeholder="Siri: learns from voice recordings. Predicts which words you're saying.&#10;Netflix: learns from...&#10;Snapchat: learns from...&#10;Spam filter: learns from...&#10;Google: learns from..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#FFF8EC;border:1.5px solid #FFB347;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:16px;margin-bottom:8px">💬 Discussion</h3>
               <p style="font-size:14px;margin-bottom:10px">AI gets things wrong, sometimes hilariously, sometimes dangerously. Have you ever seen AI make a funny mistake? (Think: autocorrect disasters, voice assistants mishearing you, weird Netflix recommendations.)</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FFB347;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="Yes! Once AI got it wrong when... It recommended / said / did..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">Is there anything you think AI should <em>never</em> be allowed to do? Write 2–3 sentences explaining your answer.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="I think AI should never... because..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -841,14 +767,14 @@ const TSAJunior = (() => {
               ].map((bad, i) => `
                 <div style="margin-bottom:16px;padding:14px;background:rgba(255,255,255,.6);border-radius:10px;border:1px solid var(--border)">
                   <p style="font-size:13px;color:#C0392B;font-weight:700;margin-bottom:8px">Bad prompt ${i+1}: ${bad}</p>
-                  <textarea style="width:100%;padding:10px;border:1.5px solid var(--cyan);border-radius:7px;font-family:'DM Sans',sans-serif;font-size:13px;height:70px;outline:none;resize:none;box-sizing:border-box" placeholder="Improved: ..."></textarea>
+                  <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
                 </div>
               `).join('')}
             </div>
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">How is writing a good prompt similar to writing a good algorithm? Think about clarity, specificity, and order. Write 2–3 sentences.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="Both algorithms and prompts are similar because..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -877,7 +803,7 @@ const TSAJunior = (() => {
             <div style="background:#FFF8EC;border:1.5px solid #FFB347;border-radius:12px;padding:16px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:#7B4F00;font-size:16px;margin-bottom:10px">💬 Discussion</h3>
               <p style="font-size:14px;margin-bottom:10px">Some people worry AI will take jobs. Others think it will create new ones. What do YOU think? Give a reason, there is no wrong answer.</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #FFB347;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="I think AI will... because..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
             <div style="background:var(--slate);border-radius:12px;padding:18px;margin-bottom:18px">
               <h3 style="font-family:'Fredoka One',cursive;color:var(--navy);font-size:16px;margin-bottom:10px">✍️ Design Your Own AI Tool</h3>
@@ -894,7 +820,7 @@ const TSAJunior = (() => {
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">Which AI application from this lesson surprised you the most, and why?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="The AI application that surprised me most was... because..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -959,7 +885,7 @@ const TSAJunior = (() => {
             <div style="background:#F0F4FF;border:1.5px solid #6C63FF;border-radius:12px;padding:16px">
               <h3 style="font-family:'Fredoka One',cursive;color:#4A3F9F;font-size:16px;margin-bottom:8px">💭 Think About It</h3>
               <p style="font-size:14px;margin-bottom:8px">If you could add one real AI feature to this page using a real AI API, what would it do? How would it help the user?</p>
-              <textarea style="width:100%;padding:10px;border:1.5px solid #6C63FF;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;height:80px;outline:none;resize:none;box-sizing:border-box" placeholder="I would add a feature that..."></textarea>
+              <div style="background:#F0FDFB;border:1.5px solid var(--cyan);border-radius:9px;padding:11px 14px;font-size:12.5px;color:var(--cyan2);font-weight:600">This activity has been replaced with interactive practice. Try the end-of-lesson quiz to be graded on this concept.</div>
             </div>
           </div>`,
         },
@@ -1101,7 +1027,7 @@ const TSAJunior = (() => {
 
     screen.innerHTML = `
       <div style="max-width:800px;margin:0 auto;padding:28px 18px">
-        <button class="btn btn-gh" onclick="TSAJunior.renderJuniorJourney()" style="margin-bottom:20px">← Back to Journey</button>
+        <button class="btn btn-gh" onclick="TSAJunior.renderJuniorJourney()" style="margin-bottom:20px">Back to Journey</button>
         <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
           <div style="width:60px;height:60px;border-radius:14px;background:${phase.bgColor};display:flex;align-items:center;justify-content:center;font-size:28px">${phase.emoji}</div>
           <div>
@@ -1143,7 +1069,7 @@ const TSAJunior = (() => {
 
     screen.innerHTML = `
       <div style="max-width:800px;margin:0 auto;padding:28px 18px">
-        <button class="btn btn-gh" onclick="TSAJunior.openPhase('${phaseId}')" style="margin-bottom:16px">← Back to Phase</button>
+        <button class="btn btn-gh" onclick="TSAJunior.openPhase('${phaseId}')" style="margin-bottom:16px">Back to Phase</button>
         ${lesson.content || `<div class="card"><div style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--navy);margin-bottom:8px">${lesson.title}</div><p style="font-size:14px;color:var(--muted)">${lesson.desc}</p></div>`}
         <div style="margin-top:20px;text-align:center">
           <button class="btn btn-cy btn-full" style="max-width:300px;margin:0 auto" onclick="TSAJunior.markLessonDoneWithQuiz('${phaseId}','${lessonId}')">
@@ -1155,7 +1081,22 @@ const TSAJunior = (() => {
   }
 
   // ── Quiz-gated mark done ─────────────────────────────────────────────────
+  // Order of gates:
+  //   1. ALL interactive activities on the lesson screen must be answered
+  //      correctly (TSAActivities.allCorrect). No XP if any widget is wrong
+  //      or unanswered.
+  //   2. THEN the end-of-lesson quiz fires (if the lesson has one).
+  //   3. THEN markLessonComplete awards XP and updates progress.
   function markLessonDoneWithQuiz(phaseId, lessonId) {
+    const screen = document.getElementById('s-junior');
+    if (window.TSAActivities && screen && !TSAActivities.allCorrect(screen)) {
+      const left = TSAActivities.pending(screen);
+      _showActivityNudge(`You still have ${left.length} activit${left.length === 1 ? 'y' : 'ies'} to answer correctly. Scroll up and finish them, then try again.`);
+      // Scroll to first unfinished activity
+      const firstPending = screen.querySelector('.ts-activity:not(.ts-act-done)');
+      if (firstPending) firstPending.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     if (window.TSAQuizGate && TSAQuizGate.hasQuizFor(lessonId)) {
       TSAQuizGate.showQuiz(lessonId, () => {
         markLessonComplete(phaseId, lessonId).then(() => openPhase(phaseId));
@@ -1163,6 +1104,21 @@ const TSAJunior = (() => {
     } else {
       markLessonComplete(phaseId, lessonId).then(() => openPhase(phaseId));
     }
+  }
+
+  // Friendly inline nudge when activities are unanswered. Auto-dismisses.
+  function _showActivityNudge(msg) {
+    let nudge = document.getElementById('tsActivityNudge');
+    if (!nudge) {
+      nudge = document.createElement('div');
+      nudge.id = 'tsActivityNudge';
+      nudge.className = 'ts-act-nudge';
+      document.body.appendChild(nudge);
+    }
+    nudge.innerHTML = `<span class="ts-i ts-i-warning" aria-hidden="true"></span> ${msg}`;
+    nudge.classList.add('show');
+    clearTimeout(_showActivityNudge._timer);
+    _showActivityNudge._timer = setTimeout(() => nudge.classList.remove('show'), 4200);
   }
 
   // ── Expose screen ────────────────────────────────────────────────────────

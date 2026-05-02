@@ -32,6 +32,21 @@ const TSAQuizGate = (() => {
       { q: 'What is the ELSE part of an IF/ELSE statement?', options: ['Code that runs when the IF condition is true','Code that always runs before the IF','Code that runs when the IF condition is false','A way to create a loop'], answer: 2 },
       { q: 'Which of these is a valid condition for an IF statement?', options: ['Print "hello"','If the player score is greater than 100','Repeat 5 times','Save the file'], answer: 1 },
     ],
+    'j1-l5': [
+      { q: 'What is a pattern in computing?', options: ['A random sequence of letters','Something that repeats in a predictable way','A type of variable','A mistake in code'], answer: 1 },
+      { q: 'In the sequence 2, 4, 6, 8, what comes next?', options: ['9','10','12','11'], answer: 1 },
+      { q: 'Why are patterns useful for coders?', options: ['They make code longer','They let us use loops instead of writing every step','They make code random','Patterns are not useful in code'], answer: 1 },
+    ],
+    'j1-l6': [
+      { q: 'What does decomposition mean in computing?', options: ['Deleting old code','Breaking a big problem into smaller, easier pieces','Making code run faster','Putting code into one big function'], answer: 1 },
+      { q: 'Why do coders decompose big problems?', options: ['To make their code longer','Each small piece is easier to solve and test on its own','Because computers cannot run big programs','To confuse other coders'], answer: 1 },
+      { q: 'You want to build a Pong game. Which is the BEST first decomposition step?', options: ['Write all 5,000 lines at once','List the parts: paddles, ball, score, win/lose, controls','Pick the colours','Choose a font'], answer: 1 },
+    ],
+    'j1-l7': [
+      { q: 'What is a "bug" in code?', options: ['A type of insect','A mistake that makes code behave wrong','A new feature','A kind of variable'], answer: 1 },
+      { q: 'When you find a bug, the FIRST question to ask is:', options: ['Should I delete all the code?','What did I expect to happen, and what actually happened?','Who wrote the bug?','Is the computer broken?'], answer: 1 },
+      { q: 'In a count loop "while count < 11", what makes the loop eventually stop?', options: ['Nothing, it stops on its own','Something inside the loop must change count','Pressing a button on the keyboard','The computer running out of memory'], answer: 1 },
+    ],
 
     // ── Junior Phase 3 — JavaScript ───────────────────────────────────────
     'j3-l1': [
@@ -274,9 +289,34 @@ const TSAQuizGate = (() => {
       { q: 'What does flex: 1 mean on a Flexbox child?', options: ['The child has a fixed width of 1px','The child will grow to fill all available space proportionally','The child is hidden','The child overflows the container'], answer: 1 },
     ],
     'p2-l5': [
-      { q: 'What should a portfolio page include to showcase your skills?', options: ['Only a photo','A bio, skills section, and links to projects you have built','Just a contact form','Only your name and email'], answer: 1 },
-      { q: 'Why is it important for your portfolio page to look good on a phone?', options: ['It is not important, only employers use desktops','Over 60% of web browsing happens on mobile devices','Phones display CSS differently and will break your layout','Mobile users cannot see images'], answer: 1 },
-      { q: 'What makes a portfolio project card useful to someone viewing your portfolio?', options: ['A very long description of every line of code','A title, brief description, screenshot or preview, and a link to the live project or code','Just the project name','Only a link to your GitHub profile'], answer: 1 },
+      { q: 'What does target="_blank" do on an anchor tag?', options: ['Opens the link in a new tab or window','Hides the link','Disables the link','Makes the link bold'], answer: 0 },
+      { q: 'Why should every <img> have an alt attribute?', options: ['It is required by browsers, the page will not load','For accessibility: screen readers read it, and it shows if the image fails to load','To make the image larger','It is decorative only and never matters'], answer: 1 },
+      { q: 'Which is the correct syntax for a link to bbc.co.uk?', options: ['<link to="bbc.co.uk">BBC</link>','<a href="https://bbc.co.uk">BBC</a>','<url>bbc.co.uk</url>','<a src="bbc.co.uk">BBC</a>'], answer: 1 },
+    ],
+    'p2-l6': [
+      { q: 'Which tag creates a bullet (unordered) list?', options: ['<ol>','<ul>','<list>','<dl>'], answer: 1 },
+      { q: 'What is the difference between <ul> and <ol>?', options: ['<ul> is unordered (bullets), <ol> is ordered (numbers)','They are the same','<ul> is for tables, <ol> is for lists','<ol> is unordered'], answer: 0 },
+      { q: 'In an HTML table, what does <th> do?', options: ['Adds a horizontal line','Marks a header cell, usually bold and centred','Marks a row','Makes the table responsive'], answer: 1 },
+    ],
+    'p2-l7': [
+      { q: 'What does a <label> with a for="x" attribute do?', options: ['Hides the input','Connects the label to the input with id="x" so clicking the label focuses the input','Adds CSS styling','Makes the input required'], answer: 1 },
+      { q: 'Which input type shows the on-screen number pad on phones?', options: ['type="text"','type="number"','type="phone"','type="numeric"'], answer: 1 },
+      { q: 'What is the placeholder attribute for?', options: ['Sets the default value when the form is submitted','Shows greyed-out hint text inside the input until the user types','Hides the input','Validates the input'], answer: 1 },
+    ],
+    'p2-l8': [
+      { q: 'What CSS property turns an element into a Grid container?', options: ['display: grid','layout: grid','position: grid','grid: enable'], answer: 0 },
+      { q: 'What does grid-template-columns: 1fr 2fr 1fr produce?', options: ['Three rows','Three columns where the middle one is twice as wide','Three equal-width columns','One column'], answer: 1 },
+      { q: 'When should you use Grid over Flexbox?', options: ['Never, Flexbox is always better','For 2-D layouts (rows AND columns), like a card grid','Only on mobile','Only for text content'], answer: 1 },
+    ],
+    'p2-l9': [
+      { q: 'What does <meta name="viewport" content="width=device-width, initial-scale=1.0"> do?', options: ['Adds a search box','Tells phones to render the page at the correct width and scale','Loads CSS','Sets the page title'], answer: 1 },
+      { q: 'A media query like @media (max-width: 600px) applies styles when:', options: ['The screen is exactly 600px','The screen is wider than 600px','The screen is 600px wide or narrower','Always, regardless of screen'], answer: 2 },
+      { q: 'What does clamp(14px, 4vw, 22px) do for font-size?', options: ['Always 14px','Always 22px','Scales with viewport width but never smaller than 14px or larger than 22px','Random size'], answer: 2 },
+    ],
+    'p2-l10': [
+      { q: 'A good portfolio page should include:', options: ['Just a photo','A clear name, about-me, skills, projects with descriptions, and at least one link','Only a CV download','Only your social media handles'], answer: 1 },
+      { q: 'Which of these is responsive design?', options: ['A page that only works on desktops','A page that adapts its layout to the size of the screen','A page that loads slowly','A page that uses many fonts'], answer: 1 },
+      { q: 'Why use semantic tags like <section>, <article>, <header>?', options: ['They are smaller than divs','They make the page faster to download','They give meaning to your content for screen readers, search engines, and other developers','They have no purpose'], answer: 2 },
     ],
   };
 

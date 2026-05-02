@@ -1149,8 +1149,8 @@ const TSAEngagement = (() => {
         <div style="font-family:'Fredoka One',cursive;font-size:16px;color:#fff">${msg.title}</div>
         <div style="font-size:13px;color:rgba(255,255,255,.6);font-weight:500">${msg.msg}</div>
       </div>
-      <button class="btn btn-cy" style="font-size:13px;padding:8px 16px" onclick="need('dashboard');document.getElementById('returnBanner').remove()">Continue →</button>
-      <button class="btn" style="font-size:12px;padding:8px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)" onclick="document.getElementById('returnBanner').remove()">✕</button>
+      <button class="btn btn-cy" style="font-size:13px;padding:8px 16px" onclick="need('dashboard');document.getElementById('returnBanner').remove()">Continue</button>
+      <button class="btn" style="font-size:12px;padding:8px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)" onclick="document.getElementById('returnBanner').remove()">×</button>
     `;
     const nav = document.querySelector('.nav');
     nav?.after(banner);
